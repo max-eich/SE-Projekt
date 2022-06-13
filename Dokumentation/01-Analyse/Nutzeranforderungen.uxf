@@ -119,12 +119,12 @@ mit Account</panel_attributes>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>333</x>
+      <x>315</x>
       <y>108</y>
-      <w>126</w>
+      <w>144</w>
       <h>63</h>
     </coordinates>
-    <panel_attributes>Medizinische
+    <panel_attributes>Krankengeschichte
 lesen und schreiben</panel_attributes>
     <additional_attributes/>
   </element>
@@ -156,11 +156,11 @@ lesen und schreiben</panel_attributes>
     <coordinates>
       <x>117</x>
       <y>90</y>
-      <w>234</w>
+      <w>216</w>
       <h>63</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>10.0;10.0;240.0;50.0</additional_attributes>
+    <additional_attributes>10.0;10.0;220.0;50.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -248,10 +248,10 @@ schreiben</panel_attributes>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>324</x>
-      <y>432</y>
+      <x>315</x>
+      <y>423</y>
       <w>198</w>
-      <h>63</h>
+      <h>72</h>
     </coordinates>
     <panel_attributes>Addressdaten lesen
 --
@@ -337,11 +337,11 @@ lesen</panel_attributes>
     <coordinates>
       <x>117</x>
       <y>90</y>
-      <w>225</w>
-      <h>387</h>
+      <w>216</w>
+      <h>378</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>10.0;10.0;230.0;410.0</additional_attributes>
+    <additional_attributes>10.0;10.0;220.0;400.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -357,14 +357,14 @@ lesen</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>441</x>
+      <x>450</x>
       <y>144</y>
-      <w>378</w>
+      <w>369</w>
       <h>153</h>
     </coordinates>
     <panel_attributes>lt=.&gt;
 &lt;&lt;includes&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;400.0;150.0</additional_attributes>
+    <additional_attributes>10.0;10.0;390.0;150.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -418,11 +418,11 @@ lesen</panel_attributes>
     <coordinates>
       <x>117</x>
       <y>261</y>
-      <w>225</w>
-      <h>216</h>
+      <w>216</w>
+      <h>207</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>10.0;10.0;230.0;220.0</additional_attributes>
+    <additional_attributes>10.0;10.0;220.0;210.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -450,12 +450,12 @@ lesen</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>126</x>
-      <y>450</y>
-      <w>216</w>
-      <h>81</h>
+      <y>441</y>
+      <w>207</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>10.0;70.0;220.0;10.0</additional_attributes>
+    <additional_attributes>10.0;80.0;210.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -495,10 +495,10 @@ lesen</panel_attributes>
     <coordinates>
       <x>117</x>
       <y>396</y>
-      <w>225</w>
-      <h>81</h>
+      <w>216</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>10.0;10.0;230.0;70.0</additional_attributes>
+    <additional_attributes>10.0;10.0;220.0;60.0</additional_attributes>
   </element>
 </diagram>
