@@ -7,6 +7,7 @@ import org.docx4j.model.table.TblFactory;
 import org.docx4j.openpackaging.exceptions.Docx4JException;
 import org.docx4j.openpackaging.exceptions.InvalidFormatException;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
+import org.docx4j.openpackaging.parts.WordprocessingML.DocumentSettingsPart;
 import org.docx4j.openpackaging.parts.WordprocessingML.MainDocumentPart;
 import org.docx4j.wml.*;
 
@@ -107,6 +108,15 @@ public class PDFCreator {
 
 
 
+    }
+
+    private static final String OFFICE_VERSION = "15";
+
+    private static void setDocumentVersion(MainDocumentPart mdp) throws Docx4JException {
+        DocumentSettingsPart dsp = mdp.getDocumentSettingsPart(true);
+        CTCompat compat = new ObjectFactory().createCTCompat();
+        dsp.getContents().setCompat(compat);
+        compat.setCompatSetting("compatibilityMode", "http://schemas.microsoft.com/office/word", OFFICE_VERSION);
     }
 
 
@@ -361,13 +371,22 @@ public class PDFCreator {
 
 
 
-
-
         File exportFile = new File("Temp-Patientenakte.docx");
         //  wordMLPackage.save(exportFile);
 
+
         // Word Datei speichern
         wordMLPackage.save(new java.io.File("Temp-Patientenakte.docx"));
+
+
+
+
+
+
+
+
+
+        setDocumentVersion(mainDocumentPart);
 
 
 
