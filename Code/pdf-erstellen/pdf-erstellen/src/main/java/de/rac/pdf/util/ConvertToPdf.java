@@ -11,17 +11,30 @@ import fr.opensagres.poi.xwpf.converter.pdf.PdfConverter;
 import fr.opensagres.poi.xwpf.converter.pdf.PdfOptions;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
-public class ConvertToPdf {
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 
-    public static void ConvertToPDF(String docPath, String pdfPath) {
+import com.documents4j.api.DocumentType;
+import com.documents4j.api.IConverter;
+import com.documents4j.job.LocalConverter;
+
+public class ConvertToPdf {
+    public static void convert() {
+
+        File inputWord = new File("C:\\Users\\Max\\Documents\\GitHub\\SE-Projekt\\Code\\pdf-erstellen\\pdf-erstellen\\Temp-Patientenakte.docx");
+        File outputFile = new File("C:\\Users\\Max\\Documents\\GitHub\\SE-Projekt\\Code\\pdf-erstellen\\pdf-erstellen\\Patientenakte.pdf");
         try {
-            InputStream doc = new FileInputStream(docPath);
-            XWPFDocument document = new XWPFDocument(doc);
-            PdfOptions options = PdfOptions.create();
-            OutputStream out = new FileOutputStream(new File(pdfPath));
-            PdfConverter.getInstance().convert(document, out, options);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            InputStream docxInputStream = new FileInputStream(inputWord);
+            OutputStream outputStream = new FileOutputStream(outputFile);
+            IConverter converter = LocalConverter.builder().build();
+            converter.convert(docxInputStream).as(DocumentType.DOCX).to(outputStream).as(DocumentType.PDF).execute();
+            outputStream.close();
+            System.out.println("pdf build: success");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
