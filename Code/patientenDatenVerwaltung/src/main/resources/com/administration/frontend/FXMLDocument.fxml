@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<AnchorPane id="AnchorPane" fx:id="benutzername" prefHeight="425.0" prefWidth="493.0" style="-fx-background-color: white; -fx-border-width: 2px 2px 2px 2px; -fx-border-color: #15b0d7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.administration.frontend.FXMLDocumentController">
+   <children>
+      <ImageView fitHeight="55.0" fitWidth="176.0" layoutX="6.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Rastergrafik2-page-001.jpg" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="125.0" layoutY="80.0" prefHeight="42.0" prefWidth="227.0" text="RheinAhrCampusKlinik" textFill="#17d1d3">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="ButtonLogin" layoutX="182.0" layoutY="289.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="114.0" style="-fx-background-color: #15b0d7;" textFill="#f2eaea" >
+         Login
+      </JFXButton>
+      <JFXTextField fx:id="Benutzername" alignment="TOP_LEFT" focusColor="#15b0d7" labelFloat="true" layoutX="147.0" layoutY="160.0" prefHeight="25.0" prefWidth="182.0" promptText="Benutzername :" unFocusColor="#15b0d7" />
+      <JFXPasswordField fx:id="Password" alignment="TOP_LEFT" focusColor="#15b0d7" labelFloat="true" layoutX="147.0" layoutY="234.0" prefHeight="25.0" prefWidth="182.0" promptText="Password :" unFocusColor="#2c98b0b5" />
+      <FontAwesomeIconView glyphName="USER" layoutX="329.0" layoutY="185.0" size="14" />
+      <FontAwesomeIconView glyphName="KEY" layoutX="334.0" layoutY="263.0" size="14" />
+   </children>
+</AnchorPane>

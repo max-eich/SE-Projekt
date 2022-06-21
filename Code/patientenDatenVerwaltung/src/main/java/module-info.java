@@ -10,6 +10,11 @@ module com.administration.patientendatenverwaltung {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
 
-    opens com.administration.patientendatenverwaltung to javafx.fxml;
-    exports com.administration.patientendatenverwaltung;
+    requires de.jensd.fx.glyphs.commons;
+    requires de.jensd.fx.glyphs.fontawesome;
+
+    opens com.administration to javafx.fxml,de.jensd.fx.glyphs.fontawesome,de.jensd.fx.glyphs.commons;
+    exports com.administration;
+    exports com.administration.frontend;
+    opens com.administration.frontend to javafx.fxml, de.jensd.fx.glyphs.fontawesome, de.jensd.fx.glyphs.commons;
 }
