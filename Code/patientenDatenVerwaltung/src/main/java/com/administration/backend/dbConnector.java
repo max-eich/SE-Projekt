@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class dbConnector {
 
-    private static Connection connect() {
+    public static Connection connect() {
         Connection con = null;
         try {
             // db parameters

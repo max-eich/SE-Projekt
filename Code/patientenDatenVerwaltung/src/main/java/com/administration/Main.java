@@ -1,5 +1,6 @@
 package com.administration;
 
+import com.administration.backend.dbConnector;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
