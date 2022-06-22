@@ -5,9 +5,6 @@ import java.awt.print.PrinterJob;
 import java.io.File;
 import java.io.IOException;
 
-import javax.print.PrintService;
-import javax.print.PrintServiceLookup;
-
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.printing.PDFPageable;
 
@@ -28,14 +25,9 @@ public class PrintPdf {
         }
 
     }
-
     public static void deleteFile(String path) {
         File myObj = new File(path);
-        try {
-            System.out.println(myObj.delete());
-        }catch(SecurityException e){
-            System.out.println(e);
-        }
+        myObj.deleteOnExit();
     }
 
 }
