@@ -3,6 +3,7 @@ package de.rac.pdf;
 import de.rac.pdf.exceptions.PackageCreationException;
 import de.rac.pdf.util.ConvertToPdf;
 import de.rac.pdf.util.PrintPdf;
+import org.docx4j.fonts.substitutions.FontSubstitutions;
 import org.docx4j.jaxb.Context;
 import org.docx4j.model.table.TblFactory;
 import org.docx4j.openpackaging.exceptions.Docx4JException;
@@ -137,7 +138,6 @@ public class PDFCreator {
         return cell;
     }
 
-
     private static final String OFFICE_VERSION = "15";
 
     private static void setDocumentVersion(MainDocumentPart mdp) throws Docx4JException {
@@ -165,26 +165,25 @@ public class PDFCreator {
         ObjectFactory factory = Context.getWmlObjectFactory();
 
 
-     Tbl PatientendatenTabelle = createTable(wordMLPackage, 17, 2);
+        Tbl PatientendatenTabelle = createTable(wordMLPackage, 17, 2);
 
-     addTextToTable("Nachname",PatientendatenTabelle, 1,1);
-     addTextToTable("Vorname",PatientendatenTabelle, 1,2);
-     addTextToTable("Geschlecht",PatientendatenTabelle, 1,3);
-     addTextToTable("Geburtstag",PatientendatenTabelle, 1,4);
-     addTextToTable("Alter",PatientendatenTabelle, 1,5);
-     addTextToTable("Einlieferung",PatientendatenTabelle, 1,6);
-     addTextToTable("Entlassung",PatientendatenTabelle, 1,7);
-     addTextToTable("Straße",PatientendatenTabelle ,1,8);
-     addTextToTable("Hausnr",PatientendatenTabelle, 1,9);
-     addTextToTable("Land",PatientendatenTabelle, 1,10);
-     addTextToTable("PLZ",PatientendatenTabelle, 1,11);
-     addTextToTable("Ort",PatientendatenTabelle, 1,12);
-     addTextToTable("Telefonnummer",PatientendatenTabelle, 1,13);
-     addTextToTable("Handynummer",PatientendatenTabelle, 1,14);
-     addTextToTable("E-Mail",PatientendatenTabelle, 1,15);
-     addTextToTable("Kostenträger",PatientendatenTabelle, 1,16);
-     addTextToTable("Versicherungsnummer", PatientendatenTabelle,1, 17);
-
+        addTextToTable("Nachname", PatientendatenTabelle, 1, 1);
+        addTextToTable("Vorname", PatientendatenTabelle, 1, 2);
+        addTextToTable("Geschlecht", PatientendatenTabelle, 1, 3);
+        addTextToTable("Geburtstag", PatientendatenTabelle, 1, 4);
+        addTextToTable("Alter", PatientendatenTabelle, 1, 5);
+        addTextToTable("Einlieferung", PatientendatenTabelle, 1, 6);
+        addTextToTable("Entlassung", PatientendatenTabelle, 1, 7);
+        addTextToTable("Straße", PatientendatenTabelle, 1, 8);
+        addTextToTable("Hausnr", PatientendatenTabelle, 1, 9);
+        addTextToTable("Land", PatientendatenTabelle, 1, 10);
+        addTextToTable("PLZ", PatientendatenTabelle, 1, 11);
+        addTextToTable("Ort", PatientendatenTabelle, 1, 12);
+        addTextToTable("Telefonnummer", PatientendatenTabelle, 1, 13);
+        addTextToTable("Handynummer", PatientendatenTabelle, 1, 14);
+        addTextToTable("E-Mail", PatientendatenTabelle, 1, 15);
+        addTextToTable("Kostenträger", PatientendatenTabelle, 1, 16);
+        addTextToTable("Versicherungsnummer", PatientendatenTabelle, 1, 17);
 
 
         //Speichert Parenttabelle im Dokument
@@ -275,6 +274,10 @@ public class PDFCreator {
         //Druuckauftrag
         PrintPdf.print("C:\\Users\\Max\\Documents\\GitHub\\SE-Projekt\\Code\\pdf-erstellen\\pdf-erstellen\\Patientenakte.pdf");
 
+        // Löscht die .docx
+        exportFile.delete();
+
+        PrintPdf.deleteFile("C:\\Users\\Max\\Documents\\GitHub\\SE-Projekt\\Code\\pdf-erstellen\\pdf-erstellen\\Patientenakte.pdf");
 
         //Beendet das Programm
         System.exit(0);
@@ -296,7 +299,6 @@ public class PDFCreator {
         -Schriftart ändern
         -Schriftausrichtung ändern
          */
-
 
 
         // PATIENTENBEREICH NACH SKIZZE.PDF

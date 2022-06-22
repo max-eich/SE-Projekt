@@ -1,7 +1,9 @@
 package de.rac.pdf.util;
 
+import java.awt.print.PrinterAbortException;
 import java.awt.print.PrinterJob;
 import java.io.File;
+import java.io.IOException;
 
 import javax.print.PrintService;
 import javax.print.PrintServiceLookup;
@@ -11,27 +13,31 @@ import org.apache.pdfbox.printing.PDFPageable;
 
 public class PrintPdf {
 
-    public static void print(String path) throws Exception {
-
-        PDDocument document = PDDocument.load(new File(path));
-    //Hier den Namen eines möglichen Windows Druckers eintragen
-        PrintService myPrintService = findPrintService("My Windows printer Name");
-
-        PrinterJob job = PrinterJob.getPrinterJob();
-        job.setPageable(new PDFPageable(document));
-        job.setPrintService(myPrintService);
-        job.print();
-
-    }
-
-    private static PrintService findPrintService(String printerName) {
-        PrintService[] printServices = PrintServiceLookup.lookupPrintServices(null, null);
-        for (PrintService printService : printServices) {
-            if (printService.getName().trim().equals(printerName)) {
-                return printService;
-            }
+    public static void print(String path) {
+        try {
+            PDDocument document = PDDocument.load(new File(path));
+            PrinterJob job = PrinterJob.getPrinterJob();
+            job.setPageable(new PDFPageable(document));
+            job.print();
+        } catch (PrinterAbortException e) {
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
+        } catch (Exception e) {
+            System.out.print(e);
         }
-        return null;
+
     }
+
+    public static void deleteFile(String path) {
+        File myObj = new File(path);
+        try {
+            System.out.println(myObj.delete());
+        }catch(SecurityException e){
+            System.out.println(e);
+        }
+    }
+
 }
+
 
