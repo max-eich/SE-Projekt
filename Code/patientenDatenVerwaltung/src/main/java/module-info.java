@@ -13,6 +13,7 @@ module com.administration.patientendatenverwaltung {
     requires de.jensd.fx.glyphs.commons;
     requires de.jensd.fx.glyphs.fontawesome;
     requires java.sql;
+    requires com.fazecast.jSerialComm;
 
     opens com.administration to javafx.fxml,de.jensd.fx.glyphs.fontawesome,de.jensd.fx.glyphs.commons;
     exports com.administration;

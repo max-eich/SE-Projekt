@@ -1,10 +1,13 @@
 package com.administration;
 
+import com.administration.backend.Listener;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.util.List;
 
 public class Main extends Application {
     @Override
@@ -21,6 +24,8 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Listener listen = new Listener();
+        listen.start();
         launch(args);
     }
 }
