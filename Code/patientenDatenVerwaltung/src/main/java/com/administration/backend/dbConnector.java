@@ -1,6 +1,7 @@
 package com.administration.backend;
 
 import java.sql.*;
+import java.util.Date;
 
 public class dbConnector {
 
@@ -52,5 +53,67 @@ public class dbConnector {
         }
 
         return u;
+    }
+
+    public static Patient getPdfPatient(int pid){
+        Patient p = getPatient(Role.arzt, pid);
+        return p;
+    }
+
+    public static Patient getPatient(Role role, int pid){
+        Patient p = null;
+
+        String sql = "SELECT Patient.patientID, Patient.vorname, Patient.nachname, Patient.geburtstag, Patient.geschlecht, Patient.id"
+                + " FROM Patient "
+                + " WHERE Patient.patientID == " + pid + ";";
+
+        try(
+                Connection conn = connect();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)
+        )
+        {
+            p.patientID = rs.getInt("patientID");
+            p.vorname = rs.getString("vorname");
+            p.nachname = rs.getString("nachname");
+            p.geburtsdatum =  rs.getDate("gebutstag");
+            p.geschlecht = Geschlecht.valueOf(rs.getString("geschlecht"));
+            int id = rs.getInt("id");
+            p.stamdaten = getStammdaten(role,id);
+            disconnect(conn);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return p;
+    }
+
+    private static Stamdaten getStammdaten(Role role, int id){
+        Stamdaten s=null;
+
+        String sql="SELECT Stammdaten.strasse, Stammdaten.ort, Stammdaten.plz, Stammdaten.land, Stammdaten.telefon, Stammdaten.handy, Stammdaten.eMail, Stammdaten.kostentraeger, Stammdaten.versicherungsnummer"
+                + " FROM Stammdaten "
+                + " WHERE Stammdaten.Patient_id == " + id +";";
+
+        try(
+                Connection conn = connect();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)
+        ){
+            s.straße= rs.getString("strasse");
+            s.ort = rs.getString("ort");
+            s.plz = Integer.parseInt(rs.getString("plz"));
+            s.land = rs.getString("land");
+            s.telefon = rs.getString("telefon");
+            s.handy = rs.getString("handy");
+            s.eMail = rs.getString("eMail");
+            s.kostenträger = rs.getString("kostentraeger");
+            s.versicherungsnummer = rs.getInt("versicherungsnummer");
+            disconnect(conn);
+        }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return s;
     }
 }

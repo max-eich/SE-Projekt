@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="760.0" style="-fx-background-color: white; -fx-border-width: 2px 2px 2px 2px; -fx-border-color: #17d1d3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="760.0" style="-fx-background-color: white; -fx-border-width: 2px 2px 2px 2px; -fx-border-color: #17d1d3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.administration.frontend.FXMLDocumentController">
    <children>
       <AnchorPane layoutX="6.0" layoutY="14.0" prefHeight="69.0" prefWidth="748.0" style="-fx-background-color: white;">
          <children>
@@ -39,11 +38,11 @@
             </TableView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="469.0" layoutY="83.0" prefHeight="438.0" prefWidth="286.0" style="-fx-background-color: white;">
+      <AnchorPane layoutX="466.0" layoutY="91.0" prefHeight="438.0" prefWidth="286.0" style="-fx-background-color: white;">
          <children>
             <JFXTextField id="name" fx:id="name" focusColor="#15b0d7" labelFloat="true" layoutX="52.0" layoutY="43.0" prefHeight="25.0" prefWidth="183.0" promptText="Name" unFocusColor="#15b0d7" />
             <JFXTextField fx:id="ZimmerNr" focusColor="#15b0d7" labelFloat="true" layoutX="52.0" layoutY="219.0" prefHeight="25.0" prefWidth="183.0" promptText="ZimmerNr" unFocusColor="#15b0d7" />
-            <JFXDatePicker fx:id="Gebruts" defaultColor="#15b0d6" layoutX="52.0" layoutY="132.0" prefHeight="25.0" prefWidth="220.0" promptText="Geburtsdatum" AnchorPane.bottomAnchor="281.0" AnchorPane.rightAnchor="14.0" />
+            
             <JFXButton fx:id="suchen" layoutX="78.0" layoutY="289.0" prefHeight="39.0" prefWidth="128.0" style="-fx-background-color: #15b0d7;" text="suchen" textFill="#f8f6f6">
                <font>
                   <Font size="15.0" />
@@ -57,6 +56,7 @@
             <FontAwesomeIconView fill="#15b0d7" glyphName="SEARCH" layoutX="227.0" layoutY="60.0" size="14" />
             <FontAwesomeIconView fill="#15b0d7" glyphName="SEARCH" layoutX="229.0" layoutY="237.0" size="14" text="" />
             <FontAwesomeIconView fill="#ebe7e7" glyphName="PLUS" layoutX="20.0" layoutY="425.0" size="14" />
+            <DatePicker layoutX="52.0" layoutY="143.0" prefHeight="26.0" prefWidth="183.0" promptText="Geburtstag" />
          </children>
       </AnchorPane>
    </children>
