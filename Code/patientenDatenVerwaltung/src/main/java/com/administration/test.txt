@@ -1,0 +1,40 @@
+//Controller
+
+    @FXML
+    private Pane currentPanel;
+
+    public void showPatientSearchWindow(ActionEvent actionEvent) throws IOException, StageNotFoundException, ChildNotFoundException {
+        Pane root = FXMLLoader.load(Datenerfassungssystem.class.getResource("search-patient-window-view.fxml"));
+
+        var currentWindow = Datenerfassungssystem.getInstance().getStageManager().getChild(Pane.class, "currentPanel", "Datenerfassungssystem für Patientenakten", false);
+
+        currentWindow.getChildren().setAll(root.getChildren());
+
+        System.out.println(currentWindow.getChildren());
+
+    }
+
+    //StageManager
+    /**
+     * (Cursed generics stuff)
+     * Gets a child by their id from a given stage
+     *
+     * @param type          The type of the child (e.g a label)
+     * @param childId       The id of the child
+     * @param stageTitle    The stage title
+     * @param caseSensitive If the id and the stage title should be case sensitive
+     * @param <T>           The type of the child
+     * @return The child object
+     * @throws StageNotFoundException If the stage was not found
+     * @throws ChildNotFoundException If the child was not found
+     */
+    public <T> T getChild(Class<T> type, String childId, String stageTitle, boolean caseSensitive) throws StageNotFoundException, ChildNotFoundException {
+        return type.cast(this.getStage(stageTitle, caseSensitive)
+                .getScene()
+                .getRoot()
+                .getChildrenUnmodifiable().stream()
+                .filter(child -> child.getId() != null)
+                .filter(child -> (caseSensitive ? child.getId().equals(childId) : child.getId().equalsIgnoreCase(childId)))
+                .findFirst()
+                .orElseThrow(() -> new ChildNotFoundException("Child \"" + childId + "\" not found!")));
+    }

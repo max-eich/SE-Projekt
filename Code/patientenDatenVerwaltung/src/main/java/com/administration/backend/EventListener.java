@@ -5,7 +5,8 @@ import com.fazecast.jSerialComm.SerialPortEvent;
 import com.fazecast.jSerialComm.SerialPortMessageListener;
 
 public class EventListener implements SerialPortMessageListener {
-    String mes;
+
+    private String mes = "";
 
     public String getMes() {
         if(mes!=null && mes.length() >2) {

@@ -1,40 +1,82 @@
 package com.administration.backend;
 
+import com.administration.Main;
+import com.administration.frontend.OriginPane;
 import com.fazecast.jSerialComm.SerialPort;
-import com.fazecast.jSerialComm.SerialPortEvent;
-import com.fazecast.jSerialComm.SerialPortMessageListener;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 
 public class Listener {
-    private SerialPort serialPort = SerialPort.getCommPort("COM10");
+    private final SerialPort serialPort = SerialPort.getCommPort("COM10");
 
     public void start() {
         serialPort.openPort();
-        dbConnector dbConnector1 = new dbConnector();
-        User user = new User();
-        //serialPort.setBaudRate(9600);
         EventListener eventListener = new EventListener();
         serialPort.addDataListener(eventListener);
 
-        while (true) {
-            if (eventListener.getMes() != "") {
+        var thread = new Thread(() -> {
+            while (true) {
+                if (eventListener.getMes() != null && !eventListener.getMes().equals("")) {
+                    var user = dbConnector.checkCard(eventListener.getMes());
+                    if (user.name != null) {
+                        Platform.runLater(() -> {
+                            try {
+                                var loader = new FXMLLoader(Main.class.getResource("frontend/originPane.fxml"));
+                                var root = (Parent) loader.load();
+                                ((OriginPane) loader.getController()).setUser(user);
+                                var stage = new Stage();
+                                stage.setResizable(false);
+                                stage.setTitle("Patientenverwaltung");
+                                stage.setScene(new Scene(root));
+                                stage.show();
+                                Main.stages.remove(stage);
+                                Main.stages.add(stage);
+                                Main.stages.stream().filter(foundStage -> foundStage.getTitle().equalsIgnoreCase("Login")).findFirst().orElse(null).close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
 
-                user = dbConnector1.checkCard(eventListener.getMes());
-                System.out.println(eventListener.getMes());
-                if (user != null) {
-                    System.out.println(user.name);
+                        });
+                    } else if(eventListener.getMes().equals("ard read previously.")){
+                        System.out.println("second");
+                        Platform.runLater(() -> {
+                        try {
+                            FXMLLoader loader = new FXMLLoader(Main.class.getResource("frontend/FXMLDocument.fxml"));
+                            Parent root = (Parent) loader.load();
+                            var stage = new Stage();
+                            stage.setResizable(false);
+                            stage.setTitle("Login");
+                            stage.setScene(new Scene(root));
+                            stage.show();
+                            Main.stages.stream().filter(foundStage -> foundStage.getTitle().equalsIgnoreCase("Patientenverwaltung")).findFirst().orElse(null).close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }});
+                    }
+                }
+                eventListener.setMes("");
+                try {
+                    Thread.sleep(500);
+                } catch (IllegalArgumentException | InterruptedException e) {
+                    System.out.println(e);
                 }
             }
-            eventListener.setMes("");
-            try {
-                Thread.sleep(500);
-            } catch (IllegalArgumentException E) {
-                System.out.println(E);
-            } catch (InterruptedException EX) {
-                System.out.println(EX);
-            }
-        }
+        });
+        thread.setDaemon(true);
+        thread.start();
+    }
 
+    public void disconnect() {
+        if (serialPort != null) {
+            serialPort.removeDataListener();
+            serialPort.closePort();
+        }
     }
 
 
