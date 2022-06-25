@@ -36,7 +36,6 @@ public class User
 	
 	public String password;
 
-	public Card card;
 	
 	/**
 	 * <!-- begin-user-doc -->

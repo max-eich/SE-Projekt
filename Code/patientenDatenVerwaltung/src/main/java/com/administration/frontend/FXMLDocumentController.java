@@ -29,80 +29,33 @@ import javafx.stage.Stage;
 /**
  * @author pc
  */
-public class FXMLDocumentController {
+public class FXMLDocumentController extends BasicController{
 
     @FXML
     private Label label;
 
-    @FXML
-    private TableView<searchTable> tablePatient;
-
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-    private String s;
-    private Patient p;
-
-    public User user;
-
-    private View currentView = View.LOGIN;
-
-    @FXML
-    private Label testLabel;
 
     @FXML
     public void initialize() {
-        searchTable s = new searchTable("1", "a", "m", "05", "3");
-        if (tablePatient != null) {
-            //tablePatient.getColumns().add(TableColumn<>)
-        }
-        if(user == null){
-            System.out.println("User not found.");
-        }
-        if (user != null) {
-            System.out.println("User: " + user.name);
-            testLabel.setText(user.name);
-        }
     }
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-        currentView = View.MAIN_MENU;
-
-        root = FXMLLoader.load(getClass().getResource("patientenliste.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        s = "patientenliste";
-        //listener.disconnect();
+        User u = new User();
+        u.name="admin";
+        u.role=Role.arzt;
+        u.password="admin";
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("frontend/originPane.fxml"));
+        Parent root = loader.load();
+        ((OriginPaneController) loader.getController()).setUser(u);
+        var stage = new Stage();
+        stage.setResizable(false);
+        stage.setTitle("Patientenverwaltung");
+        stage.setScene(new Scene(root));
+        stage.setUserData(loader);
         stage.show();
+        Stage.getWindows().stream().filter(foundStage -> ((Stage) foundStage).getTitle().equalsIgnoreCase("Login")).forEach(window -> ((Stage) window).close());
     }
 
-    @FXML
-    private void buttonSearch(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("stamdaten.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        s = "Stammdaten";
-        stage.show();
-    }
-
-    @FXML
-    private void patientSelect() throws IOException {
-        /**root = FXMLLoader.load(getClass().getResource("stamdaten.fxml"));
-         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-         scene = new Scene(root);
-         stage.setScene(scene);
-         s="Stammdaten";
-         stage.show();**/
-    }
-
-    public void setUser(User user) {
-    }
-
-    private enum View {
-        LOGIN, MAIN_MENU;
-    }
 
 }

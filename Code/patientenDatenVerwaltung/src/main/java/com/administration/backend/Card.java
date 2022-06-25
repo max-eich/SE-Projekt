@@ -26,6 +26,8 @@ public class Card
 	 */
 	
 	public String rfid;
+
+	public User user;
 	
 	/**
 	 * <!-- begin-user-doc -->

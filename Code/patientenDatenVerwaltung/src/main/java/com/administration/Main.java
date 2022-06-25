@@ -14,7 +14,7 @@ import java.util.Set;
 
 public class Main extends Application {
 
-    public static Set<Stage> stages = new HashSet<>();
+    private static Listener listener = new Listener();
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -26,16 +26,18 @@ public class Main extends Application {
         stage.setResizable(false);
         stage.setTitle("Login");
         stage.setScene(scene);
+        stage.setUserData(root);
         stage.show();
-        stages.add(stage);
-
+    }
+    @Override
+    public void stop(){
+        listener.disconnect();
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Listener listener = new Listener();
         listener.start();
         launch(args);
     }
