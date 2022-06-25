@@ -106,7 +106,7 @@ public class dbConnector {
     }
 
     private static ArrayList<Krankheit> getKrank(Role role, int id) {
-        ArrayList<Krankheit> k = new ArrayList<Krankheit>();
+        ArrayList<Krankheit> k = new ArrayList<>();
         String s= "";
         if(role==Role.pflege){
              s=" AND type= 'k' ";
@@ -150,7 +150,7 @@ public class dbConnector {
         +"FROM Einrichtungen s "
         +"INNER JOIN Newest t on s.referenceID = t.referenceID and s.aenderung = t.LastReading "
         +"WHERE Patient_id = 1;";
-                ;
+
         try(
                 Connection conn = connect();
                 Statement stmt = conn.createStatement();

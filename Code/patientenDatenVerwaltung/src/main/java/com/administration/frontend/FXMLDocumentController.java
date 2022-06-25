@@ -47,7 +47,7 @@ public class FXMLDocumentController extends BasicController{
         u.password="admin";
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("frontend/originPane.fxml"));
         Parent root = loader.load();
-        ((OriginPaneController) loader.getController()).setUser(u);
+        ((OriginPaneController) loader.getController()).setup(u);
         var stage = new Stage();
         stage.setResizable(false);
         stage.setTitle("Patientenverwaltung");

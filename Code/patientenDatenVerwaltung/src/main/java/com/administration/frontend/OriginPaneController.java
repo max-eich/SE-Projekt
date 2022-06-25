@@ -38,26 +38,48 @@ public class OriginPaneController extends BasicController{
         Stage.getWindows().stream().filter(foundStage -> ((Stage) foundStage).getTitle().equalsIgnoreCase("Patientenverwaltung")).forEach(window -> ((Stage) window).close());
     }
 
-    @Override
-    public void setUser(@NotNull User user) {
-        super.setUser(user);
-        label.setText(getUser().name);
-        setTabs();
+    public void setup(@NotNull User user){
+        setUser(user);
+        if(getUser().role==Role.techniker){
+            setTechnikerTabs();
+        } else {
+            setTabs();
+        }
+    }
+
+    private void setTechnikerTabs() {
+        try{
+            tabsPane.getTabs().clear();
+            Tab t = new Tab();
+            tabsPane.getTabs().add(t);
+            Tab t1 = new Tab();
+            tabsPane.getTabs().add(t1);
+            t.setContent((Node) FXMLLoader.load(getClass().getResource("Accont.fxml")));
+            t.setText("Account");
+            t1.setContent((Node)FXMLLoader.load(getClass().getResource("techniker.fxml")));
+            t1.setText("Cards");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setTabs(){
-        if(getUser().role == Role.arzt){
             try {
                 tabsPane.getTabs().clear();
                 Tab t = new Tab();
                 tabsPane.getTabs().add(t);
-                t.setContent((Node) FXMLLoader.load(getClass().getResource("patientenliste.fxml")));
-                t.setText("Patientensuche");
+                Tab t1 = new Tab();
+                tabsPane.getTabs().add(t1);
+                t.setContent((Node) FXMLLoader.load(getClass().getResource("Accont.fxml")));
+                t.setText("Account");
+                t1.setContent((Node) FXMLLoader.load(getClass().getResource("patientenliste.fxml")));
+                t1.setText("Patientensuche");
             } catch(IOException e) {
                 e.printStackTrace();
             }
-        }
     }
+
+
 
     @FXML
     public void initialize() {}

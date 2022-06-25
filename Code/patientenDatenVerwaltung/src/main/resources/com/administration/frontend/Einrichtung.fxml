@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="604.0" prefWidth="746.0" style="-fx-background-color: white; -fx-border-width: 1px 1px 1px 1px; -fx-border-color: #17d1d3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.administration.frontend.EinrichtungController">
+   <children>
+      <AnchorPane layoutX="7.0" layoutY="14.0" prefHeight="108.0" prefWidth="729.0" style="-fx-background-color: white; -fx-border-width: 1px 1px 1px 1px;">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="200.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Rastergrafik2-page-001.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="194.0" layoutY="77.0" text="Patientensuche" />
+            <Label layoutX="290.0" layoutY="77.0" text="Krankheitsgeschichte" />
+            <Label layoutX="641.0" layoutY="77.0" text="Accont" />
+            <Label layoutX="416.0" layoutY="77.0" text="Anamnese" />
+            <Label layoutX="481.0" layoutY="77.0" text="Stammdaten" />
+            <Label layoutX="568.0" layoutY="77.0" text="Einrichtung" textFill="#17d1d3" underline="true" />
+         </children></AnchorPane>
+      <AnchorPane layoutX="11.0" layoutY="122.0" prefHeight="207.0" prefWidth="729.0" style="-fx-background-color: white;">
+         <children>
+            <Label alignment="CENTER" layoutX="10.0" layoutY="14.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" styleClass="mystyle" text="Nachname" />
+            <Label alignment="CENTER" layoutX="10.0" layoutY="76.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Geschlecht" />
+            <Label alignment="CENTER" layoutX="10.0" layoutY="136.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Zimmer Nr." />
+            <Label alignment="CENTER" layoutX="245.0" layoutY="16.0" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Vorname" />
+            <Label alignment="CENTER" layoutX="245.0" layoutY="76.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Alter" />
+            <Label alignment="CENTER" layoutX="245.0" layoutY="136.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Einlieferung" />
+            <Label alignment="CENTER" layoutX="499.0" layoutY="14.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Patienten ID" />
+            <Label alignment="CENTER" layoutX="499.0" layoutY="76.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Geburtstag" />
+            <Label alignment="CENTER" layoutX="499.0" layoutY="136.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Entlassung" />
+            <TextField layoutX="91.0" layoutY="15.0" prefHeight="27.0" prefWidth="126.0" />
+            <TextField layoutX="91.0" layoutY="137.0" prefHeight="27.0" prefWidth="132.0" />
+            <TextField layoutX="326.0" layoutY="15.0" prefHeight="27.0" prefWidth="132.0" />
+            <TextField layoutX="326.0" layoutY="76.0" prefHeight="27.0" prefWidth="132.0" />
+            <TextField layoutX="326.0" layoutY="136.0" prefHeight="27.0" prefWidth="132.0" />
+            <TextField layoutX="580.0" layoutY="76.0" prefHeight="27.0" prefWidth="126.0" />
+            <TextField layoutX="580.0" layoutY="15.0" prefHeight="27.0" prefWidth="126.0" />
+            <TextField layoutX="580.0" layoutY="137.0" prefHeight="27.0" prefWidth="126.0" />
+            <ComboBox layoutX="91.0" layoutY="77.0" prefHeight="25.0" prefWidth="132.0" promptText="Item" style="-fx-background-color: white;" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="14.0" layoutY="329.0" prefHeight="259.0" prefWidth="722.0" style="-fx-background-color: white;">
+         <children>
+            <TableView layoutX="78.0" prefHeight="185.0" prefWidth="567.0">
+              <columns>
+                <TableColumn prefWidth="105.0" text="Name" />
+                <TableColumn prefWidth="197.0" text="Address" />
+                  <TableColumn prefWidth="119.0" text="Art des Arztes" />
+                  <TableColumn prefWidth="125.0" text="Telefonnummer" />
+              </columns>
+            </TableView>
+            <JFXButton layoutX="310.0" layoutY="204.0" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: #17d1d3;" text="speichern" textFill="#f5f2f2" />
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

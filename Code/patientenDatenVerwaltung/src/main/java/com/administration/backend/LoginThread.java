@@ -51,12 +51,11 @@ public class LoginThread implements Runnable{
                         try {
                             Window open = Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
                             Stage current = (Stage) open;
-                            //System.out.println(current.getTitle());
                             User u = ((BasicController) ((FXMLLoader) current.getUserData()).getController()).getUser();
                             if (u.name == null) {
                                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("frontend/originPane.fxml"));
                                 Parent root = loader.load();
-                                ((OriginPaneController) loader.getController()).setUser(user);
+                                ((OriginPaneController) loader.getController()).setup(user);
                                 var stage = new Stage();
                                 stage.setResizable(false);
                                 stage.setTitle("Patientenverwaltung");
