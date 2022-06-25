@@ -16,6 +16,7 @@
       <Separator layoutX="487.0" orientation="VERTICAL" prefHeight="481.0" />
       <VBox alignment="CENTER" layoutX="95.0" layoutY="45.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="331.0" prefWidth="288.0">
          <children>
+            <Region prefHeight="35.0" prefWidth="200.0" />
             <Label text="Benutzerinformationen">
                <font>
                   <Font size="20.0" />
@@ -33,16 +34,12 @@
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <Region prefHeight="45.0" prefWidth="288.0" />
-            <JFXButton style="-fx-background-color: #0abde3;" text="Karte verloren" textFill="#fffbfb">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </JFXButton>
+            <Region prefHeight="84.0" prefWidth="288.0" />
          </children>
       </VBox>
       <VBox alignment="CENTER" layoutX="597.0" layoutY="45.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="331.0" prefWidth="288.0">
          <children>
+            <Region prefHeight="35.0" prefWidth="288.0" />
             <Label text="Password ändern">
                <font>
                   <Font size="20.0" />
