@@ -16,7 +16,7 @@
             <JFXTextField id="name" fx:id="name" focusColor="#15b0d7" labelFloat="true" layoutX="52.0" layoutY="43.0" prefHeight="25.0" prefWidth="183.0" promptText="Name" unFocusColor="#15b0d7" />
             <JFXTextField fx:id="ZimmerNr" focusColor="#15b0d7" labelFloat="true" layoutX="52.0" layoutY="219.0" prefHeight="25.0" prefWidth="183.0" promptText="ZimmerNr" unFocusColor="#15b0d7" />
             
-            <JFXButton fx:id="suchen" layoutX="78.0" layoutY="289.0" prefHeight="39.0" prefWidth="128.0" style="-fx-background-color: #15b0d7;" text="suchen" textFill="#f8f6f6">
+            <JFXButton fx:id="suchen" layoutX="78.0" layoutY="289.0" onAction="#search" prefHeight="39.0" prefWidth="128.0" style="-fx-background-color: #15b0d7;" text="suchen" textFill="#f8f6f6">
                <font>
                   <Font size="15.0" />
                </font>

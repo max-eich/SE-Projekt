@@ -7,7 +7,13 @@ package com.administration.frontend;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -22,6 +28,10 @@ public class PatientenlisteController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+    @FXML
+    private void search(ActionEvent event){
+        ((OriginPaneController)((FXMLLoader)((Stage)((Node)event.getSource()).getScene().getWindow()).getUserData()).getController()).selectPatient(1);
+    }
     
 }
