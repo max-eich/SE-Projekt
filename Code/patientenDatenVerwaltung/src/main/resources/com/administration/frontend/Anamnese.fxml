@@ -188,6 +188,11 @@
                      <font>
                         <Font size="18.0" />
                      </font></JFXButton>
+                  <JFXTextField layoutX="338.0" layoutY="34.0" promptText="Combobox formatierung fehlt">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </JFXTextField>
                </children>
             </AnchorPane>
          </children>
