@@ -15,6 +15,7 @@ module com.administration.patientendatenverwaltung {
     requires java.sql;
     requires com.fazecast.jSerialComm;
     requires org.jetbrains.annotations;
+    requires com.jfoenix;
 
     opens com.administration to javafx.fxml,de.jensd.fx.glyphs.fontawesome,de.jensd.fx.glyphs.commons;
     exports com.administration;
