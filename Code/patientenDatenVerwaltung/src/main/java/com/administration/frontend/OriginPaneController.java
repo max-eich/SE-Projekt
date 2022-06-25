@@ -3,6 +3,7 @@ package com.administration.frontend;
 import com.administration.Main;
 import com.administration.backend.Role;
 import com.administration.backend.User;
+import com.administration.backend.dbConnector;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,12 +11,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class OriginPaneController extends BasicController{
 
@@ -44,6 +48,40 @@ public class OriginPaneController extends BasicController{
             setTechnikerTabs();
         } else {
             setTabs();
+        }
+    }
+
+    public void selectPatient(int pid){
+        setPatient(dbConnector.getPatient(getUser().role,pid));
+        setPatientTabs();
+    }
+
+    private void setPatientTabs(){
+        try{
+        if(getUser().role.equals(Role.personal)||getUser().role.equals(Role.admin)){
+            tabsPane.getTabs().clear();
+            ArrayList<Tab> t = new ArrayList<>() ;
+            t.add((new Tab("Account",(Node) FXMLLoader.load(getClass().getResource("Accont.fxml")))));
+            t.add((new Tab("Stammdaten",(Node) FXMLLoader.load(getClass().getResource("stamdaten.fxml")))));
+            t.add((new Tab("Patientensuche",(Node) FXMLLoader.load(getClass().getResource("patientenliste.fxml")))));
+            tabsPane.getTabs().addAll(t);
+            SingleSelectionModel<Tab> selectionModel = tabsPane.getSelectionModel();
+            selectionModel.select(t.get(1));
+        } else if(getUser().role.equals(Role.arzt)||getUser().role.equals(Role.pflege)){
+            tabsPane.getTabs().clear();
+            ArrayList<Tab> t = new ArrayList<>();
+            t.add((new Tab("Account",(Node) FXMLLoader.load(getClass().getResource("Accont.fxml")))));
+            t.add((new Tab("Einrichtungen", (Node) FXMLLoader.load((getClass().getResource("Einrichtung.fxml"))))));
+            t.add((new Tab("Stammdaten",(Node) FXMLLoader.load(getClass().getResource("stamdaten.fxml")))));
+            t.add((new Tab("Anamnese",(Node) FXMLLoader.load(getClass().getResource("Anamnese.fxml")))));
+            t.add((new Tab("Krankheitsgeschichte",(Node) FXMLLoader.load(getClass().getResource("Krankheitsgeschichte.fxml")))));
+            t.add((new Tab("Patientensuche",(Node) FXMLLoader.load(getClass().getResource("patientenliste.fxml")))));
+            tabsPane.getTabs().addAll(t);
+            SingleSelectionModel<Tab> selectionModel = tabsPane.getSelectionModel();
+            selectionModel.select(t.get(4));
+        }
+        } catch (IOException ex){
+            ex.printStackTrace();
         }
     }
 
