@@ -32,15 +32,15 @@ public class dbConnector {
     }
 
     public static void setPatientStammdaten(Stamdaten s, int pid, User u){
-        insert into Stammdaten ( strasse, ort, plz, land, telefon, handy, eMail, kostentraeger, versicherungsnummer,
+        /**insert into Stammdaten ( strasse, ort, plz, land, telefon, handy, eMail, kostentraeger, versicherungsnummer,
                 aenderung, Patient_id, User_id)
-        values ();
+        values ();**/
     }
 
     private static int findUserID(User u){
         int i= 0;
 
-        String sql= "SELECT User.id FROM User "
+        String sql= "SELECT User.referenceID FROM User "
                 +"WHERE name = '" + u.name+"' "
                 +"AND role = '" +u.role.toString()+"' "
                 +"AND password = '"+u.password+"' ;";
@@ -51,7 +51,7 @@ public class dbConnector {
                 ResultSet rs = stmt.executeQuery(sql)
         ) {
             if(rs.isBeforeFirst()){
-                i=rs.getInt("id");
+                i=rs.getInt(1);
                 disconnect(conn);
             }
         }catch (SQLException ex) {
@@ -63,11 +63,11 @@ public class dbConnector {
     public static @NotNull User checkCard(String card) {
         User u = new User();
         String sql = "SELECT User.name, User.role, User.password FROM User "
-                + "INNER JOIN CardStatus on User.id = CardStatus.User_id "
+                + "INNER JOIN CardStatus on User.referenceID = CardStatus.User_id "
                 + "INNER JOIN Card on CardStatus.Card_id = Card.id "
                 + "WHERE Card.rfid LIKE '" + card + "' "
                 + "AND CardStatus.status = 'ok' "
-                + ";";
+                + "ORDER BY User.aenderung DESC;";
         try (
                 Connection conn = connect();
                 Statement stmt = conn.createStatement();
@@ -377,5 +377,45 @@ public class dbConnector {
         }
 
         return s;
+    }
+
+    public static void setPassword(User user, String text) {
+        int i = findUserID(user);
+        String sql="insert into User ( name, role, password, User_id, referenceID)" +
+                "values (?,?,?,?,?);";
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, user.name);
+            pstmt.setString(2, user.role.toString());
+            pstmt.setString(3,text);
+            pstmt.setInt(4,i);
+            pstmt.setInt(5,i);
+            pstmt.executeUpdate();
+            disconnect(conn);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static User getUser(User user) {
+        User u = new User();
+        String sql= "SELECT name, role, password FROM User WHERE name = '"+user.name+"' AND password = '"+user.password+"' ;";
+
+        try (
+                Connection conn = connect();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)
+        ) {
+            if (rs.isBeforeFirst()) {
+                u.name = rs.getString("name");
+                u.role = Role.valueOf(rs.getString("role"));
+                u.password = rs.getString("password");
+            }
+            disconnect(conn);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return u;
     }
 }

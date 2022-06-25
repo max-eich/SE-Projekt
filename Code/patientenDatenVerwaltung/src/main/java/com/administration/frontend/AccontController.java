@@ -7,6 +7,13 @@ package com.administration.frontend;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.administration.backend.User;
+import com.administration.backend.dbConnector;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -14,14 +21,35 @@ import javafx.fxml.Initializable;
  *
  * @author pc
  */
-public class AccontController implements Initializable {
+public class AccontController extends BasicController {
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+    @FXML
+    private JFXTextField userName;
+    @FXML
+    private JFXTextField userRole;
+    @FXML
+    private JFXPasswordField firstPassword;
+    @FXML
+    private JFXPasswordField secondPassword;
+
+    @FXML
+    private void passwordChange(ActionEvent event){
+        if(
+                firstPassword.getText().equals(secondPassword.getText())
+                && !firstPassword.getText().contains("'")
+                && !firstPassword.getText().contains("\"")
+                && !firstPassword.getText().contains(";")
+        ) {
+            dbConnector.setPassword(getUser(),firstPassword.getText());
+            getUser().password=firstPassword.getText();
+            showData(dbConnector.getUser(getUser()));
+        }
+    }
+
+    public void showData(User user){
+        setUser(user);
+        userName.setText(getUser().name);
+        userRole.setText(getUser().role.toString());
+    }
+
 }
