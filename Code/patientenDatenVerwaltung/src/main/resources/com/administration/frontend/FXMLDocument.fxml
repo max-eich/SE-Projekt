@@ -50,7 +50,7 @@
                </children>
             </HBox>
             <Region prefHeight="30.0" prefWidth="493.0" />
-            <JFXButton fx:id="ButtonLogin" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="114.0" style="-fx-background-color: #0abde3;" text="Login" textFill="#f2eaea">
+            <JFXButton fx:id="ButtonLogin" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Login" textFill="#f2eaea">
                <font>
                   <Font size="19.0" />
                </font>
