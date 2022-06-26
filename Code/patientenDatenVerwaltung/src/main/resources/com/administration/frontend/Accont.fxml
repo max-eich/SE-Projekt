@@ -23,13 +23,13 @@
                </font>
             </Label>
             <Region prefHeight="38.0" prefWidth="288.0" />
-            <JFXTextField fx:id="userName" focusColor="#0abde3" labelFloat="true" prefHeight="25.0" prefWidth="190.0" promptText="Benutzer" unFocusColor="#0abde3">
+            <JFXTextField fx:id="userName" editable="false" focusColor="#0abde3" labelFloat="true" prefHeight="25.0" prefWidth="190.0" promptText="Benutzer" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
             <Region prefHeight="32.0" prefWidth="288.0" />
-            <JFXTextField fx:id="userRole" focusColor="#0abde3" labelFloat="true" prefHeight="25.0" prefWidth="190.0" promptText="Rolle" unFocusColor="#0abde3">
+            <JFXTextField fx:id="userRole" editable="false" focusColor="#0abde3" labelFloat="true" prefHeight="25.0" prefWidth="190.0" promptText="Rolle" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>

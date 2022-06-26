@@ -5,23 +5,19 @@
  */
 package com.administration.frontend;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import com.administration.backend.User;
 import com.administration.backend.dbConnector;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 
 /**
  * FXML Controller class
  *
  * @author pc
  */
-public class AccontController extends BasicController {
+public class AccontController extends BasicTabController {
 
     @FXML
     private JFXTextField userName;
@@ -42,7 +38,9 @@ public class AccontController extends BasicController {
         ) {
             dbConnector.setPassword(getUser(),firstPassword.getText());
             getUser().password=firstPassword.getText();
-            showData(dbConnector.getUser(getUser()));
+            firstPassword.clear();
+            secondPassword.clear();
+            update(getUser());
         }
     }
 
@@ -58,4 +56,23 @@ public class AccontController extends BasicController {
         userRole.setText(getUser().role.toString());
     }
 
+    @Override
+    public void setup(User u) {
+        showData(u);
+    }
+
+    @Override
+    public void setup(User u, int pid) {
+        setup(u);
+    }
+
+    @Override
+    public void update(User u){
+        showData(dbConnector.getUser(getUser()));
+    }
+
+    @Override
+    public void update(User u, int pid){
+        update(u);
+    }
 }

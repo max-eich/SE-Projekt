@@ -37,13 +37,15 @@ public class dbConnector {
         values ();**/
     }
 
-    private static int findUserID(User u){
+    private static int findUserID(@NotNull User u){
         int i= 0;
 
-        String sql= "SELECT User.referenceID FROM User "
-                +"WHERE name = '" + u.name+"' "
-                +"AND role = '" +u.role.toString()+"' "
-                +"AND password = '"+u.password+"' ;";
+        String sql= "WITH Newest AS ( SELECT referenceID, MAX(aenderung) AS LastUpdate FROM User GROUP BY referenceID) "
+                +"SELECT x.referenceID FROM "
+                +"(SELECT s.name, s.role, s.password, s.referenceID FROM User s INNER JOIN Newest t ON s.referenceID = t.referenceID AND s.aenderung = t.LastUpdate ) x "
+                +"WHERE x.name = '" + u.name+"' "
+                +"AND x.role = '" +u.role.toString()+"' "
+                +"AND x.password = '"+u.password+"' ;";
 
         try (
                 Connection conn = connect();
@@ -166,6 +168,32 @@ public class dbConnector {
         return k;
     }
 
+    public static @NotNull User userLogin(String name, String password){
+        User u = new User();
+        String sql= "WITH Newest AS ( SELECT referenceID, MAX(aenderung) AS LastUpdate FROM User GROUP BY referenceID) "+
+                " SELECT x.name, x.role, x.password FROM (SELECT s.name, s.role, s.password FROM User s "+
+                " INNER JOIN Newest t ON s.referenceID = t.referenceID AND s.aenderung = t.LastUpdate ) x "+
+                " WHERE x.name = '"+name+"' "+
+                " AND x.password = '"+password+"' ;";
+
+        try (
+                Connection conn = connect();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)
+        ){
+            if(rs.isBeforeFirst()){
+                u.name=rs.getString(1);
+                u.role= Role.valueOf(rs.getString(2));
+                u.password=rs.getString(3);
+            }
+            disconnect(conn);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return u;
+    }
+
     public static @NotNull ArrayList<Einrichtungen> getEinrichtungen(int id) {
         ArrayList<Einrichtungen> e = new ArrayList<Einrichtungen>();
 
@@ -176,7 +204,7 @@ public class dbConnector {
                 + "SELECT s.art,s.name, s.adresse, s.telefonnummer, s.referenceID "
                 + "FROM Einrichtungen s "
                 + "INNER JOIN Newest t on s.referenceID = t.referenceID and s.aenderung = t.LastReading "
-                + "WHERE Patient_id = 1;";
+                + "WHERE Patient_id = "+id+";";
 
         try (
                 Connection conn = connect();
@@ -261,10 +289,6 @@ public class dbConnector {
         return a;
     }
 
-    /**
-     * @param a_id
-     * @return
-     */
     private static @NotNull AdipositasMedikamente getAdipoMed(int a_id) {
         AdipositasMedikamente a = new AdipositasMedikamente();
 
@@ -400,7 +424,8 @@ public class dbConnector {
 
     public static @NotNull User getUser(@NotNull User user) {
         User u = new User();
-        String sql= "SELECT name, role, password FROM User WHERE name = '"+user.name+"' AND password = '"+user.password+"' ;";
+        int i = findUserID(user);
+        String sql= "SELECT name, role, password FROM User WHERE referenceID =  "+i+" ;";
 
         try (
                 Connection conn = connect();

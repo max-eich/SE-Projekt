@@ -11,6 +11,8 @@ import java.util.ResourceBundle;
 
 import com.administration.Main;
 import com.administration.backend.*;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,27 +36,49 @@ public class FXMLDocumentController extends BasicController{
     @FXML
     private Label label;
 
+    @FXML
+    private JFXTextField name;
+
+    @FXML
+    private JFXPasswordField password;
+
 
     @FXML
     public void initialize() {
     }
 
     @FXML
-    private void handleButtonAction(ActionEvent event) throws IOException {
-        User u = new User();
-        u.name="admin";
-        u.role=Role.arzt;
-        u.password="admin";
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("frontend/originPane.fxml"));
-        Parent root = loader.load();
-        ((OriginPaneController) loader.getController()).setup(u);
-        var stage = new Stage();
-        stage.setResizable(false);
-        stage.setTitle("Patientenverwaltung");
-        stage.setScene(new Scene(root));
-        stage.setUserData(loader);
-        stage.show();
-        Stage.getWindows().stream().filter(foundStage -> ((Stage) foundStage).getTitle().equalsIgnoreCase("Login")).forEach(window -> ((Stage) window).close());
+    private void handleButtonAction(ActionEvent event) {
+        if(
+                         !password.getText().contains("'")
+                        && !password.getText().contains("\"")
+                        && !password.getText().contains(";")
+                && !name.getText().contains("'")
+                                 && !name.getText().contains("\"")
+                                 && !name.getText().contains(";")
+        ){
+            setUser(dbConnector.userLogin(name.getText(),password.getText()));
+            if(getUser().name!=null){
+                try{
+                    FXMLLoader loader = new FXMLLoader(Main.class.getResource("frontend/originPane.fxml"));
+                    Parent root = loader.load();
+                    ((OriginPaneController) loader.getController()).setup(getUser());
+                    var stage = new Stage();
+                    stage.setResizable(false);
+                    stage.setTitle("Patientenverwaltung");
+                    stage.setScene(new Scene(root));
+                    stage.setUserData(loader);
+                    stage.show();
+                    Stage.getWindows().stream().filter(foundStage -> ((Stage) foundStage).getTitle().equalsIgnoreCase("Login")).forEach(window -> ((Stage) window).close());
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
+            } else {
+                label.setText("Benutzername/Passwort\nincorrect");
+                name.clear();
+                password.clear();
+            }
+        }
     }
 
 

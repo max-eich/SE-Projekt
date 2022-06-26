@@ -56,6 +56,27 @@ public class OriginPaneController extends BasicController{
         setPatientTabs();
     }
 
+    private @NotNull Tab createTab(String url, String tabName){
+        Tab t = new Tab();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
+            Node root = loader.load();
+            t.setContent(root);
+            t.setText(tabName);
+            t.setUserData(loader);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return t;
+    }
+
+    private void setUpTabs(@NotNull ArrayList<Tab> tabs){
+        tabs.forEach( tab -> {
+            ((BasicTabController)((FXMLLoader)tab.getUserData()).getController()).setup(getUser(),getPid());
+        });
+    }
+
+
     private void setPatientTabs(){
         try{
         if(getUser().role.equals(Role.personal)||getUser().role.equals(Role.admin)){
@@ -86,19 +107,12 @@ public class OriginPaneController extends BasicController{
     }
 
     private void setTechnikerTabs() {
-        try{
-            tabsPane.getTabs().clear();
-            Tab t = new Tab();
-            tabsPane.getTabs().add(t);
-            Tab t1 = new Tab();
-            tabsPane.getTabs().add(t1);
-            t.setContent((Node) FXMLLoader.load(getClass().getResource("Accont.fxml")));
-            t.setText("Account");
-            t1.setContent((Node)FXMLLoader.load(getClass().getResource("techniker.fxml")));
-            t1.setText("Cards");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        tabsPane.getTabs().clear();
+        ArrayList<Tab> tabs = new ArrayList<>();
+        tabs.add(createTab("Accont.fxml", "Account"));
+        tabs.add(createTab("techniker.fxml", "Cards"));
+        tabsPane.getTabs().addAll(tabs);
+        setUpTabs(tabs);
     }
 
     private void setTabs(){

@@ -20,4 +20,13 @@ public abstract class BasicController {
 
     public void setPatient(@NotNull Patient patient){this.patient=patient;}
 
+    private int pid=0;
+
+    public int getPid() {
+        return pid;
+    }
+
+    public void setPid(int pid) {
+        this.pid = pid;
+    }
 }
