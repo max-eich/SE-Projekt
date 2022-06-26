@@ -1,63 +1,210 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="590.0" prefWidth="759.0" style="-fx-background-color: white; -fx-border-width: 1px 1px 1px; -fx-border-color: #17d1d3;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.administration.frontend.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="481.0" prefWidth="979.0" style="-fx-background-color: white; -fx-border-width: 1px 1px 1px; -fx-border-color: #d3d3d3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.administration.frontend.FXMLDocumentController">
    <children>
-      <AnchorPane layoutX="9.0" layoutY="5.0" prefHeight="121.0" prefWidth="738.0" style="-fx-background-color: white;">
+      <AnchorPane prefHeight="481.0" prefWidth="979.0" style="-fx-background-color: white;">
          <children>
-            <ImageView fitHeight="111.0" fitWidth="200.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Rastergrafik2-page-001.jpg" />
-               </image>
-            </ImageView>
-            <Label layoutX="200.0" layoutY="88.0" text="Patientensuche" />
-            <Label layoutX="299.0" layoutY="88.0" text="Krankheitsgeschichte" />
-            <Label layoutX="431.0" layoutY="88.0" text="Anamnese" />
-            <Label layoutX="505.0" layoutY="88.0" text="Stammdaten" textFill="#17d1d3" underline="true" />
-            <Label layoutX="591.0" layoutY="88.0" text="Einrichtung" />
-            <Label layoutX="666.0" layoutY="88.0" text="Accont" />
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="11.0" layoutY="147.0" prefHeight="445.0" prefWidth="731.0" style="-fx-background-color: white;">
-         <children>
-            <Label alignment="CENTER" layoutX="14.0" layoutY="38.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Nachname" textFill="#fffdfd" />
-            <Label alignment="CENTER" layoutX="14.0" layoutY="99.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Geschlecht" textFill="#fffbfb" />
-            <Label alignment="CENTER" layoutX="14.0" layoutY="155.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Straße" textFill="#fffefe" />
-            <Label alignment="CENTER" layoutX="14.0" layoutY="214.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="PLZ" textFill="WHITE" />
-            <Label alignment="CENTER" layoutX="14.0" layoutY="277.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Mobil" textFill="WHITE" />
-            <Label alignment="CENTER" layoutX="14.0" layoutY="355.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="kostenträger" textFill="#fffbfb" />
-            <Label alignment="CENTER" layoutX="261.0" layoutY="38.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Vorname" textFill="#fff9f9" />
-            <Label alignment="CENTER" layoutX="261.0" layoutY="99.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Geburtsdatum" textFill="#fff7f7" />
-            <Label alignment="CENTER" layoutX="261.0" layoutY="155.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Hausnummer" textFill="#fffafa" />
-            <Label alignment="CENTER" layoutX="261.0" layoutY="214.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Ort" textFill="#fff6f6" />
-            <Label alignment="CENTER" layoutX="261.0" layoutY="277.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Festnetz" textFill="WHITE" />
-            <Label alignment="CENTER" layoutX="261.0" layoutY="355.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Versicherungsnummer." textFill="#fff9f9" />
-            <Label alignment="CENTER" layoutX="504.0" layoutY="64.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="patienten ID" textFill="WHITE" />
-            <Label alignment="CENTER" layoutX="504.0" layoutY="126.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Land" textFill="WHITE" />
-            <Label alignment="CENTER" layoutX="504.0" layoutY="188.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Email" textFill="#fffdfd" />
-            <TextField layoutX="95.0" layoutY="38.0" prefHeight="27.0" prefWidth="149.0" />
-            <TextField layoutX="95.0" layoutY="100.0" prefHeight="27.0" prefWidth="149.0" />
-            <TextField layoutX="95.0" layoutY="156.0" prefHeight="27.0" prefWidth="149.0" />
-            <TextField layoutX="95.0" layoutY="215.0" prefHeight="27.0" prefWidth="149.0" />
-            <TextField layoutX="95.0" layoutY="278.0" prefHeight="27.0" prefWidth="149.0" />
-            <TextField layoutX="95.0" layoutY="356.0" prefHeight="27.0" prefWidth="149.0" />
-            <TextField layoutX="342.0" layoutY="38.0" prefHeight="27.0" prefWidth="149.0" />
-            <TextField layoutX="342.0" layoutY="156.0" prefHeight="27.0" prefWidth="149.0" />
-            <TextField layoutX="342.0" layoutY="215.0" prefHeight="27.0" prefWidth="149.0" />
-            <TextField layoutX="342.0" layoutY="278.0" prefHeight="27.0" prefWidth="149.0" />
-            <TextField layoutX="342.0" layoutY="356.0" prefHeight="27.0" prefWidth="149.0" />
-            <TextField layoutX="585.0" layoutY="65.0" prefHeight="27.0" prefWidth="149.0" />
-            <TextField layoutX="585.0" layoutY="127.0" prefHeight="27.0" prefWidth="149.0" />
-            <TextField layoutX="585.0" layoutY="189.0" prefHeight="27.0" prefWidth="149.0" />
-            <JFXButton layoutX="585.0" layoutY="397.0" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: #17d1d3;" textFill="#f8f4f4" />
+            <Label alignment="CENTER" layoutX="8.0" layoutY="14.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Nachname" textFill="#fcfafa">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="nachname" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="14.0" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="8.0" layoutY="82.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Geschlecht" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="geschlecht" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="82.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="8.0" layoutY="150.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Zimmer Nr." textFill="#ebeaea">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="zimmernr" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="150.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="352.0" layoutY="14.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Vorname" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="vorname" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="14.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="352.0" layoutY="82.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Alter" textFill="#f5f2f2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="alter" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="82.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="352.0" layoutY="150.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Einlieferung" textFill="#f8f4f4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="einlieferung" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="149.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="695.0" layoutY="14.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Patienten ID" textFill="#f8f4f4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="patientenid" editable="false" focusColor="#0abde3" layoutX="815.0" layoutY="14.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="695.0" layoutY="82.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Geburtstag" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="geburtstag" editable="false" focusColor="#0abde3" layoutX="815.0" layoutY="82.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="695.0" layoutY="150.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Entlassung" textFill="#f8f4f4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="entlassung" editable="false" focusColor="#0abde3" layoutX="815.0" layoutY="150.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="8.0" layoutY="216.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Straße" textFill="#ebeaea">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="strasse" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="216.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="352.0" layoutY="216.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Haus Nr." textFill="#ebeaea">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="hausnr" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="216.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="695.0" layoutY="216.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Land" textFill="#ebeaea">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="land" editable="false" focusColor="#0abde3" layoutX="815.0" layoutY="216.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="8.0" layoutY="286.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="PLZ" textFill="#ebeaea">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="plz" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="286.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="352.0" layoutY="286.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Ort" textFill="#ebeaea">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="ort" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="286.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="695.0" layoutY="286.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="E-Mail" textFill="#ebeaea">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="email" editable="false" focusColor="#0abde3" layoutX="815.0" layoutY="286.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="8.0" layoutY="354.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Tel. - Mobil" textFill="#ebeaea">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="telmobil" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="354.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="352.0" layoutY="354.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Tel. - Festnetz" textFill="#ebeaea">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="telfest" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="354.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="8.0" layoutY="422.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Kostenträger" textFill="#ebeaea">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="kostentraeger" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="422.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="352.0" layoutY="422.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Vers. Nr." textFill="#ebeaea">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="versicherungsnummer" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="422.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton id="speichern" layoutX="845.0" layoutY="422.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Speichern" textFill="#f8f4f4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
    </children>
