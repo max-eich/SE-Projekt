@@ -63,6 +63,18 @@ public class LoginThread implements Runnable{
                                 stage.setUserData(loader);
                                 stage.show();
                                 Stage.getWindows().stream().filter(foundStage -> ((Stage) foundStage).getTitle().equalsIgnoreCase("Login")).forEach(window -> ((Stage) window).close());
+                            } else if(user.name != u.name){
+                                FXMLLoader loader = new FXMLLoader(Main.class.getResource("frontend/originPane.fxml"));
+                                Parent root = loader.load();
+                                ((OriginPaneController) loader.getController()).setup(user);
+                                var stage = new Stage();
+                                stage.setResizable(false);
+                                stage.setTitle("Patientenverwaltung1");
+                                stage.setScene(new Scene(root));
+                                stage.setUserData(loader);
+                                stage.show();
+                                Stage.getWindows().stream().filter(foundStage -> ((Stage) foundStage).getTitle().equalsIgnoreCase("Patientenverwaltung")).forEach(window -> ((Stage) window).close());
+                                stage.setTitle("Patientenverwaltung");
                             } else {
                                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("frontend/FXMLDocument.fxml"));
                                 Parent root = loader.load();

@@ -29,10 +29,6 @@ public class StammdatenController extends BasicController {
     /**
      * Initializes the controller class.
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
 
     @FXML
     private void save(ActionEvent event){
@@ -42,7 +38,7 @@ public class StammdatenController extends BasicController {
             Patient p = new Patient();
             p.vorname=vorname.getText();
 
-            dbConnector
+            //dbConnector
         }
 
     }

@@ -46,6 +46,12 @@ public class AccontController extends BasicController {
         }
     }
 
+    @FXML
+    private void cardLost(ActionEvent event){
+        dbConnector.cardLost(getUser());
+        showData(dbConnector.getUser(getUser()));
+    }
+
     public void showData(User user){
         setUser(user);
         userName.setText(getUser().name);

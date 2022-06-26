@@ -56,6 +56,8 @@ public class Einrichtungen
 	
 	public Date aenderungsDatum;
 
+	public int referenceID;
+
 	public User aenderer;
 	
 	/**

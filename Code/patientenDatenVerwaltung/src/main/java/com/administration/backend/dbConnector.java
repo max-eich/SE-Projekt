@@ -174,7 +174,7 @@ public class dbConnector {
                 + "SELECT referenceID, MAX(aenderung) as LastReading "
                 + "FROM Einrichtungen "
                 + "GROUP BY referenceID) "
-                + "SELECT s.art,s.name, s.adresse, s.telefonnummer "
+                + "SELECT s.art,s.name, s.adresse, s.telefonnummer, s.referenceID "
                 + "FROM Einrichtungen s "
                 + "INNER JOIN Newest t on s.referenceID = t.referenceID and s.aenderung = t.LastReading "
                 + "WHERE Patient_id = 1;";
@@ -191,6 +191,7 @@ public class dbConnector {
                     ei.name = rs.getString(2);
                     ei.adresse = rs.getString(3);
                     ei.telefonnummer = rs.getString(4);
+                    ei.referenceID = rs.getInt(5);
                     e.add(ei);
                 }
             }
@@ -398,7 +399,7 @@ public class dbConnector {
         }
     }
 
-    public static User getUser(User user) {
+    public static @NotNull User getUser(@NotNull User user) {
         User u = new User();
         String sql= "SELECT name, role, password FROM User WHERE name = '"+user.name+"' AND password = '"+user.password+"' ;";
 
@@ -417,5 +418,46 @@ public class dbConnector {
             System.out.println(ex.getMessage());
         }
         return u;
+    }
+
+    public static void cardLost(@NotNull User user){
+        int i = findUserID(user);
+        int i1= findCardID(user);
+        String sql="INSERT IN TO CardStatus (Card_id, User_id, status, aenderer_id)"
+                +" VALUES (?,?,?,?);";
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, i1);
+            pstmt.setInt(2, i);
+            pstmt.setString(3,"lost");
+            pstmt.setInt(4,i);
+            pstmt.executeUpdate();
+            disconnect(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static int findCardID(User user) {
+        int i=findUserID(user);
+        int i1=0;
+        String sql="SELECT Card_id FROM CardStatus WHERE User_id = "+i
+                +" ORDER BY aenerung DESC;";
+
+        try(
+                Connection conn = connect();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)
+                ){
+            if(rs.isBeforeFirst()){
+                i1=rs.getInt(1);
+            }
+            disconnect(conn);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return i1;
     }
 }
