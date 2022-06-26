@@ -1,65 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="759.0" style="-fx-background-color: white; -fx-border-width: 2px 2px 2px 2px; -fx-border-color: #17d1d3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kilinkremagen.KrankheitsgeschichteController">
+<AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="481.0" prefWidth="979.0" style="-fx-background-color: white; -fx-border-width: 1px 1px 1px 1px; -fx-border-color: #d3d3d3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kilinkremagen.KrankheitsgeschichteController">
    <children>
-      <AnchorPane layoutX="5.0" layoutY="14.0" prefHeight="106.0" prefWidth="753.0" style="-fx-background-color: white;">
+      <TableView layoutX="190.0" layoutY="176.0" prefHeight="295.0" prefWidth="602.0" stylesheets="@css/Einrichtungen.css">
+         <columns>
+            <TableColumn id="tabelleDatum" prefWidth="105.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0px 1px 2px 0px;" text="Datum" />
+            <TableColumn id="tabelleTyp" prefWidth="197.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0px 1px 2px 0px;" text="Typ" />
+            <TableColumn id="tabelleICD" prefWidth="119.0" style="-fx-background-color: #0abde3; -fx-border-width: 0px 1px 2px 0px; -fx-border-color: black;" text="ICD-10" />
+            <TableColumn id="tabelleBeschr" prefWidth="125.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0px 1px 2px 0px;" text="Beschreibung" />
+            <TableColumn id="tabelleArzt" prefWidth="75.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" text="Arzt" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <JFXButton id="speichern" layoutX="840.0" layoutY="425.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Speichern" textFill="#fffafa">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </JFXButton>
+      <Separator layoutY="165.0" prefWidth="979.0" />
+      <AnchorPane prefHeight="165.0" prefWidth="979.0" style="-fx-background-color: white;">
          <children>
-            <ImageView fitHeight="61.0" fitWidth="198.0" layoutX="4.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Rastergrafik2-page-001.jpg" />
-               </image>
-            </ImageView>
-            <Label layoutX="156.0" layoutY="75.0" text="Patientensuche" textFill="#170101" />
-            <Label layoutX="267.0" layoutY="75.0" text="Krankheitsgeschichte" textFill="#170101" />
-            <Label layoutX="417.0" layoutY="75.0" text="Anamnese" textFill="#17d1d3" underline="true" />
-            <Label layoutX="495.0" layoutY="75.0" text="Stammdaten" textFill="#170101" />
-            <Label layoutX="586.0" layoutY="75.0" text="Einrichtung" textFill="#170101" />
-            <Label layoutX="671.0" layoutY="75.0" text="Accont" textFill="#170101" />
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="2.0" layoutY="106.0" prefHeight="230.0" prefWidth="759.0" style="-fx-background-color: white;">
-         <children>
-            <Label alignment="CENTER" layoutX="18.0" layoutY="74.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Geschlecht" textFill="#f5ecec" />
-            <Label alignment="CENTER" layoutX="18.0" layoutY="135.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Zimmer Nr." textFill="#fcf7f7" />
-            <Label alignment="CENTER" layoutX="265.0" layoutY="20.0" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Vorname" textFill="#f5f3f3" />
-            <Label alignment="CENTER" layoutX="265.0" layoutY="73.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Alter" textFill="#fff9f9" />
-            <Label alignment="CENTER" layoutX="18.0" layoutY="18.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Nachname" textFill="#fffdfd" />
-            <Label alignment="CENTER" layoutX="265.0" layoutY="136.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Einlieferung" textFill="#fff7f7" />
-            <Label alignment="CENTER" layoutX="515.0" layoutY="19.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Patienten ID" textFill="#f5f3f3" />
-            <Label alignment="CENTER" layoutX="515.0" layoutY="74.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Geburtstag" textFill="#fcf9f9" />
-            <Label alignment="CENTER" layoutX="515.0" layoutY="135.0" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #17d1d3;" text="Entlassung" textFill="#fcf7f7" />
-            <TextField fx:id="nachname" layoutX="99.0" layoutY="18.0" prefHeight="27.0" prefWidth="149.0" />
-            <TextField fx:id="Geschlecht" layoutX="99.0" layoutY="74.0" prefHeight="27.0" prefWidth="149.0" />
-            <TextField fx:id="Zimmer" layoutX="99.0" layoutY="135.0" prefHeight="27.0" prefWidth="149.0" />
-            <TextField fx:id="vorname" layoutX="346.0" layoutY="20.0" />
-            <TextField fx:id="Alter" layoutX="346.0" layoutY="73.0" prefHeight="27.0" prefWidth="149.0" />
-            <TextField fx:id="Elieferung" layoutX="346.0" layoutY="136.0" prefHeight="27.0" prefWidth="149.0" />
-            <TextField fx:id="Ptientenid" layoutX="596.0" layoutY="19.0" prefHeight="27.0" prefWidth="149.0" />
-            <TextField fx:id="Geburtstag" layoutX="596.0" layoutY="74.0" prefHeight="27.0" prefWidth="149.0" />
-            <TextField fx:id="Entlassung" layoutX="596.0" layoutY="135.0" prefHeight="27.0" prefWidth="149.0" />
-            <JFXButton fx:id="speichern" layoutX="678.0" layoutY="184.0" style="-fx-background-color: #17d1d3;" text="speichern" />
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="2.0" layoutY="338.0" prefHeight="244.0" prefWidth="759.0" style="-fx-background-color: white;">
-         <children>
-            <TableView layoutX="20.0" layoutY="-1.0" prefHeight="276.0" prefWidth="726.0">
-              <columns>
-                <TableColumn prefWidth="75.0" text="Datum" />
-                <TableColumn prefWidth="84.0" text="Typ" />
-                  <TableColumn prefWidth="97.0" text="ICD-10" />
-                  <TableColumn minWidth="0.0" prefWidth="366.0" text="Beschreibung" />
-                  <TableColumn prefWidth="136.0" text="Arzt" />
-              </columns>
-            </TableView>
+            <Label alignment="CENTER" layoutX="8.0" layoutY="12.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Nachname" textFill="#fcfafa">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="nachname" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="12.0" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="8.0" layoutY="64.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Geschlecht" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="geschlecht" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="64.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="8.0" layoutY="116.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Zimmer Nr." textFill="#ebeaea">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="zimmernr" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="116.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="352.0" layoutY="12.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Vorname" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="vorname" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="12.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="352.0" layoutY="64.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Alter" textFill="#f5f2f2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="alter" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="64.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="352.0" layoutY="116.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Einlieferung" textFill="#f8f4f4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="einlieferung" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="116.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="695.0" layoutY="12.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Patienten ID" textFill="#f8f4f4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="patientenid" editable="false" focusColor="#0abde3" layoutX="815.0" layoutY="12.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="695.0" layoutY="64.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Geburtstag" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="geburtstag" editable="false" focusColor="#0abde3" layoutX="815.0" layoutY="64.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="695.0" layoutY="116.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Entlassung" textFill="#f8f4f4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField id="entlassung" editable="false" focusColor="#0abde3" layoutX="815.0" layoutY="116.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
          </children>
       </AnchorPane>
    </children>

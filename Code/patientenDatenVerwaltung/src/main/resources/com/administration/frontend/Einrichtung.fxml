@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="481.0" prefWidth="979.0" style="-fx-background-color: white; -fx-border-width: 1px 1px 1px 1px; -fx-border-color: #d3d3d3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.administration.frontend.EinrichtungController">
+<AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="481.0" prefWidth="979.0" style="-fx-background-color: white; -fx-border-width: 1px 1px 1px 1px; -fx-border-color: #d3d3d3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.administration.frontend.EinrichtungController">
    <children>
-      <AnchorPane prefHeight="189.0" prefWidth="979.0" style="-fx-background-color: white;">
+      <AnchorPane prefHeight="165.0" prefWidth="979.0" style="-fx-background-color: white;">
          <children>
             <Label alignment="CENTER" layoutX="8.0" layoutY="12.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Nachname" textFill="#fcfafa">
                <font>
@@ -106,7 +106,7 @@
          </children>
       </AnchorPane>
       <Separator layoutY="165.0" prefWidth="979.0" />
-      <TableView layoutX="174.0" layoutY="171.0" prefHeight="296.0" prefWidth="634.0" stylesheets="@css/Einrichtungen.css">
+      <TableView layoutX="190.0" layoutY="176.0" prefHeight="295.0" prefWidth="602.0" stylesheets="@css/Einrichtungen.css">
         <columns>
           <TableColumn id="tabelleName" prefWidth="105.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0px 1px 2px 0px;" text="Name" />
           <TableColumn id="tabelleAdresse" prefWidth="197.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0px 1px 2px 0px;" text="Addresse" />

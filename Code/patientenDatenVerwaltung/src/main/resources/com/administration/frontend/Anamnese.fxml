@@ -15,7 +15,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="481.0" maxWidth="979.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="483.0" prefWidth="978.0" style="-fx-background-color: white; -fx-border-color: #d3d3d3; -fx-border-widh: 1px 1px 1px 1px;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kilinkremagen.AnamneseController">
    <children>
-      <AnchorPane prefHeight="189.0" prefWidth="979.0" style="-fx-background-color: white;">
+      <AnchorPane prefHeight="165.0" prefWidth="979.0" style="-fx-background-color: white;">
          <children>
             <Label alignment="CENTER" layoutX="8.0" layoutY="12.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Nachname" textFill="#fcfafa">
                <font>
