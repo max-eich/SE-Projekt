@@ -62,18 +62,17 @@ public class dbConnector {
 
     public static @NotNull User checkCard(String card) {
         User u = new User();
-        String sql = "SELECT User.name, User.role, User.password FROM User "
+        String sql = "SELECT User.name, User.role, User.password, CardStatus.status FROM User "
                 + "INNER JOIN CardStatus on User.referenceID = CardStatus.User_id "
                 + "INNER JOIN Card on CardStatus.Card_id = Card.id "
                 + "WHERE Card.rfid LIKE '" + card + "' "
-                + "AND CardStatus.status = 'ok' "
                 + "ORDER BY User.aenderung DESC;";
         try (
                 Connection conn = connect();
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql)
         ) {
-            if (rs.isBeforeFirst()) {
+            if (rs.isBeforeFirst()&&rs.getString("status").equals("ok")) {
                 u.name = rs.getString("name");
                 u.role = Role.valueOf(rs.getString("role"));
                 u.password = rs.getString("password");
