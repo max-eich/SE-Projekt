@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="481.0" prefWidth="979.0" style="-fx-background-color: white; -fx-border-width: 1px 1px 1px 1px; -fx-border-color: #17d1d3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kilinkremagen.AnamneseController">
+<AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="481.0" prefWidth="979.0" style="-fx-background-color: white; -fx-border-width: 1px 1px 1px 1px; -fx-border-color: #17d1d3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kilinkremagen.AnamneseController">
    <children>
       <AnchorPane layoutX="2.0" prefHeight="481.0" prefWidth="979.0" style="-fx-background-color: white;">
          <children>
@@ -116,7 +116,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <JFXCheckBox checkedColor="#0abde3" contentDisplay="CENTER" layoutX="133.0" layoutY="55.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="135.0" styleClass="jfx-check-box" stylesheets="@css/Anamnese.css">
+                  <JFXCheckBox checkedColor="#0abde3" contentDisplay="CENTER" layoutX="143.0" layoutY="54.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="135.0" styleClass="jfx-check-box" stylesheets="@css/Anamnese.css" text=" ">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -129,18 +129,14 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <JFXComboBox focusColor="#0abde3" layoutX="270.0" layoutY="104.0" prefWidth="150.0" promptText="Störungen" style="-fx-font-size: 18;" unFocusColor="#0abde3">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </JFXComboBox>
-                  <FontAwesomeIconView fill="#2a8ad3" glyphName="PLUS" layoutX="457.0" layoutY="243.0" size="30" text="" />
-                  <Label alignment="CENTER" layoutX="10.0" layoutY="153.0" prefHeight="40.0" prefWidth="260.0" style="-fx-background-color: #0abde3;" text=" mit Adipositas assoziierte  Syptome" textAlignment="CENTER" textFill="#f8f4f4">
+                  <JFXComboBox accessibleRole="CHECK_MENU_ITEM" focusColor="#0abde3" layoutX="270.0" layoutY="104.0" prefWidth="150.0" promptText="Störungen" style="-fx-font-size: 18;" unFocusColor="#0abde3" />
+                  <FontAwesomeIconView fill="#2a8ad3" glyphName="PLUS" layoutX="458.0" layoutY="243.0" size="30" text="" />
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="153.0" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #0abde3;" text="mit Adipositas assoziierte  Syndrome" textAlignment="CENTER" textFill="#f8f4f4">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <JFXComboBox focusColor="#0abde3" layoutX="270.0" layoutY="153.0" prefWidth="150.0" promptText="Syptome" style="-fx-font-size: 18;" unFocusColor="#0abde3" />
+                  <JFXComboBox focusColor="#0abde3" layoutX="300.0" layoutY="153.0" prefWidth="150.0" promptText=" Syptome" style="-fx-font-size: 18;" unFocusColor="#0abde3" />
                   <Label alignment="CENTER" layoutX="10.0" layoutY="206.0" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #0abde3;" text="Weitere chronische Erkrankungen" textFill="#f5f0f0">
                      <font>
                         <Font size="18.0" />
@@ -188,11 +184,12 @@
                      <font>
                         <Font size="18.0" />
                      </font></JFXButton>
-                  <JFXTextField layoutX="338.0" layoutY="34.0" promptText="Combobox formatierung fehlt">
+                  <JFXTextField layoutX="338.0" layoutY="14.0" promptText="Combobox formatierung fehlt">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </JFXTextField>
+                  <JFXTextField layoutX="355.0" layoutY="82.0" prefHeight="25.0" prefWidth="184.0" promptText="weiteres tetfeld für syndrome u. med" />
                </children>
             </AnchorPane>
          </children>
