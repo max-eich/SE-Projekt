@@ -1,0 +1,13 @@
+.jfx-check-box .box{
+    -fx-pref-height: 35;
+    -fx-pref-width: 35;
+}
+.jfx-check-box .mark{
+    -fx-pref-height: 20;
+    -fx-pref-width: 20;
+}
+.jfx-combo-box{
+    -fx-alignment: right;
+    -fx-text-alignment: right;
+    -fx-orientation: right;
+}
