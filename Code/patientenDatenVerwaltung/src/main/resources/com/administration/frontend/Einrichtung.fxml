@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="481.0" prefWidth="979.0" style="-fx-background-color: white; -fx-border-width: 1px 1px 1px 1px; -fx-border-color: #d3d3d3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.administration.frontend.EinrichtungController">
+<AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="481.0" prefWidth="979.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.administration.frontend.EinrichtungController">
    <children>
       <AnchorPane prefHeight="165.0" prefWidth="979.0" style="-fx-background-color: white;">
          <children>
@@ -18,7 +18,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="nachname" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="12.0" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="nachname" fx:id="nachname" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="12.0" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -28,7 +28,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="geschlecht" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="64.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="geschlecht" fx:id="geschlecht" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="64.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -38,7 +38,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="zimmernr" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="116.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="zimmernr" fx:id="zimmerNr" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="116.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -48,7 +48,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="vorname" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="12.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="vorname" fx:id="vorname" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="12.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -58,7 +58,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="alter" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="64.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="alter" fx:id="alter" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="64.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -68,7 +68,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="einlieferung" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="116.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="einlieferung" fx:id="einlieferung" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="116.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -78,7 +78,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="patientenid" editable="false" focusColor="#0abde3" layoutX="815.0" layoutY="12.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="patientenid" fx:id="patientenID" editable="false" focusColor="#0abde3" layoutX="815.0" layoutY="12.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -88,7 +88,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="geburtstag" editable="false" focusColor="#0abde3" layoutX="815.0" layoutY="64.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="geburtstag" fx:id="geburtstag" editable="false" focusColor="#0abde3" layoutX="815.0" layoutY="64.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -98,7 +98,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="entlassung" editable="false" focusColor="#0abde3" layoutX="815.0" layoutY="116.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="entlassung" fx:id="entlassung" editable="false" focusColor="#0abde3" layoutX="815.0" layoutY="116.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -108,16 +108,16 @@
       <Separator layoutY="165.0" prefWidth="979.0" />
       <TableView layoutX="190.0" layoutY="176.0" prefHeight="295.0" prefWidth="602.0" stylesheets="@css/Einrichtungen.css">
         <columns>
-          <TableColumn id="tabelleName" prefWidth="105.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0px 1px 2px 0px;" text="Name" />
-          <TableColumn id="tabelleAdresse" prefWidth="197.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0px 1px 2px 0px;" text="Addresse" />
-            <TableColumn id="tabelleArzt" prefWidth="119.0" style="-fx-background-color: #0abde3; -fx-border-width: 0px 1px 2px 0px; -fx-border-color: black;" text="Art des Arztes" />
-            <TableColumn id="tabelleTel" prefWidth="125.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" text="Telefonnummer" />
+          <TableColumn id="tabelleName" fx:id="nameTabelle" prefWidth="105.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0px 1px 2px 0px;" text="Name" />
+          <TableColumn id="tabelleAdresse" fx:id="adresseTabelle" prefWidth="197.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0px 1px 2px 0px;" text="Addresse" />
+            <TableColumn id="tabelleArzt" fx:id="arztTabelle" prefWidth="119.0" style="-fx-background-color: #0abde3; -fx-border-width: 0px 1px 2px 0px; -fx-border-color: black;" text="Art des Arztes" />
+            <TableColumn id="tabelleTel" fx:id="telTabelle" prefWidth="125.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" text="Telefonnummer" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <JFXButton id="einrichtungenSpeichern" layoutX="840.0" layoutY="425.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Speichern" textFill="SNOW">
+      <JFXButton id="einrichtungenSpeichern" fx:id="speichern" layoutX="840.0" layoutY="425.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Speichern" textFill="SNOW">
          <font>
             <Font size="19.0" />
          </font>

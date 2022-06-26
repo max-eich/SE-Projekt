@@ -15,7 +15,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="nachname" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="14.0" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="nachname" fx:id="nachname" focusColor="#0abde3" layoutX="128.0" layoutY="14.0" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -25,7 +25,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="geschlecht" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="82.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="geschlecht" fx:id="geschlecht" focusColor="#0abde3" layoutX="128.0" layoutY="82.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -35,7 +35,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="zimmernr" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="150.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="zimmernr" fx:id="zimmerNr" focusColor="#0abde3" layoutX="128.0" layoutY="150.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -45,7 +45,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="vorname" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="14.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="vorname" fx:id="vorname" focusColor="#0abde3" layoutX="472.0" layoutY="14.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -55,7 +55,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="alter" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="82.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="alter" fx:id="alter" focusColor="#0abde3" layoutX="472.0" layoutY="82.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -65,7 +65,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="einlieferung" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="149.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="einlieferung" fx:id="einlieferung" focusColor="#0abde3" layoutX="472.0" layoutY="149.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -75,7 +75,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="patientenid" editable="false" focusColor="#0abde3" layoutX="815.0" layoutY="14.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="patientenid" fx:id="patientenID" focusColor="#0abde3" layoutX="815.0" layoutY="14.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -85,7 +85,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="geburtstag" editable="false" focusColor="#0abde3" layoutX="815.0" layoutY="82.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="geburtstag" fx:id="geburtstag" focusColor="#0abde3" layoutX="815.0" layoutY="82.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -95,7 +95,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="entlassung" editable="false" focusColor="#0abde3" layoutX="815.0" layoutY="150.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="entlassung" fx:id="entlassung" focusColor="#0abde3" layoutX="815.0" layoutY="150.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -105,7 +105,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="strasse" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="216.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="strasse" fx:id="strasse" focusColor="#0abde3" layoutX="128.0" layoutY="216.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -115,7 +115,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="hausnr" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="216.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="hausnr" fx:id="hausNr" focusColor="#0abde3" layoutX="472.0" layoutY="216.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -125,7 +125,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="land" editable="false" focusColor="#0abde3" layoutX="815.0" layoutY="216.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="land" fx:id="land" focusColor="#0abde3" layoutX="815.0" layoutY="216.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -135,7 +135,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="plz" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="286.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="plz" fx:id="plz" focusColor="#0abde3" layoutX="128.0" layoutY="286.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -145,7 +145,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="ort" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="286.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="ort" fx:id="ort" focusColor="#0abde3" layoutX="472.0" layoutY="286.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -155,7 +155,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="email" editable="false" focusColor="#0abde3" layoutX="815.0" layoutY="286.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="email" fx:id="email" focusColor="#0abde3" layoutX="815.0" layoutY="286.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -165,7 +165,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="telmobil" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="354.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="telmobil" fx:id="telMobil" focusColor="#0abde3" layoutX="128.0" layoutY="354.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -175,7 +175,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="telfest" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="354.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="telfest" fx:id="telFest" focusColor="#0abde3" layoutX="472.0" layoutY="354.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -185,7 +185,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="kostentraeger" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="422.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="kostentraeger" fx:id="kostentraeger" focusColor="#0abde3" layoutX="128.0" layoutY="422.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -195,12 +195,12 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="versicherungsnummer" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="422.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="versicherungsnummer" fx:id="versicherungsnummer" focusColor="#0abde3" layoutX="472.0" layoutY="422.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <JFXButton id="speichern" layoutX="845.0" layoutY="422.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Speichern" textFill="#f8f4f4">
+            <JFXButton id="speichern" fx:id="speichern" layoutX="845.0" layoutY="422.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Speichern" textFill="#f8f4f4">
                <font>
                   <Font size="18.0" />
                </font>

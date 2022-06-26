@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="481.0" maxWidth="979.0" minHeight="481.0" minWidth="979.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="481.0" prefWidth="979.0" style="-fx-border-width: 1px 1px 1px 1px; -fx-border-color: #D3D3D3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.administration.frontend.AccontController">
+<AnchorPane id="AnchorPane" maxHeight="481.0" maxWidth="979.0" minHeight="481.0" minWidth="979.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="481.0" prefWidth="979.0" style="-fx-border-color: #D3D3D3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.administration.frontend.AccontController">
    <children>
       <Separator layoutX="487.0" orientation="VERTICAL" prefHeight="481.0" />
       <VBox alignment="CENTER" layoutX="95.0" layoutY="45.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="331.0" prefWidth="288.0">
@@ -23,13 +23,13 @@
                </font>
             </Label>
             <Region prefHeight="38.0" prefWidth="288.0" />
-            <JFXTextField focusColor="#0abde3" labelFloat="true" prefHeight="25.0" prefWidth="190.0" promptText="Benutzer" unFocusColor="#0abde3">
+            <JFXTextField fx:id="benutzerAnzeige" editable="false" focusColor="#0abde3" labelFloat="true" prefHeight="25.0" prefWidth="190.0" promptText="Benutzer" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
             <Region prefHeight="32.0" prefWidth="288.0" />
-            <JFXTextField focusColor="#0abde3" labelFloat="true" prefHeight="25.0" prefWidth="190.0" promptText="Rolle" unFocusColor="#0abde3">
+            <JFXTextField fx:id="rolleAnzeige" editable="false" focusColor="#0abde3" labelFloat="true" prefHeight="25.0" prefWidth="190.0" promptText="Rolle" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -46,26 +46,26 @@
                </font>
             </Label>
             <Region prefHeight="38.0" prefWidth="288.0" />
-            <JFXTextField focusColor="#0abde3" labelFloat="true" prefHeight="25.0" prefWidth="237.0" promptText="neues Passwort eingeben" unFocusColor="#0abde3">
+            <JFXTextField fx:id="neuesPasswortFeld" focusColor="#0abde3" labelFloat="true" prefHeight="25.0" prefWidth="237.0" promptText="neues Passwort eingeben" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
             <Region prefHeight="32.0" prefWidth="288.0" />
-            <JFXPasswordField focusColor="#0abde3" labelFloat="true" prefHeight="25.0" prefWidth="210.0" promptText="Passwort wiederholen" unFocusColor="#0abde3">
+            <JFXPasswordField fx:id="neuesPasswortWiederholen" focusColor="#0abde3" labelFloat="true" prefHeight="25.0" prefWidth="210.0" promptText="Passwort wiederholen" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXPasswordField>
             <Region prefHeight="45.0" prefWidth="288.0" />
-            <JFXButton style="-fx-background-color: #0abde3;" text="Passwort ändern" textFill="#fffbfb">
+            <JFXButton fx:id="passwortAendernKnopf" style="-fx-background-color: #0abde3;" text="Passwort ändern" textFill="#fffbfb">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXButton>
          </children>
       </VBox>
-      <Button layoutX="817.0" layoutY="419.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: #ee5253;" text="Karte verloren" textFill="WHITE">
+      <Button fx:id="karteVerloren" layoutX="817.0" layoutY="419.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: #ee5253;" text="Karte verloren" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>

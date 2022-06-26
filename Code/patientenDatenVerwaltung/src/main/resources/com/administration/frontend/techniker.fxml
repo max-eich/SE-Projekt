@@ -10,12 +10,12 @@
 
 <AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="481.0" prefWidth="979.0" style="-fx-border-size: 1 1 1 1; -fx-border-color: #d3d3d3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.administration.frontend.TechnikerController">
    <children>
-      <JFXTextField focusColor="#0abde3" layoutX="232.0" layoutY="46.0" prefWidth="465.0" promptText="Suchbegriff" unFocusColor="#0abde3">
+      <JFXTextField fx:id="suchfeld" focusColor="#0abde3" layoutX="232.0" layoutY="46.0" prefWidth="465.0" promptText="Suchbegriff" unFocusColor="#0abde3">
          <font>
             <Font size="18.0" />
          </font>
       </JFXTextField>
-      <JFXButton id="seach" layoutX="703.0" layoutY="46.0" style="-fx-background-color: #0abde3;" text="Hinzufügen">
+      <JFXButton id="seach" fx:id="hinzufuegen" layoutX="703.0" layoutY="46.0" style="-fx-background-color: #0abde3;" text="Hinzufügen">
          <font>
             <Font size="18.0" />
          </font>
@@ -25,10 +25,10 @@
       </JFXButton>
       <TableView layoutX="232.0" layoutY="98.0" prefHeight="369.0" prefWidth="465.0" stylesheets="@css/Techniker.css">
         <columns>
-          <TableColumn prefWidth="75.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0px 1px 2px 0px;" text="Chip-Nr." />
-          <TableColumn prefWidth="75.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0 1 2 0;" text="Benutzer" />
-            <TableColumn prefWidth="75.0" style="-fx-border-color: black; -fx-border-width: 0px 1px 2px 0px; -fx-background-color: #0abde3;" text="Rolle" />
-            <TableColumn prefWidth="75.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0 1 2 0;" text="Status" />
+          <TableColumn fx:id="chipNrTabelle" editable="false" prefWidth="75.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0px 1px 2px 0px;" text="Chip-Nr." />
+          <TableColumn fx:id="benutzerTabelle" editable="false" prefWidth="75.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0 1 2 0;" text="Benutzer" />
+            <TableColumn fx:id="rolleTabelle" editable="false" prefWidth="75.0" style="-fx-border-color: black; -fx-border-width: 0px 1px 2px 0px; -fx-background-color: #0abde3;" text="Rolle" />
+            <TableColumn fx:id="statusTabelle" editable="false" prefWidth="75.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0 1 2 0;" text="Status" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
