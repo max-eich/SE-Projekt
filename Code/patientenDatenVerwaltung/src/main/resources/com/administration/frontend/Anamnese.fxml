@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="481.0" prefWidth="979.0" style="-fx-background-color: white; -fx-border-width: 1px 1px 1px 1px; -fx-border-color: #17d1d3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kilinkremagen.AnamneseController">
+<AnchorPane id="AnchorPane" maxHeight="481.0" maxWidth="979.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="483.0" prefWidth="978.0" style="-fx-background-color: white; -fx-border-color: #d3d3d3; -fx-border-widh: 1px 1px 1px 1px;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kilinkremagen.AnamneseController">
    <children>
-      <AnchorPane layoutX="2.0" prefHeight="189.0" prefWidth="981.0" style="-fx-background-color: white;">
+      <AnchorPane prefHeight="189.0" prefWidth="979.0" style="-fx-background-color: white;">
          <children>
             <Label alignment="CENTER" layoutX="8.0" layoutY="12.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Nachname" textFill="#fcfafa">
                <font>
@@ -104,7 +104,7 @@
          </children>
       </AnchorPane>
       <Separator layoutY="165.0" minHeight="0.0" minWidth="979.0" prefHeight="1.0" prefWidth="979.0" />
-      <AnchorPane layoutX="2.0" layoutY="166.0" prefHeight="299.0" prefWidth="981.0" style="-fx-background-color: white; -fx-border-color: white;">
+      <AnchorPane layoutY="166.0" prefHeight="299.0" prefWidth="979.0" style="-fx-background-color: white; -fx-border-color: white;">
          <children>
             <VBox prefHeight="313.0" prefWidth="979.0">
                <children>
@@ -233,7 +233,7 @@
                            </font>
                         </JFXTextField>
                         <Region prefHeight="66.0" prefWidth="348.0" />
-                        <JFXButton id="speichern" style="-fx-background-color: #0abde3;" text="Speichern" textFill="#fffafa">
+                        <JFXButton id="speichern" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Speichern" textFill="#fffafa">
                            <font>
                               <Font size="19.0" />
                            </font>
