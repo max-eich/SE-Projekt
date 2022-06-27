@@ -4,199 +4,236 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="581.0" prefWidth="760.0" style="-fx-background-color: white; -fx-border-width: 1px 1px 1px 1px; -fx-border-color: #17d1d3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.administration.frontend.AnamneseController">
+<AnchorPane id="AnchorPane" maxHeight="481.0" maxWidth="979.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="483.0" prefWidth="979.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kilinkremagen.AnamneseController">
    <children>
-      <AnchorPane layoutX="2.0" prefHeight="481.0" prefWidth="979.0" style="-fx-background-color: white;">
+      <AnchorPane prefHeight="165.0" prefWidth="979.0" style="-fx-background-color: white;">
          <children>
-            <Label alignment="CENTER" layoutX="8.0" layoutY="22.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Nachname" textFill="#fcfafa">
+            <Label alignment="CENTER" layoutX="8.0" layoutY="12.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Nachname" textFill="#fcfafa">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField focusColor="#0abde3" layoutX="128.0" layoutY="22.0" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="nachname" fx:id="nachname" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="12.0" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <Label alignment="CENTER" layoutX="8.0" layoutY="74.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Geschlecht" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="8.0" layoutY="64.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Geschlecht" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXComboBox focusColor="#0abde3" layoutX="128.0" layoutY="75.0" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" promptText="Geschlecht" style="-fx-font-size: 18;" stylesheets="@css/Anamnese.css" unFocusColor="#0abde3">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </JFXComboBox>
-            <Label alignment="CENTER" layoutX="8.0" layoutY="134.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Zimmer Nr." textFill="#ebeaea">
+            <JFXTextField id="geschlecht" fx:id="geschlecht" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="64.0" prefWidth="150.0" unFocusColor="#0abde3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="8.0" layoutY="116.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Zimmer Nr." textFill="#ebeaea">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField focusColor="#0abde3" layoutX="128.0" layoutY="134.0" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="zimmernr" fx:id="zimmerNr" editable="false" focusColor="#0abde3" layoutX="128.0" layoutY="116.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <Label alignment="CENTER" layoutX="352.0" layoutY="23.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Vorname" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="352.0" layoutY="12.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Vorname" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <JFXTextField focusColor="#0abde3" layoutX="472.0" layoutY="23.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="vorname" fx:id="vorname" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="12.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <Label alignment="CENTER" layoutX="352.0" layoutY="78.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Alter" textFill="#f5f2f2">
+            <Label alignment="CENTER" layoutX="352.0" layoutY="64.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Alter" textFill="#f5f2f2">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <JFXTextField focusColor="#0abde3" layoutX="472.0" layoutY="78.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="alter" fx:id="alter" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="64.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <Label alignment="CENTER" layoutX="352.0" layoutY="134.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Einlieferung" textFill="#f8f4f4">
+            <Label alignment="CENTER" layoutX="352.0" layoutY="116.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Einlieferung" textFill="#f8f4f4">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <JFXTextField focusColor="#0abde3" layoutX="472.0" layoutY="134.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="einlieferung" fx:id="einlieferung" editable="false" focusColor="#0abde3" layoutX="472.0" layoutY="116.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <Label alignment="CENTER" layoutX="695.0" layoutY="23.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Patienten ID" textFill="#f8f4f4">
+            <Label alignment="CENTER" layoutX="695.0" layoutY="12.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Patienten ID" textFill="#f8f4f4">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <JFXTextField focusColor="#0abde3" layoutX="815.0" layoutY="23.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="patientenid" fx:id="patientenID" editable="false" focusColor="#0abde3" layoutX="815.0" layoutY="12.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <Label alignment="CENTER" layoutX="695.0" layoutY="79.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Geburtstag" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="695.0" layoutY="64.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Geburtstag" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <JFXTextField focusColor="#0abde3" layoutX="815.0" layoutY="79.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="geburtstag" fx:id="geburtstag" editable="false" focusColor="#0abde3" layoutX="815.0" layoutY="64.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <Label alignment="CENTER" layoutX="695.0" layoutY="134.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Entlassung" textFill="#f8f4f4">
+            <Label alignment="CENTER" layoutX="695.0" layoutY="116.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Entlassung" textFill="#f8f4f4">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <JFXTextField focusColor="#0abde3" layoutX="815.0" layoutY="134.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="entlassung" fx:id="entlassung" editable="false" focusColor="#0abde3" layoutX="815.0" layoutY="116.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <AnchorPane layoutY="190.0" prefWidth="979.0" style="-fx-background-color: white; -fx-border-color: white;">
-               <children>
-                  <Label alignment="CENTER" layoutX="9.0" layoutY="5.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Größe (cm)" textFill="#fcfcfc">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <JFXTextField focusColor="#0abde3" layoutX="129.0" layoutY="5.0" prefWidth="150.0" unFocusColor="#0abde3">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </JFXTextField>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="54.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Behinderung" textFill="#f8f7f7">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <JFXCheckBox checkedColor="#0abde3" contentDisplay="CENTER" layoutX="133.0" layoutY="55.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="135.0" styleClass="jfx-check-box" stylesheets="@css/Anamnese.css">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </JFXCheckBox>
-                  <Label alignment="CENTER" layoutX="9.0" layoutY="103.0" prefHeight="40.0" prefWidth="223.0" style="-fx-background-color: #0abde3;" text="Endokrinologiesche Störungen" textFill="#fffafa">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <JFXComboBox focusColor="#0abde3" layoutX="270.0" layoutY="104.0" prefWidth="150.0" promptText="Störungen" style="-fx-font-size: 18;" unFocusColor="#0abde3">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </JFXComboBox>
-                  <FontAwesomeIconView fill="#2a8ad3" glyphName="PLUS" layoutX="457.0" layoutY="243.0" size="30" text="" />
-                  <Label alignment="CENTER" layoutX="10.0" layoutY="153.0" prefHeight="40.0" prefWidth="260.0" style="-fx-background-color: #0abde3;" text=" mit Adipositas assoziierte  Syptome" textAlignment="CENTER" textFill="#f8f4f4">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <JFXComboBox focusColor="#0abde3" layoutX="270.0" layoutY="153.0" prefWidth="150.0" promptText="Syptome" style="-fx-font-size: 18;" unFocusColor="#0abde3" />
-                  <Label alignment="CENTER" layoutX="10.0" layoutY="206.0" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #0abde3;" text="Weitere chronische Erkrankungen" textFill="#f5f0f0">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <JFXTextField focusColor="#0abde3" layoutX="300.0" layoutY="206.0" prefWidth="150.0" unFocusColor="#0abde3">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </JFXTextField>
-                  <Label alignment="CENTER" layoutX="605.0" layoutY="5.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Gewicht (kg)" textFill="#fcf9f9">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <JFXTextField focusColor="#0abde3" layoutX="725.0" layoutY="6.0" prefWidth="150.0" unFocusColor="#0abde3">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </JFXTextField>
-                  <Label alignment="CENTER" layoutX="605.0" layoutY="55.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Grad" textFill="#f8f6f6">
-                     <font>
-                        <Font size="18.0" />
-                     </font></Label>
-                  <JFXTextField focusColor="#0abde3" layoutX="725.0" layoutY="56.0" prefWidth="150.0" unFocusColor="#0abde3">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </JFXTextField>
-                  <Label alignment="CENTER" layoutX="605.0" layoutY="103.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Einlieferung" textFill="#fffbfb">
-                     <font>
-                        <Font size="18.0" />
-                     </font></Label>
-                  <JFXTextField focusColor="#0abde3" layoutX="726.0" layoutY="104.0" prefWidth="150.0" unFocusColor="#0abde3">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </JFXTextField>
-                  <Label alignment="CENTER" layoutX="536.0" layoutY="154.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="61.0" prefWidth="190.0" style="-fx-background-color: #0abde3;" text="Verdacht auf med.-induz. Adipositas" textAlignment="CENTER" textFill="#f5f4f4" wrapText="true">
-                     <font>
-                        <Font size="18.0" />
-                     </font></Label>
-                  <JFXComboBox focusColor="#0abde3" layoutX="726.0" layoutY="174.0" prefWidth="150.0" promptText="Verdacht" style="-fx-font-size: 18;" unFocusColor="#0abde3" />
-                  <JFXButton layoutX="804.0" layoutY="233.0" style="-fx-background-color: #0abde3;" text="speichern" textFill="#fffafa">
-                     <font>
-                        <Font size="18.0" />
-                     </font></JFXButton>
-                  <JFXTextField layoutX="338.0" layoutY="34.0" promptText="Combobox formatierung fehlt">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </JFXTextField>
-               </children>
-            </AnchorPane>
          </children>
       </AnchorPane>
-      <Separator layoutX="1.0" layoutY="183.0" minHeight="1.0" minWidth="979.0" prefHeight="1.0" prefWidth="979.0" />
+      <Separator layoutY="165.0" minHeight="0.0" minWidth="979.0" prefHeight="1.0" prefWidth="979.0" />
+      <AnchorPane layoutY="166.0" prefHeight="299.0" prefWidth="979.0" style="-fx-background-color: white; -fx-border-color: white;">
+         <children>
+            <VBox prefHeight="313.0" prefWidth="979.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="979.0">
+                     <children>
+                        <Region prefHeight="45.0" prefWidth="8.0" />
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Größe (cm)" textFill="#fcfcfc">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField id="groesse" fx:id="groesse" focusColor="#0abde3" prefWidth="150.0" unFocusColor="#0abde3">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXTextField>
+                        <Region prefHeight="45.0" prefWidth="272.0" />
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Gewicht (kg)" textFill="#fcf9f9">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField id="gewicht" fx:id="gewicht" focusColor="#0abde3" prefWidth="150.0" unFocusColor="#0abde3">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXTextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="979.0">
+                     <children>
+                        <Region prefHeight="45.0" prefWidth="8.0" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Behinderung" textFill="#f8f7f7">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Region prefHeight="45.0" prefWidth="10.0" />
+                        <JFXCheckBox id="behinderung" fx:id="behinderung" checkedColor="#0abde3" contentDisplay="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="135.0" styleClass="jfx-check-box" stylesheets="@css/Anamnese.css" text=" ">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </JFXCheckBox>
+                        <Region prefHeight="45.0" prefWidth="276.0" />
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Grad" textFill="#f8f6f6">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField id="grad" fx:id="behinderungsGrad" focusColor="#0abde3" prefWidth="150.0" unFocusColor="#0abde3">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXTextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="979.0">
+                     <children>
+                        <Region prefHeight="48.0" prefWidth="8.0" />
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="223.0" style="-fx-background-color: #0abde3;" text="Endokrinologiesche Störungen" textFill="#fffafa">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <JFXComboBox id="stoerungen" fx:id="stoerungen" accessibleRole="CHECK_MENU_ITEM" focusColor="#0abde3" prefWidth="150.0" promptText=" Störungen" style="-fx-font-size: 18;" unFocusColor="#0abde3" />
+                        <Region prefHeight="48.0" prefWidth="165.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="979.0">
+                     <children>
+                        <Region prefHeight="64.0" prefWidth="8.0" />
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #0abde3;" text="mit Adipositas assoziierte  Syndrome" textAlignment="CENTER" textFill="#f8f4f4">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <JFXComboBox id="syndrome" fx:id="syndrome" focusColor="#0abde3" prefWidth="150.0" promptText="Syndrome" style="-fx-font-size: 18;" unFocusColor="#0abde3" />
+                        <Region prefHeight="45.0" prefWidth="101.0" />
+                        <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="62.0" prefWidth="190.0" style="-fx-background-color: #0abde3;" text="Verdacht auf med.-induz. Adipositas" textAlignment="CENTER" textFill="#f5f4f4" wrapText="true">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <JFXComboBox id="verdacht" fx:id="verdacht" focusColor="#0abde3" prefWidth="150.0" promptText=" Verdacht" style="-fx-font-size: 18;" unFocusColor="#0abde3" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="979.0">
+                     <children>
+                        <Region prefHeight="45.0" prefWidth="298.0" />
+                        <JFXTextField id="syndromhinzu" fx:id="syndromehinzufuegen" focusColor="#0abde3" prefWidth="150.0" promptText=" Syndrom hinzuf." unFocusColor="#0abde3">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXTextField>
+                        <Region prefHeight="45.0" prefWidth="291.0" />
+                        <JFXTextField id="verdachthinzu" fx:id="verdachthinzufuegen" focusColor="#0abde3" prefHeight="39.0" prefWidth="150.0" promptText=" Verdacht hinzuf." unFocusColor="#0abde3">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXTextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="979.0">
+                     <children>
+                        <Region prefHeight="66.0" prefWidth="8.0" />
+                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #0abde3;" text="Weitere chronische Erkrankungen" textFill="#f5f0f0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField id="erkrankungen" fx:id="chronErkrakungen" focusColor="#0abde3" prefWidth="150.0" unFocusColor="#0abde3">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXTextField>
+                        <Region prefHeight="66.0" prefWidth="348.0" />
+                        <JFXButton id="speichern" fx:id="speichern" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Speichern" textFill="#fffafa">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
