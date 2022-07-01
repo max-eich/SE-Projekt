@@ -18,7 +18,7 @@ public class Unterbringung
 	 * @ordered
 	 */
 	
-	public String zimmer;
+	public String zimmer="";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -27,7 +27,7 @@ public class Unterbringung
 	 * @ordered
 	 */
 	
-	public String einlieferung;
+	public String einlieferung="";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -36,7 +36,7 @@ public class Unterbringung
 	 * @ordered
 	 */
 	
-	public String entlassung;
+	public String entlassung="";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -47,7 +47,7 @@ public class Unterbringung
 	
 	public Date aenderungsDatum;
 
-	public User aenderer;
+	public User aenderer=new User();
 	
 	/**
 	 * <!-- begin-user-doc -->

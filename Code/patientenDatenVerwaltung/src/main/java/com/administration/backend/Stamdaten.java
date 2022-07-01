@@ -18,7 +18,7 @@ public class Stamdaten
 	 * @ordered
 	 */
 	
-	public String straße;
+	public String straße="";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -27,7 +27,7 @@ public class Stamdaten
 	 * @ordered
 	 */
 	
-	public String land;
+	public String land="";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -45,7 +45,7 @@ public class Stamdaten
 	 * @ordered
 	 */
 	
-	public String ort;
+	public String ort="";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -54,7 +54,7 @@ public class Stamdaten
 	 * @ordered
 	 */
 	
-	public String telefon;
+	public String telefon="";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -63,7 +63,7 @@ public class Stamdaten
 	 * @ordered
 	 */
 	
-	public String handy;
+	public String handy="";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -72,7 +72,7 @@ public class Stamdaten
 	 * @ordered
 	 */
 	
-	public String eMail;
+	public String eMail="";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -81,7 +81,7 @@ public class Stamdaten
 	 * @ordered
 	 */
 	
-	public String kostenträger;
+	public String kostenträger="";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -101,7 +101,7 @@ public class Stamdaten
 	
 	public Date aenderungsDatum;
 
-	public User aenderer;
+	public User aenderer=new User();
 	
 	/**
 	 * <!-- begin-user-doc -->

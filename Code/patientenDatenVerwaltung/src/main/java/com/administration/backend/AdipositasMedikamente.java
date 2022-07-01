@@ -16,7 +16,7 @@ public class AdipositasMedikamente
 	 * @ordered
 	 */
 	
-	public boolean Glukokortikoide;
+	public boolean Glukokortikoide = false;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -25,7 +25,7 @@ public class AdipositasMedikamente
 	 * @ordered
 	 */
 	
-	public boolean Insulingabe;
+	public boolean Insulingabe = false;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -34,7 +34,7 @@ public class AdipositasMedikamente
 	 * @ordered
 	 */
 	
-	public boolean Valproat;
+	public boolean Valproat = false;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -43,7 +43,7 @@ public class AdipositasMedikamente
 	 * @ordered
 	 */
 	
-	public boolean Phenothiazine;
+	public boolean Phenothiazine = false;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -52,7 +52,7 @@ public class AdipositasMedikamente
 	 * @ordered
 	 */
 	
-	public String andere;
+	public String andere = "";
 	
 	/**
 	 * <!-- begin-user-doc -->

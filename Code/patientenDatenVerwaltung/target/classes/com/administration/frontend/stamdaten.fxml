@@ -110,16 +110,6 @@
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <Label alignment="CENTER" layoutX="352.0" layoutY="216.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Haus Nr." textFill="#ebeaea">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <JFXTextField id="hausnr" fx:id="hausNr" focusColor="#0abde3" layoutX="472.0" layoutY="216.0" prefWidth="150.0" unFocusColor="#0abde3">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </JFXTextField>
             <Label alignment="CENTER" layoutX="695.0" layoutY="216.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Land" textFill="#ebeaea">
                <font>
                   <Font size="18.0" />
@@ -140,22 +130,22 @@
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <Label alignment="CENTER" layoutX="352.0" layoutY="286.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Ort" textFill="#ebeaea">
+            <Label alignment="CENTER" layoutX="352.0" layoutY="216.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Ort" textFill="#ebeaea">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="ort" fx:id="ort" focusColor="#0abde3" layoutX="472.0" layoutY="286.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="ort" fx:id="ort" focusColor="#0abde3" layoutX="472.0" layoutY="216.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <Label alignment="CENTER" layoutX="695.0" layoutY="286.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="E-Mail" textFill="#ebeaea">
+            <Label alignment="CENTER" layoutX="352.0" layoutY="286.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="E-Mail" textFill="#ebeaea">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField id="email" fx:id="email" focusColor="#0abde3" layoutX="815.0" layoutY="286.0" prefWidth="150.0" unFocusColor="#0abde3">
+            <JFXTextField id="email" fx:id="email" focusColor="#0abde3" layoutX="472.0" layoutY="286.0" prefWidth="150.0" unFocusColor="#0abde3">
                <font>
                   <Font size="18.0" />
                </font>

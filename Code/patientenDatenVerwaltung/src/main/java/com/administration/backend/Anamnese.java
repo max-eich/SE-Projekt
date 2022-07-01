@@ -18,7 +18,7 @@ public class Anamnese
 	 * @ordered
 	 */
 	
-	public int groesse;
+	public int groesse=0;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -27,7 +27,7 @@ public class Anamnese
 	 * @ordered
 	 */
 	
-	public double gewicht;
+	public double gewicht=0;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -36,7 +36,7 @@ public class Anamnese
 	 * @ordered
 	 */
 	
-	public boolean behinderung;
+	public boolean behinderung = false;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -45,7 +45,7 @@ public class Anamnese
 	 * @ordered
 	 */
 	
-	public double grad;
+	public double grad =0;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -54,7 +54,7 @@ public class Anamnese
 	 * @ordered
 	 */
 	
-	public String chronischeKrankheiten;
+	public String chronischeKrankheiten = "";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -65,11 +65,11 @@ public class Anamnese
 	
 	public Date aenderungsDatum;
 
-	public AdipositasMedikamente adipositasMedikamente;
+	public AdipositasMedikamente adipositasMedikamente = new AdipositasMedikamente();
 
-	public AdipositasSyndrome adipositasSyndrome;
+	public AdipositasSyndrome adipositasSyndrome = new AdipositasSyndrome();
 
-	public Endokrinologisch endokrinologisch;
+	public Endokrinologisch endokrinologisch = new Endokrinologisch();
 
 	public User aenderer;
 	
