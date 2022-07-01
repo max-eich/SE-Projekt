@@ -16,7 +16,7 @@ public class User
 	 * @ordered
 	 */
 	
-	public String name;
+	public String name="";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -34,7 +34,7 @@ public class User
 	 * @ordered
 	 */
 	
-	public String password;
+	public String password="";
 
 	
 	/**

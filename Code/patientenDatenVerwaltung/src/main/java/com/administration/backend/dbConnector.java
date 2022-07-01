@@ -215,7 +215,7 @@ public class dbConnector {
                 p.patientID = rs.getInt("patientID");
                 p.vorname = rs.getString("vorname");
                 p.nachname = rs.getString("nachname");
-                p.geburtsdatum = rs.getTimestamp("geburtstag");
+                p.geburtsdatum = Date.valueOf(rs.getString("geburtstag"));
                 if (role != Role.admin)
                     p.geschlecht = Geschlecht.valueOf(rs.getString("geschlecht"));
                 id = rs.getInt("id");

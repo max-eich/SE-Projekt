@@ -19,7 +19,7 @@ public class Patient
 	 * @ordered
 	 */
 	
-	public int patientID;
+	public int patientID=0;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -28,7 +28,7 @@ public class Patient
 	 * @ordered
 	 */
 	
-	public String vorname;
+	public String vorname="";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -37,7 +37,7 @@ public class Patient
 	 * @ordered
 	 */
 	
-	public String nachname;
+	public String nachname="";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -46,7 +46,7 @@ public class Patient
 	 * @ordered
 	 */
 	
-	public Geschlecht geschlecht;
+	public Geschlecht geschlecht=Geschlecht.d;
 	
 	/**
 	 *
@@ -54,17 +54,17 @@ public class Patient
 	 * @ordered
 	 */
 	
-	public Date geburtsdatum;
+	public Date geburtsdatum=new Date();
 
-	public Stamdaten stamdaten;
+	public Stamdaten stamdaten=new Stamdaten();
 
-	public Unterbringung unterbringung;
+	public Unterbringung unterbringung=new Unterbringung();
 
-	public Anamnese anamnese;
+	public Anamnese anamnese=new Anamnese();
 
-	public ArrayList<Einrichtungen> einrichtungen;
+	public ArrayList<Einrichtungen> einrichtungen=new ArrayList<>();
 
-	public ArrayList<Krankheit> krankheits;
+	public ArrayList<Krankheit> krankheits = new ArrayList<>();
 	
 	/**
 	 * <!-- begin-user-doc -->

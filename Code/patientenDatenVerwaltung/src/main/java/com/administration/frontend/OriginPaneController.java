@@ -78,32 +78,32 @@ public class OriginPaneController extends BasicController{
 
 
     private void setPatientTabs(){
-        try{
+        
         if(getUser().role.equals(Role.personal)||getUser().role.equals(Role.admin)){
             tabsPane.getTabs().clear();
             ArrayList<Tab> t = new ArrayList<>() ;
-            t.add((new Tab("Account",(Node) FXMLLoader.load(getClass().getResource("Accont.fxml")))));
-            t.add((new Tab("Stammdaten",(Node) FXMLLoader.load(getClass().getResource("stamdaten.fxml")))));
-            t.add((new Tab("Patientensuche",(Node) FXMLLoader.load(getClass().getResource("patientenliste.fxml")))));
+            t.add(createTab("Accont.fxml","Account"));
+            t.add(createTab("stamdaten.fxml","Stammdaten"));
+            t.add(createTab("patientenliste.fxml","Patientensuche"));
             tabsPane.getTabs().addAll(t);
             SingleSelectionModel<Tab> selectionModel = tabsPane.getSelectionModel();
             selectionModel.select(t.get(1));
+            setUpTabs(t);
         } else if(getUser().role.equals(Role.arzt)||getUser().role.equals(Role.pflege)){
             tabsPane.getTabs().clear();
             ArrayList<Tab> t = new ArrayList<>();
-            t.add((new Tab("Account",(Node) FXMLLoader.load(getClass().getResource("Accont.fxml")))));
-            t.add((new Tab("Einrichtungen", (Node) FXMLLoader.load((getClass().getResource("Einrichtung.fxml"))))));
-            t.add((new Tab("Stammdaten",(Node) FXMLLoader.load(getClass().getResource("stamdaten.fxml")))));
-            t.add((new Tab("Anamnese",(Node) FXMLLoader.load(getClass().getResource("Anamnese.fxml")))));
-            t.add((new Tab("Krankheitsgeschichte",(Node) FXMLLoader.load(getClass().getResource("Krankheitsgeschichte.fxml")))));
-            t.add((new Tab("Patientensuche",(Node) FXMLLoader.load(getClass().getResource("patientenliste.fxml")))));
+            t.add(createTab("Accont.fxml","Account"));
+            t.add(createTab("Einrichtung.fxml","Einrichtungen"));
+            t.add(createTab("stamdaten.fxml","Stammdaten"));
+            t.add(createTab("Anamnese.fxml","Anamnese"));
+            t.add(createTab("Krankheitsgeschichte.fxml","Krankheitsgeschichte"));
+            t.add(createTab("patientenliste.fxml","Patientensuche"));
             tabsPane.getTabs().addAll(t);
             SingleSelectionModel<Tab> selectionModel = tabsPane.getSelectionModel();
             selectionModel.select(t.get(4));
+            setUpTabs(t);
         }
-        } catch (IOException ex){
-            ex.printStackTrace();
-        }
+
     }
 
     private void setTechnikerTabs() {

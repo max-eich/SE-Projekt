@@ -24,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -73,6 +74,16 @@ public class PatientenlisteController extends BasicTabController {
     @Override
     public void setup(User u) {
         setUser(u);
+        tablePatient.setRowFactory(tv->{
+            TableRow row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (! row.isEmpty() ) {
+                    var rowData = row.getItem();
+                    ((OriginPaneController)((FXMLLoader)row.getScene().getWindow().getUserData()).getController()).selectPatient(Integer.parseInt(((ObservableList<String>)rowData).get(0)));
+                }
+            });
+            return row ;
+        });
         patientenID.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList,String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
                 return new SimpleStringProperty(param.getValue().get(0).toString());

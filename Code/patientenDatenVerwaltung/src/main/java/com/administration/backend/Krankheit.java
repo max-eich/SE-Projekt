@@ -27,7 +27,7 @@ public class Krankheit
 	 * @ordered
 	 */
 	
-	public String beschreibung;
+	public String beschreibung="";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -36,7 +36,7 @@ public class Krankheit
 	 * @ordered
 	 */
 	
-	public String icd10;
+	public String icd10="";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -54,9 +54,9 @@ public class Krankheit
 	 * @ordered
 	 */
 	
-	public String arzt;
+	public String arzt="";
 
-	public User aenderer;
+	public User aenderer=new User();
 	
 	/**
 	 * <!-- begin-user-doc -->
