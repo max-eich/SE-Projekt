@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.SortedMap;
 
 public class dbConnector {
 
@@ -60,6 +61,107 @@ public class dbConnector {
             System.out.println(ex.getMessage());
         }
         return i;
+    }
+
+    public static @NotNull ArrayList<ShortPatient> getPatientlist(@NotNull User u){
+        ArrayList<ShortPatient> ps= new ArrayList<>();
+
+        String sql= "WITH Newest AS (SELECT referenceID, MAX(aenderung) AS LastUpdate FROM Patient GROUP BY referenceID) "
+                + "SELECT p.patientID, p.vorname, p.nachname, p.geburtstag, p.geschlecht, u.zimmer "
+                +" FROM Patient  p "
+                +"INNER JOIN Newest t ON p.referenceID = t.referenceID AND p.aenderung = t.LastUpdate "
+                +"LEFT JOIN (" +
+                "WITH NewestU AS (SELECT Patient_id, MAX(aenderung) AS LastUpdate FROM Unterbringung GROUP BY Patient_id) " +
+                "SELECT x.Patient_id, x.zimmer FROM Unterbringung  x INNER JOIN NewestU n ON x.Patient_id = n.Patient_id AND x.aenderung = n.LastUpdate" +
+                ") AS u ON u.Patient_id=p.referenceID;";
+
+        try (
+                Connection conn = connect();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)
+        ) {
+            if(rs.isBeforeFirst()){
+                while(rs.next()){
+                    ShortPatient s= new ShortPatient();
+                    s.name=rs.getString("vorname")+" "+rs.getString("nachname");
+                    s.patientID= String.valueOf(rs.getInt("patientID"));
+                    if(u.role!=Role.admin)
+                        s.geschlecht=rs.getString("geschlecht");
+                    else s.geschlecht="";
+                    if(u.role!=Role.admin)
+                        s.gebDatum=rs.getString("geburtstag");
+                    else s.gebDatum="";
+                    s.zimmer=rs.getString("zimmer");
+                    if(s.zimmer==null){
+                        s.zimmer="";
+                    }
+                    if(s.gebDatum==null) s.gebDatum="";
+                    if(s.geschlecht==null) s.geschlecht="";
+                    if(s.patientID==null) s.patientID="";
+                    if(s.name==null) s.name="";
+                    ps.add(s);
+                }
+            }
+            disconnect(conn);
+        }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return ps;
+    }
+    public static @NotNull ArrayList<ShortPatient> getPatientlist(@NotNull User u, PatientSearch p){
+        ArrayList<ShortPatient> ps= new ArrayList<>();
+
+        String sql= "WITH Newest AS (SELECT referenceID, MAX(aenderung) AS LastUpdate FROM Patient GROUP BY referenceID) "
+                + "SELECT p.patientID, p.vorname, p.nachname, p.geburtstag, p.geschlecht, u.zimmer "
+                +" FROM Patient  p "
+                +"INNER JOIN Newest t ON p.referenceID = t.referenceID AND p.aenderung = t.LastUpdate "
+                +"LEFT JOIN (" +
+                "WITH NewestU AS (SELECT Patient_id, MAX(aenderung) AS LastUpdate FROM Unterbringung GROUP BY Patient_id) " +
+                "SELECT x.Patient_id, x.zimmer FROM Unterbringung  x INNER JOIN NewestU n ON x.Patient_id = n.Patient_id AND x.aenderung = n.LastUpdate" +
+                ") AS u ON u.Patient_id=p.referenceID ";
+        if(p!=null){
+            sql=sql+"WHERE p.patientID = p.patientID ";
+            if(p.gebDate!=null)
+                sql= sql + "AND p.geburtstag = '"+p.gebDate+"' ";
+            if(p.name!=null)
+                sql= sql+"AND p.name LIKE '"+p.name+"' ";
+            if(p.zimmer!=null)
+                sql=sql+"AND u.zimmer LIKE '"+p.zimmer+"' ";
+        }
+        sql=sql+";";
+
+        try (
+                Connection conn = connect();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)
+        ) {
+            if(rs.isBeforeFirst()){
+                while(rs.next()){
+                    ShortPatient s= new ShortPatient();
+                    s.name=rs.getString("vorname")+" "+rs.getString("nachname");
+                    s.patientID= String.valueOf(rs.getInt("patientID"));
+                    if(u.role!=Role.admin)
+                    s.geschlecht=rs.getString("geschlecht");
+                    else s.geschlecht="";
+                    if(u.role!=Role.admin)
+                    s.gebDatum=rs.getString("geburtstag");
+                    else s.gebDatum="";
+                    s.zimmer=rs.getString("zimmer");
+                    if(s.zimmer==null){
+                        s.zimmer="";
+                    }
+                    if(s.gebDatum==null) s.gebDatum="";
+                    if(s.geschlecht==null) s.geschlecht="";
+                    if(s.patientID==null) s.patientID="";
+                    if(s.name==null) s.name="";
+                    ps.add(s);
+                }
+            }
+            disconnect(conn);
+        }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return ps;
     }
 
     public static @NotNull User checkCard(String card) {

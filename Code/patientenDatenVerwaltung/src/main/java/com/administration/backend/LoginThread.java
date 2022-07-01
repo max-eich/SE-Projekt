@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class LoginThread implements Runnable{
     private String name;
@@ -63,7 +64,7 @@ public class LoginThread implements Runnable{
                                 stage.setUserData(loader);
                                 stage.show();
                                 Stage.getWindows().stream().filter(foundStage -> ((Stage) foundStage).getTitle().equalsIgnoreCase("Login")).forEach(window -> ((Stage) window).close());
-                            } else if(user.name != u.name){
+                            } else if(!user.name.equals(u.name)){
                                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("frontend/originPane.fxml"));
                                 Parent root = loader.load();
                                 ((OriginPaneController) loader.getController()).setup(user);

@@ -7,10 +7,12 @@ package com.administration.frontend;
 
 import com.administration.backend.User;
 import com.administration.backend.dbConnector;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
 /**
  * FXML Controller class
@@ -20,26 +22,30 @@ import javafx.fxml.FXML;
 public class AccontController extends BasicTabController {
 
     @FXML
-    private JFXTextField userName;
+    private JFXTextField benutzerAnzeige;
     @FXML
-    private JFXTextField userRole;
+    private JFXTextField rolleAnzeige;
     @FXML
-    private JFXPasswordField firstPassword;
+    private JFXPasswordField neuesPasswortFeld;
     @FXML
-    private JFXPasswordField secondPassword;
+    private JFXPasswordField neuesPasswortWiederholen;
+    @FXML
+    private JFXButton passwortAendernKnopf;
+    @FXML
+    private Button karteVerloren;
 
     @FXML
     private void passwordChange(ActionEvent event){
         if(
-                firstPassword.getText().equals(secondPassword.getText())
-                && !firstPassword.getText().contains("'")
-                && !firstPassword.getText().contains("\"")
-                && !firstPassword.getText().contains(";")
+                neuesPasswortFeld.getText().equals(neuesPasswortWiederholen.getText())
+                && !neuesPasswortFeld.getText().contains("'")
+                && !neuesPasswortFeld.getText().contains("\"")
+                && !neuesPasswortFeld.getText().contains(";")
         ) {
-            dbConnector.setPassword(getUser(),firstPassword.getText());
-            getUser().password=firstPassword.getText();
-            firstPassword.clear();
-            secondPassword.clear();
+            dbConnector.setPassword(getUser(),neuesPasswortFeld.getText());
+            getUser().password=neuesPasswortFeld.getText();
+            neuesPasswortFeld.clear();
+            neuesPasswortWiederholen.clear();
             update(getUser());
         }
     }
@@ -52,8 +58,8 @@ public class AccontController extends BasicTabController {
 
     public void showData(User user){
         setUser(user);
-        userName.setText(getUser().name);
-        userRole.setText(getUser().role.toString());
+        benutzerAnzeige.setText(getUser().name);
+        rolleAnzeige.setText(getUser().role.toString());
     }
 
     @Override

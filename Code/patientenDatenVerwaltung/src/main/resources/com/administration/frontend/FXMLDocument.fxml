@@ -56,7 +56,7 @@
                </font>
             </JFXButton>
             <Region prefHeight="10.0" prefWidth="493.0" />
-            <Label fx:id="fehlermeldung" prefHeight="40.0" prefWidth="120.0" />
+            <Label fx:id="fehlermeldung" prefHeight="40.0" prefWidth="120.0" textFill="RED" />
          </children>
       </VBox>
    </children>

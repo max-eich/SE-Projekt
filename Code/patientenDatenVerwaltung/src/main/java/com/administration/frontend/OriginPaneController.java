@@ -116,19 +116,13 @@ public class OriginPaneController extends BasicController{
     }
 
     private void setTabs(){
-            try {
+        ArrayList<Tab> t = new ArrayList<>();
                 tabsPane.getTabs().clear();
-                Tab t = new Tab();
-                tabsPane.getTabs().add(t);
-                Tab t1 = new Tab();
-                tabsPane.getTabs().add(t1);
-                t.setContent((Node) FXMLLoader.load(getClass().getResource("Accont.fxml")));
-                t.setText("Account");
-                t1.setContent((Node) FXMLLoader.load(getClass().getResource("patientenliste.fxml")));
-                t1.setText("Patientensuche");
-            } catch(IOException e) {
-                e.printStackTrace();
-            }
+                t.add(createTab("Accont.fxml","Account"));
+                t.add(createTab("patientenliste.fxml", "Patientensuche"));
+                tabsPane.getTabs().addAll(t);
+                tabsPane.getSelectionModel().select(t.get(1));
+                setUpTabs(t);
     }
 
 

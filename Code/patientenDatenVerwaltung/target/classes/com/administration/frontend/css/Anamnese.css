@@ -1,8 +1,20 @@
 .jfx-check-box .box{
-    -fx-pref-height: 30;
-    -fx-pref-width: 30;
+    -fx-pref-height: 35;
+    -fx-pref-width: 35;
 }
 .jfx-check-box .mark{
-    -fx-pref-height: 15;
-    -fx-pref-width: 15;
+    -fx-pref-height: 20;
+    -fx-pref-width: 20;
+}
+.jfx-combo-box{
+    -fx-alignment: right;
+    -fx-text-alignment: right;
+    -fx-orientation: right;
+}
+.column-header{
+    -fx-background-color:  #0abde3;
+    -fx-text-fill: white;
+}
+.table-row{
+
 }

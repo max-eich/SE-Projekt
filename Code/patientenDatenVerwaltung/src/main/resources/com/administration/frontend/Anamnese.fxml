@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -12,8 +11,9 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.CheckComboBox?>
 
-<AnchorPane id="AnchorPane" maxHeight="481.0" maxWidth="979.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="483.0" prefWidth="979.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kilinkremagen.AnamneseController">
+<AnchorPane id="AnchorPane" maxHeight="481.0" maxWidth="979.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="483.0" prefWidth="979.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.administration.frontend.AnamneseController">
    <children>
       <AnchorPane prefHeight="165.0" prefWidth="979.0" style="-fx-background-color: white;">
          <children>
@@ -172,7 +172,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <JFXComboBox id="stoerungen" fx:id="stoerungen" accessibleRole="CHECK_MENU_ITEM" focusColor="#0abde3" prefWidth="150.0" promptText=" Störungen" style="-fx-font-size: 18;" unFocusColor="#0abde3" />
+                        <CheckComboBox fx:id="stoerungen" prefHeight="40.0" prefWidth="150.0" title="Störung" />
                         <Region prefHeight="48.0" prefWidth="165.0" />
                      </children>
                   </HBox>
@@ -184,14 +184,14 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <JFXComboBox id="syndrome" fx:id="syndrome" focusColor="#0abde3" prefWidth="150.0" promptText="Syndrome" style="-fx-font-size: 18;" unFocusColor="#0abde3" />
+                        <CheckComboBox fx:id="syndrome" prefHeight="40.0" prefWidth="150.0" title="Syndrome" />
                         <Region prefHeight="45.0" prefWidth="101.0" />
                         <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="62.0" prefWidth="190.0" style="-fx-background-color: #0abde3;" text="Verdacht auf med.-induz. Adipositas" textAlignment="CENTER" textFill="#f5f4f4" wrapText="true">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <JFXComboBox id="verdacht" fx:id="verdacht" focusColor="#0abde3" prefWidth="150.0" promptText=" Verdacht" style="-fx-font-size: 18;" unFocusColor="#0abde3" />
+                        <CheckComboBox fx:id="verdacht" prefHeight="40.0" prefWidth="150.0" title="Verdacht" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="979.0">

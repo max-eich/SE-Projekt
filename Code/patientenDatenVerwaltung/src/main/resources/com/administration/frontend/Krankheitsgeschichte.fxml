@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="481.0" prefWidth="979.0" style="-fx-background-color: white; -fx-border-width: 1px 1px 1px 1px; -fx-border-color: #d3d3d3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kilinkremagen.KrankheitsgeschichteController">
+<AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="481.0" prefWidth="979.0" style="-fx-background-color: white; -fx-border-width: 1px 1px 1px 1px; -fx-border-color: #d3d3d3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.administration.frontend.KrankheitsgeschichteController">
    <children>
-      <TableView layoutX="9.0" layoutY="176.0" prefHeight="295.0" prefWidth="827.0" stylesheets="@css/Einrichtungen.css">
+      <TableView fx:id="tableView" layoutX="9.0" layoutY="176.0" prefHeight="295.0" prefWidth="827.0" stylesheets="@css/Einrichtungen.css">
          <columns>
             <TableColumn id="tabelleDatum" fx:id="datumTabelle" prefWidth="104.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0px 1px 2px 0px;" text="Datum" />
             <TableColumn id="tabelleTyp" fx:id="typTabelle" prefWidth="66.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0px 1px 2px 0px;" text="Typ" />

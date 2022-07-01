@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 
 import com.administration.Main;
 import com.administration.backend.*;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
@@ -25,6 +26,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -33,14 +35,18 @@ import javafx.stage.Stage;
  */
 public class FXMLDocumentController extends BasicController{
 
-    @FXML
-    private Label label;
 
     @FXML
-    private JFXTextField name;
-
+    private AnchorPane benutzername;
     @FXML
-    private JFXPasswordField password;
+    private JFXTextField Benutzername;
+    @FXML
+    private JFXPasswordField Password;
+    @FXML
+    private JFXButton ButtonLogin;
+    @FXML
+    private Label fehlermeldung;
+
 
 
     @FXML
@@ -50,14 +56,14 @@ public class FXMLDocumentController extends BasicController{
     @FXML
     private void handleButtonAction(ActionEvent event) {
         if(
-                         !password.getText().contains("'")
-                        && !password.getText().contains("\"")
-                        && !password.getText().contains(";")
-                && !name.getText().contains("'")
-                                 && !name.getText().contains("\"")
-                                 && !name.getText().contains(";")
+                         !Password.getText().contains("'")
+                        && !Password.getText().contains("\"")
+                        && !Password.getText().contains(";")
+                && !Benutzername.getText().contains("'")
+                                 && !Benutzername.getText().contains("\"")
+                                 && !Benutzername.getText().contains(";")
         ){
-            setUser(dbConnector.userLogin(name.getText(),password.getText()));
+            setUser(dbConnector.userLogin(Benutzername.getText(),Password.getText()));
             if(getUser().name!=null){
                 try{
                     FXMLLoader loader = new FXMLLoader(Main.class.getResource("frontend/originPane.fxml"));
@@ -74,9 +80,9 @@ public class FXMLDocumentController extends BasicController{
                     e.printStackTrace();
                 }
             } else {
-                label.setText("Benutzername/Passwort\nincorrect");
-                name.clear();
-                password.clear();
+                fehlermeldung.setText("Benutzername/Passwort\nincorrect");
+                Benutzername.clear();
+                Password.clear();
             }
         }
     }

@@ -2,9 +2,14 @@ package com.administration.frontend;
 
 import com.administration.backend.Patient;
 import com.administration.backend.User;
+import javafx.fxml.FXML;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class BasicController {
+
+    @FXML
+    public void initialize() {
+    }
 
     private User user=new User();
 
