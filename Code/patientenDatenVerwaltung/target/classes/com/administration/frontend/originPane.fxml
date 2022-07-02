@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="640.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.administration.frontend.OriginPaneController">
+   <children>
+      <Pane layoutX="20.0" layoutY="14.0" prefHeight="187.0" prefWidth="178.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="243.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Rastergrafik2-page-001.jpg" />
+               </image>
+            </ImageView>
+            <Label fx:id="label" layoutX="304.0" layoutY="26.0" prefHeight="49.0" prefWidth="543.0" text="Label" textFill="#17d1d3">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Button layoutX="919.0" layoutY="35.0" mnemonicParsing="false" onAction="#logout" text="Logout">
+               <graphic>
+                  <MaterialDesignIconView glyphName="LOGOUT" />
+               </graphic>
+            </Button>
+            <TabPane fx:id="tabsPane" layoutX="14.0" layoutY="96.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="510.0" prefWidth="979.0" tabClosingPolicy="UNAVAILABLE">
+               <tabs>
+                  <Tab text="Untitled Tab">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #17d1d3;" />
+                    </content>
+                  </Tab>
+               </tabs></TabPane>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Pane>
+   </children>
+</AnchorPane>
