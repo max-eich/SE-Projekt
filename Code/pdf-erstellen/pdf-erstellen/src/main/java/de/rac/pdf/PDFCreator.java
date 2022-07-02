@@ -147,7 +147,7 @@ public class PDFCreator {
     }
 
 
-    public static void main(String[] args) throws Exception {
+    public static void main() throws Exception {
 
 
         // Word Datei erstellen
