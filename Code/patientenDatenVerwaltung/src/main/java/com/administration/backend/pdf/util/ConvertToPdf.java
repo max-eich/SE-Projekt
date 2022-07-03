@@ -10,7 +10,6 @@ import java.io.OutputStream;
 
 import com.documents4j.api.DocumentType;
 import com.documents4j.api.IConverter;
-import com.documents4j.job.LocalConverter;
 
 public class ConvertToPdf {
     public static void convert() {
@@ -20,7 +19,7 @@ public class ConvertToPdf {
         try {
             InputStream docxInputStream = new FileInputStream(inputWord);
             OutputStream outputStream = new FileOutputStream(outputFile);
-            IConverter converter = LocalConverter.builder().build();
+            IConverter converter = com.documents4j.job.LocalConverter.builder().build();
             converter.convert(docxInputStream).as(DocumentType.DOCX).to(outputStream).as(DocumentType.PDF).execute();
             outputStream.close();
             System.out.println("pdf build: success");

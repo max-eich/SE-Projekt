@@ -1,3 +1,4 @@
+
 module com.administration.patientendatenverwaltung {
     requires javafx.controls;
     requires javafx.fxml;
@@ -18,12 +19,12 @@ module com.administration.patientendatenverwaltung {
     requires com.jfoenix;
     requires docx4j;
     requires documents4j.api;
-    requires documents4j.local;
     requires java.desktop;
     requires org.apache.pdfbox;
+    requires documents4j.local;
 
-    opens com.administration to javafx.fxml,de.jensd.fx.glyphs.fontawesome,de.jensd.fx.glyphs.commons, documents4j.local;
+    opens com.administration to javafx.fxml,de.jensd.fx.glyphs.fontawesome,de.jensd.fx.glyphs.commons;
     exports com.administration;
     exports com.administration.frontend;
-    opens com.administration.frontend to javafx.fxml, de.jensd.fx.glyphs.fontawesome, de.jensd.fx.glyphs.commons,documents4j.local;
+    opens com.administration.frontend to javafx.fxml, de.jensd.fx.glyphs.fontawesome, de.jensd.fx.glyphs.commons;
 }

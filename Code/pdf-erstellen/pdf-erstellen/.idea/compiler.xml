@@ -9,8 +9,5 @@
         <module name="pdf-erstellen" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="pdf-erstellen" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>

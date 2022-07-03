@@ -271,12 +271,12 @@ public class PDFCreator {
         ConvertToPdf.convert();
 
         //Druuckauftrag
-        PrintPdf.print("C:\\Users\\Max\\Documents\\GitHub\\SE-Projekt\\Code\\pdf-erstellen\\pdf-erstellen\\Patientenakte.pdf");
+        PrintPdf.print("Patientenakte.pdf");
 
         // Löscht die .docx
         exportFile.delete();
 
-        PrintPdf.deleteFile("C:\\Users\\Max\\Documents\\GitHub\\SE-Projekt\\Code\\pdf-erstellen\\pdf-erstellen\\Patientenakte.pdf");
+        PrintPdf.deleteFile("Patientenakte.pdf");
 
         //Beendet das Programm
         System.exit(0);

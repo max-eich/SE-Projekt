@@ -161,12 +161,12 @@
             <version>8.3.3</version>
         </dependency>
 
-
+<!--
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
             <version>2.3.2</version>
-        </dependency>
+        </dependency>-->
 
         <!-- Runtime, com.sun.xml.bind module -->
         <dependency>
@@ -181,6 +181,14 @@
             <version>2.0.2</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.documents4j/documents4j-local -->
+        <dependency>
+            <groupId>com.documents4j</groupId>
+            <artifactId>documents4j-local</artifactId>
+            <version>1.1.8</version>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/com.documents4j/documents4j-api -->
         <dependency>
             <groupId>com.documents4j</groupId>
@@ -188,17 +196,14 @@
             <version>1.1.8</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.documents4j</groupId>
-            <artifactId>documents4j-local</artifactId>
-            <version>1.0.3</version>
-        </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.documents4j/documents4j-transformer-msoffice-word -->
         <dependency>
             <groupId>com.documents4j</groupId>
             <artifactId>documents4j-transformer-msoffice-word</artifactId>
-            <version>1.0.3</version>
+            <version>1.1.8</version>
         </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
         <dependency>

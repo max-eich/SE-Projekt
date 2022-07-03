@@ -15,8 +15,8 @@ import com.documents4j.job.LocalConverter;
 public class ConvertToPdf {
     public static void convert() {
 
-        File inputWord = new File("C:\\Users\\Max\\Documents\\GitHub\\SE-Projekt\\Code\\pdf-erstellen\\pdf-erstellen\\Temp-Patientenakte.docx");
-        File outputFile = new File("C:\\Users\\Max\\Documents\\GitHub\\SE-Projekt\\Code\\pdf-erstellen\\pdf-erstellen\\Patientenakte.pdf");
+        File inputWord = new File("Temp-Patientenakte.docx");
+        File outputFile = new File("Patientenakte.pdf");
         try {
             InputStream docxInputStream = new FileInputStream(inputWord);
             OutputStream outputStream = new FileOutputStream(outputFile);
