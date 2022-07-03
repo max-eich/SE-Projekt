@@ -6,12 +6,16 @@
 package com.administration.frontend;
 
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import com.administration.backend.Patient;
+import com.administration.backend.Role;
 import com.administration.backend.User;
 import com.administration.backend.dbConnector;
 import com.jfoenix.controls.JFXButton;
@@ -20,16 +24,20 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.ChoiceBoxTableCell;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
 
 
 public class KrankheitsgeschichteController extends BasicTabController {
 
-
+    @FXML
+    private JFXButton arzt;
     @FXML
     private TableView tableView;
     @FXML
@@ -75,10 +83,18 @@ public class KrankheitsgeschichteController extends BasicTabController {
     }
 
     @Override
-    public void setup(User u, int pid) {
+    public void setup(User u, Patient pid) {
         setUser(u);
-        setPid(pid);
-        setPatient(dbConnector.getPatient(getUser().role, pid));
+        setPatient(pid);
+        if(getUser().role==Role.arzt){
+            arztEingabe.setVisible(false);
+            arzt.setVisible(false);
+            drucken.setVisible(true);
+        } else if(getUser().role == Role.pflege){
+            arzt.setVisible(true);
+            arztEingabe.setVisible(true);
+            drucken.setVisible(false);
+        }
         setStammdata();
         data = FXCollections.observableArrayList();
         datumTabelle.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList,String>, ObservableValue<String>>() {
@@ -91,28 +107,36 @@ public class KrankheitsgeschichteController extends BasicTabController {
                 return new SimpleStringProperty(param.getValue().get(1).toString());
             }
         });
+        if(getUser().role== Role.arzt)
+        typTabelle.setCellFactory(ChoiceBoxTableCell.forTableColumn("d","k","b"));
+        if(getUser().role==Role.pflege)
+            typTabelle.setCellFactory(ChoiceBoxTableCell.forTableColumn("k"));
         icdTabelle.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList,String>,ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
                 return new SimpleStringProperty(param.getValue().get(2).toString());
             }
         });
+        icdTabelle.setCellFactory(TextFieldTableCell.forTableColumn());
         beschreibungTabelle.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList,String>,ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
                 return new SimpleStringProperty(param.getValue().get(3).toString());
             }
         });
+        beschreibungTabelle.setCellFactory(TextFieldTableCell.forTableColumn());
         arztTabelle.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList,String>,ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
                 return new SimpleStringProperty(param.getValue().get(4).toString());
             }
         });
         ObservableList<String>s1 = FXCollections.observableArrayList();
+        getPatient().krankheits=dbConnector.getKrankheiten(getUser().role,getPatient().patientID);
         for (int i=0; i<5;i++)
             s1.add("");
         data.add(s1);
         getPatient().krankheits.forEach(krankheit -> {
             ObservableList<String>s = FXCollections.observableArrayList();
-            s.add(krankheit.erstellung.toString());
+            DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+            s.add(df.format(krankheit.erstellung));
             s.add(krankheit.type.toString());
             s.add(krankheit.icd10);
             s.add(krankheit.beschreibung);
@@ -125,10 +149,18 @@ public class KrankheitsgeschichteController extends BasicTabController {
     private void setStammdata() {
         nachname.setText(getPatient().nachname);
         vorname.setText(getPatient().vorname);
-        geschlecht.setText(getPatient().geschlecht.toString());
-        geburtstag.setText(getPatient().geburtsdatum.toString());
-        LocalDate g = convertToLocalDate(getPatient().geburtsdatum);
-        alter.setText(String.valueOf((Period.between(g, LocalDate.now())).getYears()));
+        if(getPatient().geschlecht!=null)
+            geschlecht.setText(getPatient().geschlecht.toString());
+        else geschlecht.setText("");
+        if(getPatient().geburtsdatum!=null) {
+            DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+            geburtstag.setText(df.format(getPatient().geburtsdatum));
+            LocalDate g = convertToLocalDate(getPatient().geburtsdatum);
+            alter.setText(String.valueOf((Period.between(g, LocalDate.now())).getYears()));
+        } else {
+            geburtstag.setText("");
+            alter.setText("");
+        }
         zimmerNr.setText(getPatient().unterbringung.zimmer);
         einlieferung.setText(getPatient().unterbringung.einlieferung);
         entlassung.setText(getPatient().unterbringung.entlassung);
@@ -138,6 +170,30 @@ public class KrankheitsgeschichteController extends BasicTabController {
     private LocalDate convertToLocalDate(Date dateToConvert) {
         return LocalDate.ofInstant(
                 dateToConvert.toInstant(), ZoneId.systemDefault());
+    }
+
+    @FXML
+    private void setArzt(ActionEvent event){
+        if(arztEingabe.getText()!= null && arztEingabe.getText()!=""){
+            drucken.setVisible(true);
+            getPatient().krankheits = dbConnector.getKrankheiten(Role.arzt,getPatient().patientID);
+            data.clear();
+            ObservableList<String>s1 = FXCollections.observableArrayList();
+            for (int i=0; i<5;i++)
+                s1.add("");
+            data.add(s1);
+            getPatient().krankheits.forEach(krankheit -> {
+                ObservableList<String>s = FXCollections.observableArrayList();
+                DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+                s.add(df.format(krankheit.erstellung));
+                s.add(krankheit.type.toString());
+                s.add(krankheit.icd10);
+                s.add(krankheit.beschreibung);
+                s.add(krankheit.arzt);
+                data.add(s);
+            });
+
+        }
     }
 
 }

@@ -90,7 +90,7 @@ public class Stamdaten
 	 * @ordered
 	 */
 	
-	public int versicherungsnummer;
+	public int versicherungsnummer=0;
 	
 	/**
 	 * <!-- begin-user-doc -->

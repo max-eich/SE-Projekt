@@ -6,6 +6,8 @@
 package com.administration.frontend;
 
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
@@ -97,18 +99,27 @@ public class StammdatenController extends BasicTabController {
 
 
     @Override
-    public void setup(User u, int pid) {
+    public void setup(User u, Patient pid) {
         setUser(u);
-        setPid(pid);
-        setPatient(dbConnector.getPatient(u.role,getPid()));
+        setPatient(pid);
         Patient p = getPatient();
         nachname.setText(p.nachname);
-        geschlecht.setText(p.geschlecht.toString());
+        vorname.setText(p.vorname);
         zimmerNr.setText(p.unterbringung.zimmer);
-        alter.setText(String.valueOf((Period.between(convertToLocalDate(p.geburtsdatum), LocalDate.now())).getYears()));
         einlieferung.setText(p.unterbringung.einlieferung);
         patientenID.setText(String.valueOf(p.patientID));
-        geburtstag.setText(p.geburtsdatum.toString());
+        if(getPatient().geschlecht!=null)
+            geschlecht.setText(getPatient().geschlecht.toString());
+        else geschlecht.setText("");
+        if(getPatient().geburtsdatum!=null) {
+            DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+            geburtstag.setText(df.format(getPatient().geburtsdatum));
+            LocalDate g = convertToLocalDate(getPatient().geburtsdatum);
+            alter.setText(String.valueOf((Period.between(g, LocalDate.now())).getYears()));
+        } else {
+            geburtstag.setText("");
+            alter.setText("");
+        }
         entlassung.setText(p.unterbringung.entlassung);
         strasse.setText(p.stamdaten.straße);
         land.setText(p.stamdaten.land);

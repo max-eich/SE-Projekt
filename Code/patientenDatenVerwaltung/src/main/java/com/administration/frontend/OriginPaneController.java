@@ -72,7 +72,7 @@ public class OriginPaneController extends BasicController{
 
     private void setUpTabs(@NotNull ArrayList<Tab> tabs){
         tabs.forEach( tab -> {
-            ((BasicTabController)((FXMLLoader)tab.getUserData()).getController()).setup(getUser(),getPid());
+            ((BasicTabController)((FXMLLoader)tab.getUserData()).getController()).setup(getUser(),getPatient());
         });
     }
 

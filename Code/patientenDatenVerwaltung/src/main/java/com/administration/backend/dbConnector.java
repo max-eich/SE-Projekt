@@ -4,7 +4,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.SortedMap;
 
 public class dbConnector {
 
@@ -63,6 +62,10 @@ public class dbConnector {
         return i;
     }
 
+    public static @NotNull ArrayList<Krankheit> getKrankheiten(Role role, int pid){
+        return getKrank(role,pid);
+    }
+
     public static @NotNull ArrayList<ShortPatient> getPatientlist(@NotNull User u){
         ArrayList<ShortPatient> ps= new ArrayList<>();
 
@@ -92,13 +95,11 @@ public class dbConnector {
                         s.gebDatum=rs.getString("geburtstag");
                     else s.gebDatum="";
                     s.zimmer=rs.getString("zimmer");
-                    if(s.zimmer==null){
-                        s.zimmer="";
-                    }
-                    if(s.gebDatum==null) s.gebDatum="";
-                    if(s.geschlecht==null) s.geschlecht="";
+                    if(s.zimmer==null) s.zimmer="";
                     if(s.patientID==null) s.patientID="";
+                    if(s.geschlecht==null) s.geschlecht="";
                     if(s.name==null) s.name="";
+                    if(s.gebDatum==null) s.gebDatum="";
                     ps.add(s);
                 }
             }
@@ -108,6 +109,7 @@ public class dbConnector {
         }
         return ps;
     }
+
     public static @NotNull ArrayList<ShortPatient> getPatientlist(@NotNull User u, PatientSearch p){
         ArrayList<ShortPatient> ps= new ArrayList<>();
 
@@ -124,7 +126,12 @@ public class dbConnector {
             if(p.gebDate!=null)
                 sql= sql + "AND p.geburtstag = '"+p.gebDate+"' ";
             if(p.name!=null)
-                sql= sql+"AND p.name LIKE '"+p.name+"' ";
+                if(p.name.contains(" ")){
+                    String[] splitStr = p.name.trim().split("\\s+");
+                    sql= sql + "AND p.vorname LIKE '"+ splitStr[0]+ "' AND p.nachname LIKE '"+ splitStr[1]+"' ";
+                } else {
+                    sql = sql + "AND (p.vorname LIKE '" + p.name + "' OR p.nachname LIKE '" +p.name+"' ) ";
+                }
             if(p.zimmer!=null)
                 sql=sql+"AND u.zimmer LIKE '"+p.zimmer+"' ";
         }
@@ -147,13 +154,11 @@ public class dbConnector {
                     s.gebDatum=rs.getString("geburtstag");
                     else s.gebDatum="";
                     s.zimmer=rs.getString("zimmer");
-                    if(s.zimmer==null){
-                        s.zimmer="";
-                    }
-                    if(s.gebDatum==null) s.gebDatum="";
-                    if(s.geschlecht==null) s.geschlecht="";
+                    if(s.zimmer==null) s.zimmer="";
                     if(s.patientID==null) s.patientID="";
+                    if(s.geschlecht==null) s.geschlecht="";
                     if(s.name==null) s.name="";
+                    if(s.gebDatum==null) s.gebDatum="";
                     ps.add(s);
                 }
             }
@@ -215,9 +220,14 @@ public class dbConnector {
                 p.patientID = rs.getInt("patientID");
                 p.vorname = rs.getString("vorname");
                 p.nachname = rs.getString("nachname");
-                p.geburtsdatum = Date.valueOf(rs.getString("geburtstag"));
+                if(rs.getString("geburtstag")!=null)
+                    p.geburtsdatum = new java.util.Date(Date.valueOf(rs.getString("geburtstag")).getTime());
                 if (role != Role.admin)
+                    if(rs.getString("geschlecht")!=null){
                     p.geschlecht = Geschlecht.valueOf(rs.getString("geschlecht"));
+                    } else {
+                        p.geschlecht=null;
+                    }
                 id = rs.getInt("id");
             }
             disconnect(conn);
@@ -488,6 +498,7 @@ public class dbConnector {
                 if (role != Role.admin) {
                     s.straße = rs.getString("strasse");
                     s.ort = rs.getString("ort");
+                    if(rs.getString("plz")!=null)
                     s.plz = Integer.parseInt(rs.getString("plz"));
                     s.land = rs.getString("land");
                     s.telefon = rs.getString("telefon");
