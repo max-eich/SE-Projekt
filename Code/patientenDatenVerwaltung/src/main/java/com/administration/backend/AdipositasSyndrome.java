@@ -8,6 +8,7 @@ package com.administration.backend;
  * @generated
  */
 
+
 public class AdipositasSyndrome {
     /**
      * <!-- begin-user-doc -->
@@ -17,7 +18,7 @@ public class AdipositasSyndrome {
      * @ordered
      */
 
-    public boolean Laurence_Moon_Bardet_Biedel;
+    public boolean Laurence_Moon_Bardet_Biedel=false;
 
     /**
      * <!-- begin-user-doc -->
@@ -27,7 +28,7 @@ public class AdipositasSyndrome {
      * @ordered
      */
 
-    public boolean Prader_Willi;
+    public boolean Prader_Willi=false;
 
     /**
      * <!-- begin-user-doc -->
@@ -37,7 +38,7 @@ public class AdipositasSyndrome {
      * @ordered
      */
 
-    public boolean Simpson_Golabi_Behmel;
+    public boolean Simpson_Golabi_Behmel=false;
 
     /**
      * <!-- begin-user-doc -->
@@ -47,7 +48,7 @@ public class AdipositasSyndrome {
      * @ordered
      */
 
-    public boolean Sotos;
+    public boolean Sotos=false;
 
     /**
      * <!-- begin-user-doc -->
@@ -57,7 +58,7 @@ public class AdipositasSyndrome {
      * @ordered
      */
 
-    public boolean Trisomie_21;
+    public boolean Trisomie_21=false;
 
     /**
      * <!-- begin-user-doc -->
@@ -67,7 +68,7 @@ public class AdipositasSyndrome {
      * @ordered
      */
 
-    public boolean Weaver;
+    public boolean Weaver=false;
 
     /**
      * <!-- begin-user-doc -->
@@ -117,6 +118,7 @@ public class AdipositasSyndrome {
         }
         return rueckgabe;
     }
+
 
 }
 

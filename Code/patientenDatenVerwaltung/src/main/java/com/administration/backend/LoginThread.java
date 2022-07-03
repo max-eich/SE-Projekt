@@ -53,7 +53,7 @@ public class LoginThread implements Runnable{
                             Window open = Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
                             Stage current = (Stage) open;
                             User u = ((BasicController) ((FXMLLoader) current.getUserData()).getController()).getUser();
-                            if (u.name == null) {
+                            if (u.name == null||u.name=="") {
                                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("frontend/originPane.fxml"));
                                 Parent root = loader.load();
                                 ((OriginPaneController) loader.getController()).setup(user);

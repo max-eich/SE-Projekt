@@ -8,10 +8,13 @@ package com.administration.frontend;
 
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import com.administration.backend.Patient;
 import com.administration.backend.User;
 import com.administration.backend.dbConnector;
 import com.itextpdf.text.DocumentException;
@@ -127,16 +130,16 @@ public class AnamneseController extends BasicTabController {
     private void checkMed(){
         ArrayList<Integer> a =new ArrayList<>();
         if(getPatient().anamnese.adipositasMedikamente.Glukokortikoide){
-            a.add(1);
+            a.add(0);
         }
         if(getPatient().anamnese.adipositasMedikamente.Insulingabe){
-            a.add(2);
+            a.add(1);
         }
         if(getPatient().anamnese.adipositasMedikamente.Valproat){
-            a.add(3);
+            a.add(2);
         }
         if(getPatient().anamnese.adipositasMedikamente.Phenothiazine){
-            a.add(4);
+            a.add(3);
         }
         verdacht.getCheckModel().checkIndices(a.stream().mapToInt(Integer::intValue).toArray());
     }
@@ -144,22 +147,22 @@ public class AnamneseController extends BasicTabController {
     private void checkSyndrome() {
         ArrayList<Integer> a = new ArrayList<>();
         if(getPatient().anamnese.adipositasSyndrome.Laurence_Moon_Bardet_Biedel){
-            a.add(1);
+            a.add(0);
         }
         if(getPatient().anamnese.adipositasSyndrome.Prader_Willi){
-            a.add(2);
+            a.add(1);
         }
         if(getPatient().anamnese.adipositasSyndrome.Simpson_Golabi_Behmel){
-            a.add(3);
+            a.add(2);
         }
         if(getPatient().anamnese.adipositasSyndrome.Sotos){
-            a.add(4);
+            a.add(3);
         }
         if(getPatient().anamnese.adipositasSyndrome.Trisomie_21){
-            a.add(5);
+            a.add(4);
         }
         if(getPatient().anamnese.adipositasSyndrome.Weaver){
-            a.add(6);
+            a.add(5);
         }
         if(a.size()>0)
             syndrome.getCheckModel().checkIndices(a.stream().mapToInt(Integer::intValue).toArray());
@@ -168,41 +171,40 @@ public class AnamneseController extends BasicTabController {
     private void checkStoerungen() {
         ArrayList<Integer> st= new ArrayList<>();
         if(getPatient().anamnese.endokrinologisch.AdipositasBeiHypothyreose){
-            st.add(1);
+            st.add(0);
         }
         if(getPatient().anamnese.endokrinologisch.Cushing_Syndrom){
-           st.add(2);
+           st.add(1);
         }
         if(getPatient().anamnese.endokrinologisch.genetisch_bedingter_Leptinmangel){
-            st.add(3);
+            st.add(2);
         }
         if(getPatient().anamnese.endokrinologisch.Kraniopharyngeom){
-            st.add(4);
+            st.add(3);
         }
         if(getPatient().anamnese.endokrinologisch.Leptirezeptormutation){
-            st.add(5);
+            st.add(4);
         }
         if(getPatient().anamnese.endokrinologisch.MC4_Rezeptormutationen){
-            st.add(6);
+            st.add(5);
         }
         if(getPatient().anamnese.endokrinologisch.POMC_Mutationen){
-            st.add(7);
+            st.add(6);
         }
         if(getPatient().anamnese.endokrinologisch.primärerHyperinsulinismusWiedemann_Beckwith){
-            st.add(8);
+            st.add(7);
         }
         if(getPatient().anamnese.endokrinologisch.STH_Mangel){
-            st.add(9);
+            st.add(8);
         }
         if(st.size()>0)
         verdacht.getCheckModel().checkIndices(st.stream().mapToInt(Integer::intValue).toArray());
     }
 
     @Override
-    public void setup(User u, int pid) {
+    public void setup(User u, Patient pid) {
         setUser(u);
-        setPid(pid);
-        setPatient(dbConnector.getPatient(getUser().role, pid));
+        setPatient(pid);
         setStammdata();
         groesse.setText(String.valueOf(getPatient().anamnese.groesse));
         gewicht.setText(String.valueOf(getPatient().anamnese.gewicht));
@@ -217,10 +219,18 @@ public class AnamneseController extends BasicTabController {
     private void setStammdata() {
         nachname.setText(getPatient().nachname);
         vorname.setText(getPatient().vorname);
-        geschlecht.setText(getPatient().geschlecht.toString());
-        geburtstag.setText(getPatient().geburtsdatum.toString());
-        LocalDate g = convertToLocalDate(getPatient().geburtsdatum);
-        alter.setText(String.valueOf((Period.between(g, LocalDate.now())).getYears()));
+        if(getPatient().geschlecht!=null)
+            geschlecht.setText(getPatient().geschlecht.toString());
+        else geschlecht.setText("");
+        if(getPatient().geburtsdatum!=null) {
+            DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+            geburtstag.setText(df.format(getPatient().geburtsdatum));
+            LocalDate g = convertToLocalDate(getPatient().geburtsdatum);
+            alter.setText(String.valueOf((Period.between(g, LocalDate.now())).getYears()));
+        } else {
+            geburtstag.setText("");
+            alter.setText("");
+        }
         zimmerNr.setText(getPatient().unterbringung.zimmer);
         einlieferung.setText(getPatient().unterbringung.einlieferung);
         entlassung.setText(getPatient().unterbringung.entlassung);
@@ -237,7 +247,7 @@ public class AnamneseController extends BasicTabController {
     }
 
     @Override
-    public void update(User user, int pid){
+    public void update(User user, Patient pid){
         setup(user,pid);
     }
 }

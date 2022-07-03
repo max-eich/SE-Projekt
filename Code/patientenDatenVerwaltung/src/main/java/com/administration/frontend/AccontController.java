@@ -5,6 +5,7 @@
  */
 package com.administration.frontend;
 
+import com.administration.backend.Patient;
 import com.administration.backend.User;
 import com.administration.backend.dbConnector;
 import com.jfoenix.controls.JFXButton;
@@ -68,7 +69,7 @@ public class AccontController extends BasicTabController {
     }
 
     @Override
-    public void setup(User u, int pid) {
+    public void setup(User u, Patient pid) {
         setup(u);
     }
 
@@ -78,7 +79,7 @@ public class AccontController extends BasicTabController {
     }
 
     @Override
-    public void update(User u, int pid){
+    public void update(User u, Patient pid){
         update(u);
     }
 }

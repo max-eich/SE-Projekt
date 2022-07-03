@@ -16,7 +16,7 @@ public class Endokrinologisch
 	 * @ordered
 	 */
 	
-	public boolean AdipositasBeiHypothyreose;
+	public boolean AdipositasBeiHypothyreose = false;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -25,7 +25,7 @@ public class Endokrinologisch
 	 * @ordered
 	 */
 	
-	public boolean Cushing_Syndrom;
+	public boolean Cushing_Syndrom = false;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -34,7 +34,7 @@ public class Endokrinologisch
 	 * @ordered
 	 */
 	
-	public boolean genetisch_bedingter_Leptinmangel;
+	public boolean genetisch_bedingter_Leptinmangel = false;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -43,7 +43,7 @@ public class Endokrinologisch
 	 * @ordered
 	 */
 	
-	public boolean Kraniopharyngeom;
+	public boolean Kraniopharyngeom = false;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -52,7 +52,7 @@ public class Endokrinologisch
 	 * @ordered
 	 */
 	
-	public boolean Leptirezeptormutation;
+	public boolean Leptirezeptormutation = false;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -61,7 +61,7 @@ public class Endokrinologisch
 	 * @ordered
 	 */
 	
-	public boolean MC4_Rezeptormutationen;
+	public boolean MC4_Rezeptormutationen = false;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -70,7 +70,7 @@ public class Endokrinologisch
 	 * @ordered
 	 */
 	
-	public boolean Morbus_Cushing;
+	public boolean Morbus_Cushing = false;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -79,7 +79,7 @@ public class Endokrinologisch
 	 * @ordered
 	 */
 	
-	public boolean POMC_Mutationen;
+	public boolean POMC_Mutationen = false;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -88,7 +88,7 @@ public class Endokrinologisch
 	 * @ordered
 	 */
 	
-	public boolean primärerHyperinsulinismusWiedemann_Beckwith;
+	public boolean primärerHyperinsulinismusWiedemann_Beckwith = false;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -97,7 +97,7 @@ public class Endokrinologisch
 	 * @ordered
 	 */
 	
-	public boolean STH_Mangel;
+	public boolean STH_Mangel = false;
 	
 	/**
 	 * <!-- begin-user-doc -->

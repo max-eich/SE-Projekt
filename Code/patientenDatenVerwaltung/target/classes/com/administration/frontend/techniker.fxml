@@ -25,10 +25,10 @@
       </JFXButton>
       <TableView layoutX="232.0" layoutY="98.0" prefHeight="369.0" prefWidth="465.0" stylesheets="@css/Techniker.css">
         <columns>
-          <TableColumn fx:id="chipNrTabelle" editable="false" prefWidth="75.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0px 1px 2px 0px;" text="Chip-Nr." />
-          <TableColumn fx:id="benutzerTabelle" editable="false" prefWidth="75.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0 1 2 0;" text="Benutzer" />
-            <TableColumn fx:id="rolleTabelle" editable="false" prefWidth="75.0" style="-fx-border-color: black; -fx-border-width: 0px 1px 2px 0px; -fx-background-color: #0abde3;" text="Rolle" />
-            <TableColumn fx:id="statusTabelle" editable="false" prefWidth="75.0" style="-fx-background-color: #0abde3; -fx-border-color: black; -fx-border-width: 0 1 2 0;" text="Status" />
+          <TableColumn fx:id="chipNrTabelle" editable="false" prefWidth="75.0" style="-fx-border-color: black; -fx-border-width: 0px 1px 2px 0px;" text="Chip-Nr." />
+          <TableColumn fx:id="benutzerTabelle" editable="false" prefWidth="75.0" style="-fx-border-color: black; -fx-border-width: 0 1 2 0;" text="Benutzer" />
+            <TableColumn fx:id="rolleTabelle" editable="false" prefWidth="75.0" style="-fx-border-width: 0px 1px 2px 0px; -fx-border-color: black;" text="Rolle" />
+            <TableColumn fx:id="statusTabelle" editable="false" prefWidth="75.0" style="-fx-border-color: black; -fx-border-width: 0 1 2 0;" text="Status" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

@@ -53,7 +53,7 @@
                   </HBox>
                   <Region prefHeight="19.0" prefWidth="286.0" />
                   
-                  <JFXButton fx:id="suchen" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Suchen" textFill="#f8f6f6">
+                  <JFXButton fx:id="suchen" onAction="#search" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Suchen" textFill="#f8f6f6">
                      <font>
                         <Font size="18.0" />
                      </font>

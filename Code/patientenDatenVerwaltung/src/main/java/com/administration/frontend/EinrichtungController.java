@@ -6,12 +6,15 @@
 package com.administration.frontend;
 
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import com.administration.backend.Patient;
 import com.administration.backend.User;
 import com.administration.backend.dbConnector;
 import com.jfoenix.controls.JFXButton;
@@ -24,6 +27,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
 
 /**
@@ -72,31 +76,34 @@ public class EinrichtungController extends BasicTabController {
     }
 
     @Override
-    public void setup(User u, int pid) {
+    public void setup(User u, Patient pid) {
         setUser(u);
-        setPid(pid);
-        setPatient(dbConnector.getPatient(getUser().role, pid));
+        setPatient( pid);
         data = FXCollections.observableArrayList();
         nameTabelle.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList,String>,ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
                 return new SimpleStringProperty(param.getValue().get(0).toString());
             }
         });
+        nameTabelle.setCellFactory(TextFieldTableCell.forTableColumn());
         adresseTabelle.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList,String>,ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
                 return new SimpleStringProperty(param.getValue().get(1).toString());
             }
         });
+        adresseTabelle.setCellFactory(TextFieldTableCell.forTableColumn());
         arztTabelle.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList,String>,ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
                 return new SimpleStringProperty(param.getValue().get(3).toString());
             }
         });
+        arztTabelle.setCellFactory(TextFieldTableCell.forTableColumn());
         telTabelle.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList,String>,ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
                 return new SimpleStringProperty(param.getValue().get(2).toString());
             }
         });
+        telTabelle.setCellFactory(TextFieldTableCell.forTableColumn());
         ObservableList<String>s1 = FXCollections.observableArrayList();
         for (int i=0; i<4;i++)
             s1.add("");
@@ -116,17 +123,25 @@ public class EinrichtungController extends BasicTabController {
     private void setStammdata() {
         nachname.setText(getPatient().nachname);
         vorname.setText(getPatient().vorname);
+        if(getPatient().geschlecht!=null)
         geschlecht.setText(getPatient().geschlecht.toString());
-        geburtstag.setText(getPatient().geburtsdatum.toString());
-        LocalDate g = convertToLocalDate(getPatient().geburtsdatum);
-        alter.setText(String.valueOf((Period.between(g, LocalDate.now())).getYears()));
+        else geschlecht.setText("");
+        if(getPatient().geburtsdatum!=null) {
+            DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+            geburtstag.setText(df.format(getPatient().geburtsdatum));
+            LocalDate g = convertToLocalDate(getPatient().geburtsdatum);
+            alter.setText(String.valueOf((Period.between(g, LocalDate.now())).getYears()));
+        } else {
+            geburtstag.setText("");
+            alter.setText("");
+        }
         zimmerNr.setText(getPatient().unterbringung.zimmer);
         einlieferung.setText(getPatient().unterbringung.einlieferung);
         entlassung.setText(getPatient().unterbringung.entlassung);
         patientenID.setText(String.valueOf(getPatient().patientID));
     }
 
-    private LocalDate convertToLocalDate(Date dateToConvert) {
+    private LocalDate convertToLocalDate(java.util.Date dateToConvert) {
         return LocalDate.ofInstant(
                 dateToConvert.toInstant(), ZoneId.systemDefault());
     }

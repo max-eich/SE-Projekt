@@ -16,7 +16,7 @@ public class Card
 	 * @ordered
 	 */
 	
-	public int cardID;
+	public int cardID=0;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -25,9 +25,9 @@ public class Card
 	 * @ordered
 	 */
 	
-	public String rfid;
+	public String rfid = "";
 
-	public User user;
+	public User user = new User();
 	
 	/**
 	 * <!-- begin-user-doc -->

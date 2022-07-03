@@ -18,7 +18,7 @@ public class Einrichtungen
 	 * @ordered
 	 */
 	
-	public String name;
+	public String name="";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -27,7 +27,7 @@ public class Einrichtungen
 	 * @ordered
 	 */
 	
-	public String adresse;
+	public String adresse="";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -36,7 +36,7 @@ public class Einrichtungen
 	 * @ordered
 	 */
 	
-	public String telefonnummer;
+	public String telefonnummer="";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -45,7 +45,7 @@ public class Einrichtungen
 	 * @ordered
 	 */
 	
-	public String art;
+	public String art="";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -56,9 +56,9 @@ public class Einrichtungen
 	
 	public Date aenderungsDatum;
 
-	public int referenceID;
+	public int referenceID=0;
 
-	public User aenderer;
+	public User aenderer=new User();
 	
 	/**
 	 * <!-- begin-user-doc -->

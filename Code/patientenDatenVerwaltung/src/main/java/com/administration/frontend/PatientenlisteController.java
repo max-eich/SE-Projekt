@@ -6,8 +6,13 @@
 package com.administration.frontend;
 
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
+import com.administration.backend.Patient;
+import com.administration.backend.PatientSearch;
 import com.administration.backend.User;
 import com.administration.backend.dbConnector;
 import com.jfoenix.controls.JFXButton;
@@ -24,6 +29,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -67,12 +73,45 @@ public class PatientenlisteController extends BasicTabController {
 
     @FXML
     private void search(ActionEvent event){
-        ((OriginPaneController)((FXMLLoader)((Stage)((Node)event.getSource()).getScene().getWindow()).getUserData()).getController()).selectPatient(1);
+        PatientSearch ps = new PatientSearch();
+        if(geburtstagSuchen.getValue()!=null)
+        ps.gebDate = geburtstagSuchen.getValue().format(DateTimeFormatter.ISO_DATE);
+        if(nameSuchen.getText()!=null&&nameSuchen.getText()!="")
+            ps.name=nameSuchen.getText();
+        if(ZimmerNrSuchen.getText()!=null && ZimmerNrSuchen.getText()!="")
+            ps.zimmer=ZimmerNrSuchen.getText();
+        update(ps);
+    }
+
+    private void update(PatientSearch ps){
+        tablePatient.getItems().clear();
+        data.clear();
+        dbConnector.getPatientlist(getUser(),ps).forEach(shortPatient -> {
+            ObservableList<String> s = FXCollections.observableArrayList();
+            s.add(shortPatient.patientID);
+            s.add(shortPatient.name);
+            s.add(shortPatient.geschlecht);
+            s.add(shortPatient.gebDatum);
+            s.add(shortPatient.zimmer);
+            data.add(s);
+        });
+        tablePatient.setItems(data);
     }
 
     @Override
     public void setup(User u) {
         setUser(u);
+        tablePatient.getItems().clear();
+        tablePatient.setRowFactory(tv->{
+            TableRow row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (! row.isEmpty() ) {
+                    var rowData = row.getItem();
+                    ((OriginPaneController)((FXMLLoader)row.getScene().getWindow().getUserData()).getController()).selectPatient(Integer.parseInt(((ObservableList<String>)rowData).get(0)));
+                }
+            });
+            return row ;
+        });
         patientenID.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList,String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
                 return new SimpleStringProperty(param.getValue().get(0).toString());
@@ -112,7 +151,7 @@ public class PatientenlisteController extends BasicTabController {
     }
 
     @Override
-    public void setup(User u, int pid) {
+    public void setup(User u, Patient pid) {
         setup(u);
     }
 }

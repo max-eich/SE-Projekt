@@ -8,6 +8,7 @@ package com.administration.frontend;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.administration.backend.Patient;
 import com.administration.backend.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,7 +37,7 @@ public class TechnikerController extends BasicTabController {
     }
 
     @Override
-    public void setup(User u, int pid) {
+    public void setup(User u, Patient pid) {
 
     }
 }
