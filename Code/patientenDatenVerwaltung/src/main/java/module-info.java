@@ -21,6 +21,7 @@ module com.administration.patientendatenverwaltung {
     requires documents4j.local;
     requires java.desktop;
     requires org.apache.pdfbox;
+    requires itextpdf;
 
     opens com.administration to javafx.fxml,de.jensd.fx.glyphs.fontawesome,de.jensd.fx.glyphs.commons, documents4j.local;
     exports com.administration;

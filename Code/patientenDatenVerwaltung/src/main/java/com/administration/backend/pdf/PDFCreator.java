@@ -1,8 +1,6 @@
 package com.administration.backend.pdf;
 
-import com.administration.backend.Patient;
 import com.administration.backend.pdf.exceptions.PackageCreationException;
-import com.administration.backend.pdf.util.ConvertToPdf;
 import com.administration.backend.pdf.util.PrintPdf;
 import org.docx4j.jaxb.Context;
 import org.docx4j.model.table.TblFactory;
@@ -148,7 +146,9 @@ public class PDFCreator {
     }
 
 
-    public static void drucken(Patient patient) throws Exception {
+    // Patient patient
+
+    public static void drucken() throws Exception {
 
 
         // Word Datei erstellen
@@ -185,6 +185,7 @@ public class PDFCreator {
         addTextToTable("Kostenträger", PatientendatenTabelle, 1, 15);
         addTextToTable("Versicherungsnummer", PatientendatenTabelle, 1, 16);
 
+        /*
         //Tabelle mit Patientendaten fuellen
         addTextToTable(patient.nachname, PatientendatenTabelle, 2, 1);
         addTextToTable(patient.vorname, PatientendatenTabelle, 2, 2);
@@ -202,7 +203,7 @@ public class PDFCreator {
         addTextToTable(patient.stamdaten.eMail, PatientendatenTabelle, 2, 14);
         addTextToTable(patient.stamdaten.kostenträger, PatientendatenTabelle, 2, 15);
         addTextToTable(String.valueOf(patient.stamdaten.versicherungsnummer), PatientendatenTabelle, 2, 16);
-
+*/
 
         //Speichert Parenttabelle im Dokument
         mainDocumentPart.getContent().add(PatientendatenTabelle);
@@ -211,6 +212,8 @@ public class PDFCreator {
         // Erstellt Abschnitt: Einrichtungen
         mainDocumentPart.addStyledParagraphOfText("Title", "Einrichtungen");
         // Erstellt Einrichtungen Tabelle
+
+        /*
         Tbl einrichtungen = createTable(wordMLPackage, patient.einrichtungen.size()+1, 4);
 
         // Tabellenkopf
@@ -233,6 +236,11 @@ public class PDFCreator {
         //speichert Einrichtungen Tabelle im Dokument
         mainDocumentPart.getContent().add(einrichtungen);
 
+         */
+
+
+
+
         //Fügt einen Seitenumpsrung ein
         addPageBreak(mainDocumentPart);
 
@@ -251,6 +259,8 @@ public class PDFCreator {
         addTextToTable("Mediakamentenindzierte Adipositas", anamneseTabelle, 1, 7);
         addTextToTable("Weitere chron. Erkrank.", anamneseTabelle, 1, 8);
 
+        /*
+
         // Anamnese-Tabelle fuellen
         addTextToTable(String.valueOf(patient.anamnese.groesse), anamneseTabelle, 2, 1);
         addTextToTable(String.valueOf(patient.anamnese.gewicht),anamneseTabelle, 2, 2);
@@ -266,10 +276,10 @@ public class PDFCreator {
         addTextToTable(patient.anamnese.adipositasMedikamente.toString(), anamneseTabelle, 2, 7);
         addTextToTable(patient.anamnese.chronischeKrankheiten.toString(), anamneseTabelle, 2,8);
 
-
+*/
         mainDocumentPart.getContent().add(anamneseTabelle);
 
-
+/*
         // Erstellt Abschnitt: Anamnese
         mainDocumentPart.addStyledParagraphOfText("Title", "Krankheitsgeschichte");
         // y = Nummer der passenden Einträge aus der Datenbank
@@ -297,27 +307,31 @@ public class PDFCreator {
         // Speicher Tabelle "Krankheitsgeschichte"
         mainDocumentPart.getContent().add(krankheitsgeschichteTabelle);
 
+*/
         //Fügt Legende für Tabelle "Krankheitsgeschichte" hinzu.
         mainDocumentPart.addStyledParagraphOfText("text", "D = Diagnose, B = Bemerkung, K = Kommentar");
 
 
         // Word Datei speichern
         File exportFile = new File("Temp-Patientenakte.docx");
-        wordMLPackage.save(new File("Temp-Patientenakte.docx"));
+        wordMLPackage.save(new File("C:\\Users\\Max\\Documents\\GitHub\\SE-Projekt\\Code\\patientenDatenVerwaltung\\src\\main\\resources\\com\\administration\\pdf\\Temp-Patientenakte.docx"));
 
-        //Konvertierung der .docx zu .pdf via Documents4j-API
-        ConvertToPdf.convert();
+
+        //ConvertToPdf.convert();
 
         //Druuckauftrag
-        PrintPdf.print("src/main/resources/com/administration/pdf/Patientenakte.pdf");
+        //PrintPdf.print("src/main/resources/com/administration/pdf/Patientenakte.pdf");
 
         // Löscht die .docx
-        exportFile.delete();
+        //exportFile.delete();
 
         PrintPdf.deleteFile("src/main/resources/com/administration/pdf/Patientenakte.pdf");
 
         //Beendet das Programm
         System.exit(0);
-
+        
     }
+    public static void main(String[] args) throws Exception {
+        drucken();
+    };
 }
