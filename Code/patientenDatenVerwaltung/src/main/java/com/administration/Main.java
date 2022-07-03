@@ -1,17 +1,10 @@
 package com.administration;
 
-import com.administration.backend.dbConnector;
 import com.administration.backend.Listener;
-import com.administration.backend.pdf.PDFCreator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class Main extends Application {
     private static Listener listener = new Listener();

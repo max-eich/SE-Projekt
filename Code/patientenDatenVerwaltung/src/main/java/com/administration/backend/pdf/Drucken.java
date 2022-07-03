@@ -2,20 +2,17 @@ package com.administration.backend.pdf;
 
 import com.administration.backend.Patient;
 
+import com.administration.backend.pdf.util.PrintPdf;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.util.Optional;
 
 public class Drucken {
-    private final int MIN_DISTANCE = 10;
-    private byte[] pdfFile;
 
     public static BaseColor colorPick(String farbe) {
         BaseColor baseColor;
@@ -36,11 +33,6 @@ public class Drucken {
         zelle.setBackgroundColor(colorPick(backgroundColor));
     }
 
-    private static PdfPTable erstelleTabelle(int breite) {
-        return new PdfPTable(breite);
-    }
-
-    ;
 
     public static PdfPCell zelle(String content, Font font, String backgroundColor, String borderColor) {
         PdfPCell zelle = new PdfPCell(new Phrase(content, font));
@@ -71,11 +63,6 @@ public class Drucken {
         tabelle.addCell(zelle(content5, font, "white", "black"));
     }
 
-
-    public static void main(String[] args) throws DocumentException, FileNotFoundException {
-        drucken1();
-    }
-
     public static void drucken(Patient patient) throws DocumentException, FileNotFoundException {
         Document doc = new Document();
         File patientenakte = new File("Patientenakte.pdf");
@@ -86,43 +73,21 @@ public class Drucken {
         krankheitsgeschichte(doc, patient);
         doc.newPage();
         anamnese(doc, patient);
-
         doc.close();
+        PrintPdf.print("Patientenakte.pdf");
+        PrintPdf.deleteFile("Patientenakte.pdf");
     }
-
-    public static void drucken1() throws DocumentException, FileNotFoundException {
-        Document doc = new Document();
-
-        File patientenakte = new File("Patientenakte.pdf");
-        PdfWriter.getInstance(doc, new FileOutputStream(patientenakte));
-        doc.open();
-        Patientendaten1(doc);
-        doc.close();
-    }
-
-    public static void Patientendaten1(Document doc) throws DocumentException {
-        Chunk PatientendatenChunk = new Chunk("Metadaten");
-
-        PdfPTable mutterTabelle = new PdfPTable(new float[]{1, 3});
-        mutterTabelle.setWidthPercentage(100);
-
-        PdfPTable Patientendatentabelle = erstelleTabelle(2);
-
-        //Vorname
-
-        Patientendatentabelle.addCell("Vorname");
-        Patientendatentabelle.addCell("TEst");
-
-        doc.add(Patientendatentabelle);
-    }
-
 
     public static void patientendaten(Document doc, Patient patient) throws DocumentException {
-        Anchor test = new Anchor("Patientendaten");
+        Font headerFont = FontFactory.getFont("Arial", 16, Font.BOLD);
+        Paragraph ueberschrift = new Paragraph("Patientendaten", headerFont);
+        ueberschrift.setAlignment(Element.ALIGN_CENTER);
+        ueberschrift.setSpacingAfter(15);
+        doc.add(ueberschrift);
 
-        Font contentFont = FontFactory.getFont("Arial", 16, BaseColor.BLACK);
+        Font contentFont = FontFactory.getFont("Arial", 12, BaseColor.BLACK);
 
-        PdfPTable patientendatentabelle = erstelleTabelle(2);
+        PdfPTable patientendatentabelle = new PdfPTable(new float[]{1,2});
         setRow2(patientendatentabelle, "Nachname", patient.nachname, contentFont);
         setRow2(patientendatentabelle, "Vorname", patient.vorname, contentFont);
         setRow2(patientendatentabelle, "Geschlecht", patient.geschlecht.toString(), contentFont);
@@ -139,16 +104,28 @@ public class Drucken {
         setRow2(patientendatentabelle, "E-Mail", patient.stamdaten.eMail, contentFont);
         setRow2(patientendatentabelle, "Kostenträger", patient.stamdaten.kostenträger, contentFont);
         setRow2(patientendatentabelle, "Versicherungsnummer", String.valueOf(patient.stamdaten.versicherungsnummer), contentFont);
+        for (int i = 0; i < 16; i++) {
+            changeColor(patientendatentabelle.getRow(i).getCells()[0], "black", "hellblau");
+        }
         doc.add(patientendatentabelle);
     }
 
+
     public static void einrichtungen(Document doc, Patient patient) throws DocumentException {
-        Anchor einrichtungen = new Anchor("Einrichtungen");
-        Font contentFont = FontFactory.getFont("Arial", 16, BaseColor.BLACK);
-        PdfPTable einrichtungenTabelle = erstelleTabelle(4);
+        Font headerFont = FontFactory.getFont("Arial", 16, Font.BOLD);
+        Paragraph ueberschrift = new Paragraph("Einrichtungen", headerFont);
+        ueberschrift.setAlignment(Element.ALIGN_CENTER);
+        ueberschrift.setSpacingBefore(20);
+        ueberschrift.setSpacingAfter(10);
+        doc.add(ueberschrift);
+
+
+
+        Font contentFont = FontFactory.getFont("Arial", 12, BaseColor.BLACK);
+        PdfPTable einrichtungenTabelle = new PdfPTable(4);
         setRow4(einrichtungenTabelle, "Name", "Adresse", "Art des Arztes", "Telefonnummer", contentFont);
         for (int i = 0; i < 4; i++) {
-            changeColor(einrichtungenTabelle.getRow(1).getCells()[i], "black", "hellblau");
+            changeColor(einrichtungenTabelle.getRow(0).getCells()[i], "black", "hellblau");
         }
         for (int i = 0; i < patient.einrichtungen.size(); i++) {
             setRow4(einrichtungenTabelle, patient.einrichtungen.get(i).name, patient.einrichtungen.get(i).adresse, patient.einrichtungen.get(i).art, patient.einrichtungen.get(i).telefonnummer, contentFont);
@@ -158,32 +135,49 @@ public class Drucken {
     }
 
     public static void anamnese(Document doc, Patient patient) throws DocumentException {
-        Anchor anamnese = new Anchor("Anamnese");
-        Font contentFont = FontFactory.getFont("Arial", 16, BaseColor.BLACK);
+        Font headerFont = FontFactory.getFont("Arial", 16, Font.BOLD);
+        Paragraph ueberschrift = new Paragraph("Anamnese", headerFont);
+        ueberschrift.setAlignment(Element.ALIGN_CENTER);
+        ueberschrift.setSpacingBefore(20);
+        ueberschrift.setSpacingAfter(10);
+        doc.add(ueberschrift);
 
-            PdfPTable anamneseTabelle = erstelleTabelle(2);
+
+
+        Font contentFont = FontFactory.getFont("Arial", 12, BaseColor.BLACK);
+
+            PdfPTable anamneseTabelle = new PdfPTable(2);
             setRow2(anamneseTabelle, "Groesse in cm", String.valueOf(patient.anamnese.groesse), contentFont);
             setRow2(anamneseTabelle, "Gewicht in kg", String.valueOf(patient.anamnese.gewicht), contentFont);
             if(patient.anamnese.behinderung == true){
                 setRow2(anamneseTabelle, "Behinderung", "Ja", contentFont);
-                setRow2(anamneseTabelle, "Grad d. Behinderung", String.valueOf(patient.anamnese.grad), contentFont );
+                setRow2(anamneseTabelle, "Grad der Behinderung", String.valueOf(patient.anamnese.grad), contentFont );
             }else{
                 setRow2(anamneseTabelle, "Behinderung", "Nein", contentFont);
-                setRow2(anamneseTabelle, "Grad d. Behinderung", "-", contentFont);
+                setRow2(anamneseTabelle, "Grad der Behinderung", "-", contentFont);
             }
             setRow2(anamneseTabelle,"Endokrinologische Störungen", patient.anamnese.endokrinologisch.toString(), contentFont);
-            setRow2(anamneseTabelle,"mit adipositas ass. Syndrome", patient.anamnese.adipositasSyndrome.toString(), contentFont);
+            setRow2(anamneseTabelle,"mit adipositas assoziierte Syndrome", patient.anamnese.adipositasSyndrome.toString(), contentFont);
             setRow2(anamneseTabelle, "Medikamenteninduzierte Adipositas", patient.anamnese.adipositasMedikamente.toString(), contentFont);
-            setRow2(anamneseTabelle, "Weitere chron. Erkrankungen", patient.anamnese.chronischeKrankheiten.toString(), contentFont);
+            setRow2(anamneseTabelle, "Weitere chronische Erkrankungen", patient.anamnese.chronischeKrankheiten.toString(), contentFont);
+        for (int i = 0; i < 8; i++) {
+            changeColor(anamneseTabelle.getRow(i).getCells()[0], "black", "hellblau");
+        }
             doc.add(anamneseTabelle);
     }
     public static void krankheitsgeschichte(Document doc, Patient patient) throws DocumentException {
-        Anchor krankheitsgesch = new Anchor("Krankheitsgeschichte");
-        Font contentFont = FontFactory.getFont("Arial", 16, BaseColor.BLACK);
-        PdfPTable krankheitsTabelle = erstelleTabelle(4);
+        Font headerFont = FontFactory.getFont("Arial", 16, Font.BOLD);
+        Paragraph ueberschrift = new Paragraph("Krankheitsgeschichte", headerFont);
+        ueberschrift.setAlignment(Element.ALIGN_CENTER);
+        ueberschrift.setSpacingBefore(20);
+        ueberschrift.setSpacingAfter(10);
+        doc.add(ueberschrift);
+
+        Font contentFont = FontFactory.getFont("Arial", 12, BaseColor.BLACK);
+        PdfPTable krankheitsTabelle = new PdfPTable(new float[]{2, 1, 1, 4, 2});
         setRow5(krankheitsTabelle, "Datum", "Typ", "ICD-10", "Beschreibung","Arzt", contentFont);
         for (int i = 0; i < 5; i++) {
-            changeColor(krankheitsTabelle.getRow(1).getCells()[i], "black", "hellblau");
+            changeColor(krankheitsTabelle.getRow(0).getCells()[i], "black", "hellblau");
         }
         for (int i = 0; i < patient.einrichtungen.size(); i++) {
             setRow5(krankheitsTabelle, "Keine passende Variable gefunden", patient.krankheits.get(i).type.toString(), patient.krankheits.get(i).icd10, patient.krankheits.get(i).beschreibung, patient.krankheits.get(i).arzt, contentFont);
