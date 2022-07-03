@@ -82,13 +82,13 @@
     <orderEntry type="library" name="Maven: org.apache.xmlgraphics:fop-events:2.6" level="project" />
     <orderEntry type="library" name="Maven: org.apache.xmlgraphics:fop-util:2.6" level="project" />
     <orderEntry type="library" name="Maven: com.thoughtworks.qdox:qdox:1.12" level="project" />
-    <orderEntry type="library" name="Maven: jakarta.xml.bind:jakarta.xml.bind-api:2.3.2" level="project" />
-    <orderEntry type="library" name="Maven: jakarta.activation:jakarta.activation-api:1.2.1" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.jaxb:jaxb-runtime:2.3.2" level="project" />
+    <orderEntry type="library" name="Maven: jakarta.xml.bind:jakarta.xml.bind-api:2.3.2" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.jaxb:txw2:2.3.2" level="project" />
     <orderEntry type="library" name="Maven: com.sun.istack:istack-commons-runtime:3.0.8" level="project" />
     <orderEntry type="library" name="Maven: org.jvnet.staxex:stax-ex:1.8.1" level="project" />
     <orderEntry type="library" name="Maven: com.sun.xml.fastinfoset:FastInfoset:1.2.16" level="project" />
+    <orderEntry type="library" name="Maven: jakarta.activation:jakarta.activation-api:1.2.1" level="project" />
     <orderEntry type="library" name="Maven: fr.opensagres.xdocreport:fr.opensagres.poi.xwpf.converter.pdf:2.0.2" level="project" />
     <orderEntry type="library" name="Maven: fr.opensagres.xdocreport:fr.opensagres.poi.xwpf.converter.core:2.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.poi:poi-ooxml:4.0.1" level="project" />
@@ -100,16 +100,17 @@
     <orderEntry type="library" name="Maven: org.apache.xmlbeans:xmlbeans:3.0.1" level="project" />
     <orderEntry type="library" name="Maven: fr.opensagres.xdocreport:fr.opensagres.xdocreport.itext.extension:2.0.2" level="project" />
     <orderEntry type="library" name="Maven: com.lowagie:itext:2.1.7" level="project" />
+    <orderEntry type="library" name="Maven: com.documents4j:documents4j-local:1.1.8" level="project" />
+    <orderEntry type="library" name="Maven: com.documents4j:documents4j-transformer:1.1.8" level="project" />
+    <orderEntry type="library" name="Maven: com.documents4j:documents4j-util-conversion:1.1.8" level="project" />
+    <orderEntry type="library" name="Maven: javax.activation:activation:1.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.zeroturnaround:zt-exec:1.11" level="project" />
     <orderEntry type="library" name="Maven: com.documents4j:documents4j-api:1.1.8" level="project" />
-    <orderEntry type="library" name="Maven: com.documents4j:documents4j-local:1.0.3" level="project" />
-    <orderEntry type="library" name="Maven: com.documents4j:documents4j-transformer:1.0.3" level="project" />
-    <orderEntry type="library" name="Maven: com.documents4j:documents4j-util-conversion:1.0.3" level="project" />
-    <orderEntry type="library" name="Maven: org.zeroturnaround:zt-exec:1.8" level="project" />
-    <orderEntry type="library" name="Maven: com.documents4j:documents4j-transformer-msoffice-word:1.0.3" level="project" />
-    <orderEntry type="library" name="Maven: com.documents4j:documents4j-transformer-msoffice-base:1.0.3" level="project" />
-    <orderEntry type="library" name="Maven: com.documents4j:documents4j-transformer-api:1.0.3" level="project" />
-    <orderEntry type="library" name="Maven: com.documents4j:documents4j-util-all:1.0.3" level="project" />
-    <orderEntry type="library" name="Maven: com.documents4j:documents4j-util-transformer-process:1.0.3" level="project" />
+    <orderEntry type="library" name="Maven: com.documents4j:documents4j-transformer-msoffice-word:1.1.8" level="project" />
+    <orderEntry type="library" name="Maven: com.documents4j:documents4j-transformer-msoffice-base:1.1.8" level="project" />
+    <orderEntry type="library" name="Maven: com.documents4j:documents4j-transformer-api:1.1.8" level="project" />
+    <orderEntry type="library" name="Maven: com.documents4j:documents4j-util-all:1.1.8" level="project" />
+    <orderEntry type="library" name="Maven: com.documents4j:documents4j-util-transformer-process:1.1.8" level="project" />
     <orderEntry type="library" name="Maven: org.apache.pdfbox:pdfbox:2.0.26" level="project" />
     <orderEntry type="library" name="Maven: org.apache.pdfbox:fontbox:2.0.26" level="project" />
     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.2" level="project" />
