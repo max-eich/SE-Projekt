@@ -71,8 +71,20 @@ public class AdipositasMedikamente
 	 */
 	
 	public String toString() {
-		// TODO implement me
-		return "";	
+		String rueckgabe = "";
+		if(Glukokortikoide == true)
+			rueckgabe += "Glukokortikoide, ";
+		if(Insulingabe == true)
+			rueckgabe += "Insulingabe, ";
+		if(Valproat == true)
+			rueckgabe += "Valproat, ";
+		if(Phenothiazine == true)
+			rueckgabe += "Phenothiazine, ";
+
+		if(rueckgabe.length() > 1) {
+			rueckgabe = rueckgabe.substring(0, rueckgabe.length() - 2);
+		}
+		return rueckgabe;
 	}
 	
 }

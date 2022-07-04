@@ -5,6 +5,8 @@
  */
 package com.administration.frontend;
 
+
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -13,6 +15,10 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import com.administration.backend.*;
+import com.administration.backend.Patient;
+import com.administration.backend.User;
+import com.administration.backend.dbConnector;
+import com.itextpdf.text.DocumentException;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
@@ -24,6 +30,7 @@ import javafx.fxml.FXML;
 import java.time.*;
 import javafx.fxml.Initializable;
 import org.controlsfx.control.CheckComboBox;
+import com.administration.backend.pdf.Drucken;
 
 /**
  * FXML Controller class
@@ -296,6 +303,10 @@ public class AnamneseController extends BasicTabController {
         entlassung.setText(getPatient().unterbringung.entlassung);
         patientenID.setText(String.valueOf(getPatient().patientID));
     }
+    public void speichern() throws DocumentException, FileNotFoundException {
+            Drucken.drucken(getPatient());
+    };
+
 
     @Override
     public void update(User user){
