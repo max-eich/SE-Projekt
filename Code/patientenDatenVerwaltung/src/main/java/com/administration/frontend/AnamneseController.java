@@ -12,15 +12,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-import com.administration.backend.Patient;
-import com.administration.backend.User;
-import com.administration.backend.dbConnector;
+import com.administration.backend.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import java.time.*;
 import javafx.fxml.Initializable;
@@ -100,6 +99,7 @@ public class AnamneseController extends BasicTabController {
         stoerung.add("POMC-Mutationen");
         stoerung.add("primärer Hyperinsulinismus/Wiedemann-Beckwith");
         stoerung.add("STH-Mangel");
+        stoerung.add("Morbus_Cushing");
         stoerungen.getItems().addAll(stoerung);
         syndrom.clear();
         syndrom.add("Laurence-Moon-Bardet-Biedel");
@@ -121,6 +121,67 @@ public class AnamneseController extends BasicTabController {
         checkStoerungen();
         checkSyndrome();
         checkMed();
+    }
+
+    @FXML
+    private void save(ActionEvent event){
+        Anamnese a = new Anamnese();
+        if(getUser().role== Role.pflege){
+            a=getPatient().anamnese;
+            a.groesse=Integer.parseInt(groesse.getText());
+            a.gewicht=Double.parseDouble(gewicht.getText());
+            dbConnector.setPatientAnamnese(a,getPatient().patientID,getUser());
+        } else {
+            a.groesse=Integer.parseInt(groesse.getText());
+            a.gewicht=Double.parseDouble(gewicht.getText());
+            a.behinderung=behinderung.isSelected();
+            a.grad=Double.parseDouble(behinderungsGrad.getText());
+            a.chronischeKrankheiten=chronErkrakungen.getText();
+            a.adipositasMedikamente=getAdiMed();
+            a.adipositasSyndrome=getAdiSyn();
+            a.endokrinologisch=getEndo();
+            dbConnector.setPatientAnamnese(a, getPatient().patientID, getUser());
+        }
+    }
+
+    private Endokrinologisch getEndo() {
+        Endokrinologisch e = new Endokrinologisch();
+        ObservableList<Integer> list = stoerungen.getCheckModel().getCheckedIndices();
+        e.STH_Mangel=list.contains(8);
+        e.primärerHyperinsulinismusWiedemann_Beckwith=list.contains(7);
+        e.POMC_Mutationen=list.contains(6);
+        e.MC4_Rezeptormutationen=list.contains(5);
+        e.Leptirezeptormutation=list.contains(4);
+        e.Kraniopharyngeom=list.contains(3);
+        e.genetisch_bedingter_Leptinmangel=list.contains(2);
+        e.Cushing_Syndrom=list.contains(1);
+        e.AdipositasBeiHypothyreose=list.contains(0);
+        e.Morbus_Cushing=list.contains(9);
+        return e;
+    }
+
+    private AdipositasSyndrome getAdiSyn() {
+        AdipositasSyndrome a = new AdipositasSyndrome();
+        ObservableList<Integer> list = syndrome.getCheckModel().getCheckedIndices();
+        a.Weaver = list.contains(5);
+        a.Trisomie_21 = list.contains(4);
+        a.Sotos = list.contains(3);
+        a.Simpson_Golabi_Behmel = list.contains(2);
+        a.Prader_Willi= list.contains(1);
+        a.Laurence_Moon_Bardet_Biedel = list.contains(0);
+        a.andere = syndromehinzufuegen.getText();
+        return a;
+    }
+
+    private AdipositasMedikamente getAdiMed(){
+        AdipositasMedikamente a = new AdipositasMedikamente();
+        ObservableList<Integer> list = verdacht.getCheckModel().getCheckedIndices();
+        a.Glukokortikoide=list.contains(0);
+        a.Insulingabe=list.contains(1);
+        a.Phenothiazine=list.contains(3);
+        a.Valproat=list.contains(2);
+        a.andere=verdachthinzufuegen.getText();
+        return a;
     }
 
     private void checkMed(){
@@ -192,6 +253,9 @@ public class AnamneseController extends BasicTabController {
         }
         if(getPatient().anamnese.endokrinologisch.STH_Mangel){
             st.add(8);
+        }
+        if(getPatient().anamnese.endokrinologisch.Morbus_Cushing){
+            st.add(9);
         }
         if(st.size()>0)
         verdacht.getCheckModel().checkIndices(st.stream().mapToInt(Integer::intValue).toArray());

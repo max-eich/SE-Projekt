@@ -224,7 +224,7 @@
                            </font>
                         </JFXTextField>
                         <Region prefHeight="66.0" prefWidth="348.0" />
-                        <JFXButton id="speichern" fx:id="speichern" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Speichern" textFill="#fffafa">
+                        <JFXButton id="speichern" fx:id="speichern" onAction="#save" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Speichern" textFill="#fffafa">
                            <font>
                               <Font size="19.0" />
                            </font>

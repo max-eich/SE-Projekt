@@ -54,7 +54,7 @@ public class Patient
 	 * @ordered
 	 */
 	
-	public Date geburtsdatum=null;
+	public Date geburtsdatum=new Date();
 
 	public Stamdaten stamdaten=new Stamdaten();
 

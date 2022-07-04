@@ -33,6 +33,7 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.controlsfx.control.action.Action;
 
 /**
  * FXML Controller class
@@ -70,6 +71,11 @@ public class PatientenlisteController extends BasicTabController {
     private JFXButton neuenPatientAnlegen;
 
     private ObservableList<ObservableList> data= FXCollections.observableArrayList();
+
+    @FXML
+    private void newPatient(ActionEvent event){
+        ((OriginPaneController)((FXMLLoader)((Stage)((Node)event.getSource()).getScene().getWindow()).getUserData()).getController()).newPatient();
+    }
 
     @FXML
     private void search(ActionEvent event){

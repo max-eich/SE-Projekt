@@ -32,9 +32,224 @@ public class dbConnector {
     }
 
     public static void setPatientStammdaten(Stamdaten s, int pid, User u){
-        /**insert into Stammdaten ( strasse, ort, plz, land, telefon, handy, eMail, kostentraeger, versicherungsnummer,
-                aenderung, Patient_id, User_id)
-        values ();**/
+        String sql = "INSERT INTO Stammdaten ( strasse, ort, plz, land, telefon, handy, eMail, kostentraeger, versicherungsnummer, Patient_id, User_id)"+
+                "VALUES ( ?,?,?,?,?,?,?,?,?,?,?);";
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(0,s.straße);
+            pstmt.setString(1,s.ort);
+            pstmt.setString(2,String.valueOf(s.plz));
+            pstmt.setString(3,s.land);
+            pstmt.setString(4,s.telefon);
+            pstmt.setString(5,s.handy);
+            pstmt.setString(6,s.eMail);
+            pstmt.setString(7,s.kostenträger);
+            pstmt.setInt(8,s.versicherungsnummer);
+            pstmt.setInt(9,findPatientID(pid));
+            pstmt.setInt(10,findUserID(u));
+            pstmt.executeUpdate();
+            disconnect(conn);
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setPatientKrankheit(Krankheit k, int pid, User u){
+        String sql = "insert into Krankheit ( type, icd10, beschreibung, arzt, Patient_id, User_id) " +
+                "VALUES (?,?,?,?,?,?) ;";
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1,k.type.toString());
+            pstmt.setString(2,k.icd10);
+            pstmt.setString(3,k.beschreibung);
+            pstmt.setString(4,k.arzt);
+            pstmt.setInt(5,findPatientID(pid));
+            pstmt.setInt(6,findUserID(u));
+            pstmt.executeUpdate();
+            disconnect(conn);
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public static int findPatientID(@NotNull int pid){
+        int i= 0;
+
+        String sql= "WITH Newest AS ( SELECT referenceID, MAX(aenderung) AS LastUpdate FROM Patient GROUP BY referenceID ) "+
+                "SELECT Patient.referenceID, Patient.aenderung "
+                +"FROM Patient " +
+                "INNER JOIN Newest ON Patient.referenceID = Newest.referenceID AND Patient.aenderung = Newest.LastUpdate "
+                +"WHERE Patient.patientID = " + pid +" " +
+                " ;";
+        try (
+                Connection conn = connect();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)
+        ) {
+            if(rs.next()){
+                i=rs.getInt(1);
+            }
+            disconnect(conn);
+        }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return i;
+    }
+
+    private static void setPatientEndo(Endokrinologisch e, int anamneseID) {
+        String sql = "insert into Endokrinologisch ( \"Adipositas bei Hypothyreose\", CushingSyndrom, \"genetisch bedingter Leptinmangel\", " +
+                " Kraniopharyngeom, Leptirezeptormutation, MC4Rezeptormutationen, \"Morbus Cushing\", " +
+                " POMCMutationen, \"primärer Hyperinsulinismus/WiedemannBeckwith\", STHMangel, Anamnese_id) " +
+                " VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setBoolean(1,e.AdipositasBeiHypothyreose);
+            pstmt.setBoolean(2,e.Cushing_Syndrom);
+            pstmt.setBoolean(3,e.genetisch_bedingter_Leptinmangel);
+            pstmt.setBoolean(4,e.Kraniopharyngeom);
+            pstmt.setBoolean(5, e.Leptirezeptormutation);
+            pstmt.setBoolean(6,e.MC4_Rezeptormutationen);
+            pstmt.setBoolean(7, e.Morbus_Cushing);
+            pstmt.setBoolean(8, e.POMC_Mutationen);
+            pstmt.setBoolean(9, e.primärerHyperinsulinismusWiedemann_Beckwith);
+            pstmt.setBoolean(10, e.STH_Mangel);
+            pstmt.setInt(11, anamneseID);
+            pstmt.executeUpdate();
+            disconnect(conn);
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    private static void setPatientAdiMed(AdipositasMedikamente a,int anamneseID) {
+        String sql = "insert into AdipositasMedikamente ( Glukokortikoide, Insulingabe, Valproat, Phenothiazine, andere, Anamnese_id) " +
+                " VALUES (?,?,?,?,?,?) ;";
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setBoolean(1,a.Glukokortikoide);
+            pstmt.setBoolean(2,a.Insulingabe);
+            pstmt.setBoolean(3,a.Valproat);
+            pstmt.setBoolean(4,a.Phenothiazine);
+            pstmt.setString(5,a.andere);
+            pstmt.setInt(6,anamneseID);
+            pstmt.executeUpdate();
+            disconnect(conn);
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    private static void setPatientAdiSyn(AdipositasSyndrome a, int anamneseID) {
+        String sql = "insert into AdipositasSyndrom ( LaurenceMoonBardetBiedel, PraderWilli, SimpsonGolabiBehmel, Sotos, \"Trisomie 21\"," +
+                " Weaver, andere, Anamnese_id) " +
+                "VALUES (?,?,?,?,?,?,?,?) ;";
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setBoolean(1,a.Laurence_Moon_Bardet_Biedel);
+            pstmt.setBoolean(2,a.Prader_Willi);
+            pstmt.setBoolean(3,a.Simpson_Golabi_Behmel);
+            pstmt.setBoolean(4, a.Sotos);
+            pstmt.setBoolean(5,a.Trisomie_21);
+            pstmt.setBoolean(6, a.Weaver);
+            pstmt.setString(7, a.andere);
+            pstmt.setInt(8, anamneseID);
+            pstmt.executeUpdate();
+            disconnect(conn);
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setPatientAnamnese(Anamnese a,int pid, User u){
+        String sql = "insert into Anamnese ( groesse, gewicht, behinderung, grad, chronischeKrankheit, Patient_id, User_id) " +
+                " Values (?,?,?,?,?,?,?) ;";
+
+        int patientID = findPatientID(pid);
+        int userID = findUserID(u);
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1,a.groesse);
+            pstmt.setDouble(2,a.gewicht);
+            pstmt.setBoolean(3,a.behinderung);
+            pstmt.setDouble(4,a.grad);
+            pstmt.setString(5, a.chronischeKrankheiten);
+            pstmt.setInt(6,patientID);
+            pstmt.setInt(7,userID);
+            pstmt.executeUpdate();
+            try(ResultSet rs = pstmt.getGeneratedKeys()){
+                if(rs.isBeforeFirst()){
+                    int anamneseID = rs.getInt(1);
+                    setPatientAdiMed(a.adipositasMedikamente,anamneseID);
+                    setPatientAdiSyn(a.adipositasSyndrome,anamneseID);
+                    setPatientEndo(a.endokrinologisch,anamneseID);
+                }
+            }
+            disconnect(conn);
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setPatientData(Patient p, int pid,User u){
+        String sql = "insert into Patient (patientID, vorname, nachname, geburtstag, geschlecht, User_id, refereceID) " +
+                "VALUES (?,?,?,?,?,?,?)"+
+                "";
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(0, p.patientID);
+            pstmt.setString(1,p.vorname);
+            pstmt.setString(2,p.nachname);
+            if(p.geburtsdatum!=null)
+            pstmt.setDate(3, new Date(p.geburtsdatum.getTime()));
+            if(p.geschlecht!=null)
+            pstmt.setString(4,p.geschlecht.toString());
+            pstmt.setInt(5,findUserID(u));
+            pstmt.setInt(6,findPatientID(pid));
+            pstmt.executeUpdate();
+            disconnect(conn);
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setPatientUnterbringung(Unterbringung u, int pid,User user){
+        String sql= "insert into Unterbringung ( zimmer, entlassung, einlieferung, Patient_id, User_id) " +
+                "VALUES (?,?,?,?,?) "+
+                ";";
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(0,u.zimmer);
+            pstmt.setString(1,u.entlassung);
+            pstmt.setString(2,u.einlieferung);
+            pstmt.setInt(3,findPatientID(pid));
+            pstmt.setInt(4,findUserID(user));
+            pstmt.executeUpdate();
+            disconnect(conn);
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setPatientEinrichtung(Einrichtungen e, int pid, User u){
+        String sql = "insert into Einrichtungen (art, name, adresse, telefonnummer, Patient_id, User_id, referenceID) " +
+                "VALUES (?,?,?,?,?,?,?)";
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(0,e.art);
+            pstmt.setString(1,e.name);
+            pstmt.setString(2,e.adresse);
+            pstmt.setString(3,e.telefonnummer);
+            pstmt.setInt(4,findPatientID(pid));
+            pstmt.setInt(5,findUserID(u));
+            pstmt.setInt(6,e.referenceID);
+            pstmt.executeUpdate();
+            disconnect(conn);
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
     }
 
     private static int findUserID(@NotNull User u){
@@ -169,7 +384,7 @@ public class dbConnector {
         return ps;
     }
 
-    public static @NotNull User checkCard(String card) {
+    public static User checkCard(String card) {
         User u = new User();
         String sql = "SELECT User.name, User.role, User.password, CardStatus.status FROM User "
                 + "INNER JOIN CardStatus on User.referenceID = CardStatus.User_id "
@@ -185,6 +400,8 @@ public class dbConnector {
                 u.name = rs.getString("name");
                 u.role = Role.valueOf(rs.getString("role"));
                 u.password = rs.getString("password");
+            } else {
+                u=null;
             }
             disconnect(conn);
         } catch (SQLException ex) {
@@ -205,7 +422,7 @@ public class dbConnector {
             return p;
         }
 
-        String sql = "SELECT Patient.patientID, Patient.vorname, Patient.nachname, Patient.geburtstag, Patient.geschlecht, Patient.id"
+        String sql = "SELECT Patient.patientID, Patient.vorname, Patient.nachname, Patient.geburtstag, Patient.geschlecht, Patient.referenceID"
                 + " FROM Patient "
                 + " WHERE Patient.patientID == " + pid + " "
                 + " ORDER BY Patient.aenderung DESC;";
@@ -228,7 +445,7 @@ public class dbConnector {
                     } else {
                         p.geschlecht=null;
                     }
-                id = rs.getInt("id");
+                id = rs.getInt("referenceID");
             }
             disconnect(conn);
             p.stamdaten = getStammdaten(role, id);
@@ -244,6 +461,82 @@ public class dbConnector {
         }
 
         return p;
+    }
+
+    public static int getNewEinrichtungsID(int pid) {
+        String sql = "WITH Newest As ( "
+                + "SELECT referenceID, MAX(aenderung) as LastReading "
+                + "FROM Einrichtungen "
+                + "GROUP BY referenceID) "
+                + "SELECT s.referenceID "
+                + "FROM Einrichtungen s "
+                + "INNER JOIN Newest t on s.referenceID = t.referenceID and s.aenderung = t.LastReading "
+                + "WHERE Patient_id = "+findPatientID(pid)+"" +
+                " ORDER BY s.referenceID DESC ;";
+
+        int i = 0;
+
+        try (
+                Connection conn = connect();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)
+        ) {
+            if(rs.isBeforeFirst()){
+                i=rs.getInt(1);
+
+            }
+            i++;
+            disconnect(conn);
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+        return i;
+    }
+
+    public static int getNewUserID(){
+        String sql = "SELECT s.referenceID "
+                + "FROM User s "
+                +" ORDER BY s.referenceID DESC ;";
+        int i = 0;
+
+        try (
+                Connection conn = connect();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)
+        ) {
+            if(rs.isBeforeFirst()){
+                i=rs.getInt(1);
+
+            }
+            i++;
+            disconnect(conn);
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+        return i;
+    }
+
+    public static int getNewPatientID(){
+        String sql = "SELECT s.patientID "
+                + "FROM Patient s "
+                +" ORDER BY s.patientID DESC ;";
+        int i = 0;
+
+        try (
+                Connection conn = connect();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)
+        ) {
+            if(rs.isBeforeFirst()){
+                i=rs.getInt(1);
+
+            }
+            i++;
+            disconnect(conn);
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+        return i;
     }
 
     private static @NotNull ArrayList<Krankheit> getKrank(Role role, int id) {
@@ -297,7 +590,9 @@ public class dbConnector {
                 u.name=rs.getString(1);
                 u.role= Role.valueOf(rs.getString(2));
                 u.password=rs.getString(3);
+                System.out.println(u.name);
             }
+
             disconnect(conn);
         } catch (SQLException e){
             e.printStackTrace();
@@ -565,10 +860,10 @@ public class dbConnector {
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, i1);
-            pstmt.setInt(2, i);
-            pstmt.setString(3,"lost");
-            pstmt.setInt(4,i);
+            pstmt.setInt(0, i1);
+            pstmt.setInt(1, i);
+            pstmt.setString(2,"lost");
+            pstmt.setInt(3,i);
             pstmt.executeUpdate();
             disconnect(conn);
         } catch (SQLException e) {
@@ -596,5 +891,174 @@ public class dbConnector {
         }
 
         return i1;
+    }
+
+    public static void setCardInfo(CardInfo card, User u){
+        User user = getUser(card.role,card.userName,card.ref);
+        setUser(user, u);
+        setCardStatus(card.cardID,user.referenceID,card.status,u);
+    }
+
+    private static void setCardStatus(int c, int u, String status, User user){
+        String sql="insert into CardStatus ( Card_id, User_id, status, aenderer_id) " +
+                "VALUES (?,?,?,?) ;";
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1,c);
+            pstmt.setInt(2,u);
+            pstmt.setString(3,status);
+            pstmt.setInt(4,findUserID(user));
+            pstmt.executeUpdate();
+            disconnect(conn);
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+
+    }
+
+    private static void setUser(User u, User user){
+        String sql="insert into User ( name, role, password, User_id, referenceID) " +
+                "VALUES (?,?,?,?,?) ;";
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1,u.name);
+            pstmt.setString(2,u.role.toString());
+            pstmt.setString(3,u.password);
+            pstmt.setInt(4,findUserID(user));
+            pstmt.setInt(5,u.referenceID);
+            pstmt.executeUpdate();
+            disconnect(conn);
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    private static User getUser(Role r, String name, int ref){
+        String sql="WITH NewesUser AS ( SELECT referenceID, MAX(aenderung) AS LastUpdate FROM User GROUP BY referenceID) " +
+                " SELECT name, role, password, referenceID FROM User " +
+                " WHERE referenceID = "+ref+" ;";
+        User u = new User();
+        try (
+                Connection conn = connect();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)
+        ) {
+            if(rs.isBeforeFirst()){
+                u.name=rs.getString(1);
+                u.role=Role.valueOf(rs.getString(2));
+                u.password=rs.getString(3);
+                u.referenceID=rs.getInt(4);
+            } else {
+                u.name=name;
+                u.role=r;
+                u.password="";
+                u.referenceID=getNewUserID();
+            }
+            disconnect(conn);
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return u;
+    }
+
+    public static ArrayList<CardInfo> getFreeCards(User u){
+        String sql="WITH Newest AS (SELECT Card_id, MAX(aenderung) as LastUpdate FROM CardStatus GROUP BY Card_id) " +
+                "SELECT Card.cardID, CardStatus.status " +
+                "FROM CardStatus " +
+                "INNER JOIN Newest t on CardStatus.Card_id = t.Card_id and CardStatus.aenderung = t.LastUpdate " +
+                "INNER JOIN Card on CardStatus.Card_id = Card.id " +
+                "WHERE CardStatus.status = 'free';";
+
+        ArrayList<CardInfo> c= new ArrayList<>();
+        try (
+                Connection conn = connect();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)
+        ) {
+            if(rs.isBeforeFirst()){
+                while(rs.next()){
+                    CardInfo card = new CardInfo();
+                    card.cardID = rs.getInt(1);
+                    card.status=rs.getString(2);
+                    c.add(card);
+                }
+            }
+            disconnect(conn);
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+
+        return c;
+    }
+
+    public static ArrayList<CardInfo> getCards(String s,User user){
+        String sql="WITH Newest AS ( SELECT Card_id, MAX(aenderung) as LastUpdate FROM CardStatus GROUP BY Card_id) " +
+                "SELECT Card.cardID, x.name, CardStatus.status, x.role, x.referenceID  " +
+                "FROM CardStatus " +
+                "INNER JOIN Newest t on CardStatus.Card_id = t.Card_id and CardStatus.aenderung = t.LastUpdate " +
+                "INNER JOIN Card on CardStatus.Card_id = Card.id " +
+                "LEFT JOIN (WITH NewestUser AS ( SELECT referenceID, MAX(aenderung) AS LastUpdate FROM User GROUP BY referenceID) " +
+                "SELECT User.role , User.name, User.referenceID " +
+                "FROM User INNER JOIN NewestUser AS t ON User.referenceID=t.referenceID AND User.aenderung = t.LastUpdate ) AS x " +
+                "ON CardStatus.User_id=x.referenceID " +
+                "WHERE x.name LIKE '"+s+"' ;";
+
+        ArrayList<CardInfo> c= new ArrayList<>();
+        try (
+                Connection conn = connect();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)
+        ) {
+            if(rs.isBeforeFirst()){
+                while(rs.next()){
+                    CardInfo card = new CardInfo();
+                    card.cardID = rs.getInt(1);
+                    card.role = Role.valueOf(rs.getString(4));
+                    card.status= rs.getString(3);
+                    card.userName=rs.getString(2);
+                    card.ref=rs.getInt(5);
+                    c.add(card);
+                }
+            }
+            disconnect(conn);
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return c;
+    }
+
+    public static ArrayList<CardInfo> getCards(User user){
+        String sql="WITH Newest AS ( SELECT Card_id, MAX(aenderung) as LastUpdate FROM CardStatus GROUP BY Card_id) " +
+                "SELECT Card.cardID, x.name, CardStatus.status, x.role " +
+                "FROM CardStatus " +
+                "INNER JOIN Newest t on CardStatus.Card_id = t.Card_id and CardStatus.aenderung = t.LastUpdate " +
+                "INNER JOIN Card on CardStatus.Card_id = Card.cardID " +
+                "LEFT JOIN (WITH NewestUser AS ( SELECT referenceID, MAX(aenderung) AS LastUpdate FROM User GROUP BY referenceID)" +
+                "SELECT User.role , User.name, User.referenceID " +
+                "FROM User INNER JOIN NewestUser AS t ON User.referenceID=t.referenceID AND User.aenderung = t.LastUpdate ) AS x " +
+                "ON CardStatus.User_id=x.referenceID ;";
+
+        ArrayList<CardInfo> c= new ArrayList<>();
+        try (
+                Connection conn = connect();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)
+        ) {
+            if(rs.isBeforeFirst()){
+                while(rs.next()){
+                    CardInfo card = new CardInfo();
+                    card.cardID = rs.getInt(1);
+                    card.role = Role.valueOf(rs.getString(4));
+                    card.status= rs.getString(3);
+                    card.userName=rs.getString(2);
+                    c.add(card);
+                }
+            }
+            disconnect(conn);
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+
+        return c;
     }
 }

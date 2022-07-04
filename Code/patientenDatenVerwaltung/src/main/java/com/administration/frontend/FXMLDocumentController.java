@@ -54,7 +54,7 @@ public class FXMLDocumentController extends BasicController{
     }
 
     @FXML
-    private void handleButtonAction(ActionEvent event) {
+    private void handleButtonAction(ActionEvent event) throws InterruptedException {
         if(
                          !Password.getText().contains("'")
                         && !Password.getText().contains("\"")
@@ -64,7 +64,7 @@ public class FXMLDocumentController extends BasicController{
                                  && !Benutzername.getText().contains(";")
         ){
             setUser(dbConnector.userLogin(Benutzername.getText(),Password.getText()));
-            if(getUser().name!=null){
+            if(dbConnector.userLogin(Benutzername.getText(),Password.getText())!=null){
                 try{
                     FXMLLoader loader = new FXMLLoader(Main.class.getResource("frontend/originPane.fxml"));
                     Parent root = loader.load();

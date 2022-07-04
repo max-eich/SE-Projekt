@@ -108,7 +108,7 @@
       <Separator layoutY="165.0" prefWidth="979.0" />
       <TableView fx:id="tableview" editable="true" layoutX="190.0" layoutY="176.0" prefHeight="295.0" prefWidth="602.0" stylesheets="@css/Einrichtungen.css">
         <columns>
-          <TableColumn id="tabelleName" fx:id="nameTabelle" prefWidth="105.0" sortable="false" style="-fx-border-color: black; -fx-border-width: 0px 1px 2px 0px;" text="Name" />
+          <TableColumn id="tabelleName" fx:id="nameTabelle" onEditCommit="#edit" prefWidth="105.0" sortable="false" style="-fx-border-color: black; -fx-border-width: 0px 1px 2px 0px;" text="Name" />
           <TableColumn id="tabelleAdresse" fx:id="adresseTabelle" prefWidth="197.0" sortable="false" style="-fx-border-color: black; -fx-border-width: 0px 1px 2px 0px;" text="Addresse" />
             <TableColumn id="tabelleArzt" fx:id="arztTabelle" prefWidth="119.0" sortable="false" style="-fx-border-width: 0px 1px 2px 0px; -fx-border-color: black;" text="Art des Arztes" />
             <TableColumn id="tabelleTel" fx:id="telTabelle" prefWidth="125.0" sortable="false" style="-fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" text="Telefonnummer" />
@@ -117,7 +117,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <JFXButton id="einrichtungenSpeichern" fx:id="speichern" layoutX="840.0" layoutY="425.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Speichern" textFill="SNOW">
+      <JFXButton id="einrichtungenSpeichern" fx:id="speichern" layoutX="840.0" layoutY="425.0" onAction="#save" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Speichern" textFill="SNOW">
          <font>
             <Font size="19.0" />
          </font>

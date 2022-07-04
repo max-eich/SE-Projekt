@@ -36,6 +36,8 @@ public class User
 	
 	public String password="";
 
+	public int referenceID=0;
+
 	
 	/**
 	 * <!-- begin-user-doc -->

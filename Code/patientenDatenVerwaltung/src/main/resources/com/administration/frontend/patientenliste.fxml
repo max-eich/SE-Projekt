@@ -59,7 +59,7 @@
                      </font>
                   </JFXButton>
                   <Region prefHeight="58.0" prefWidth="286.0" />
-                  <JFXButton fx:id="neuenPatientAnlegen" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #0abde3;" text="neuen Patienten anlegen" textFill="#fcf6f6">
+                  <JFXButton fx:id="neuenPatientAnlegen" onAction="#newPatient" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #0abde3;" text="neuen Patienten anlegen" textFill="#fcf6f6">
                      <font>
                         <Font size="18.0" />
                      </font>

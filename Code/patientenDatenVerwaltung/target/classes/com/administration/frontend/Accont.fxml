@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="481.0" maxWidth="979.0" minHeight="481.0" minWidth="979.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="481.0" prefWidth="979.0" style="-fx-border-color: #D3D3D3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.administration.frontend.AccontController">
+<AnchorPane id="AnchorPane" maxHeight="481.0" maxWidth="979.0" minHeight="481.0" minWidth="979.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="481.0" prefWidth="979.0" style="-fx-border-width: 0;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.administration.frontend.AccontController">
    <children>
       <Separator layoutX="487.0" orientation="VERTICAL" prefHeight="481.0" />
       <VBox alignment="CENTER" layoutX="95.0" layoutY="45.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="331.0" prefWidth="288.0">

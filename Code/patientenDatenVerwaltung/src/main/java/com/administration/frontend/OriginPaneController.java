@@ -1,6 +1,7 @@
 package com.administration.frontend;
 
 import com.administration.Main;
+import com.administration.backend.Patient;
 import com.administration.backend.Role;
 import com.administration.backend.User;
 import com.administration.backend.dbConnector;
@@ -42,6 +43,12 @@ public class OriginPaneController extends BasicController{
         Stage.getWindows().stream().filter(foundStage -> ((Stage) foundStage).getTitle().equalsIgnoreCase("Patientenverwaltung")).forEach(window -> ((Stage) window).close());
     }
 
+    public void newPatient(){
+        setPatient(new Patient());
+        getPatient().patientID=dbConnector.getNewPatientID();
+        setPatientTabs();
+    }
+
     public void setup(@NotNull User user){
         setUser(user);
         if(getUser().role==Role.techniker){
@@ -78,7 +85,7 @@ public class OriginPaneController extends BasicController{
 
 
     private void setPatientTabs(){
-        
+        label.setText("Patientenverwaltung");
         if(getUser().role.equals(Role.personal)||getUser().role.equals(Role.admin)){
             tabsPane.getTabs().clear();
             ArrayList<Tab> t = new ArrayList<>() ;
@@ -107,15 +114,18 @@ public class OriginPaneController extends BasicController{
     }
 
     private void setTechnikerTabs() {
+        label.setText("Nutzerverwaltung");
         tabsPane.getTabs().clear();
         ArrayList<Tab> tabs = new ArrayList<>();
         tabs.add(createTab("Accont.fxml", "Account"));
         tabs.add(createTab("techniker.fxml", "Cards"));
         tabsPane.getTabs().addAll(tabs);
+        tabsPane.getSelectionModel().select(tabs.get(1));
         setUpTabs(tabs);
     }
 
     private void setTabs(){
+        label.setText("Patientenverwaltung");
         ArrayList<Tab> t = new ArrayList<>();
                 tabsPane.getTabs().clear();
                 t.add(createTab("Accont.fxml","Account"));

@@ -46,8 +46,8 @@ public class LoginThread implements Runnable{
         while (!exitThread) {
             //System.out.println(name + " is running");
             if (eventListener.getMes() != null && !eventListener.getMes().equals("")) {
-                var user = dbConnector.checkCard(eventListener.getMes());
-                if (user.name != null) {
+                User user = dbConnector.checkCard(eventListener.getMes());
+                if (user!=null) {
                     Platform.runLater(() -> {
                         try {
                             Window open = Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);

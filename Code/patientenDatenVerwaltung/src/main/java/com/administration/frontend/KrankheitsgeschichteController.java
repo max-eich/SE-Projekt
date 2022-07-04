@@ -14,10 +14,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-import com.administration.backend.Patient;
-import com.administration.backend.Role;
-import com.administration.backend.User;
-import com.administration.backend.dbConnector;
+import com.administration.backend.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.beans.property.SimpleStringProperty;
@@ -27,6 +24,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Cell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.ChoiceBoxTableCell;
@@ -76,6 +74,68 @@ public class KrankheitsgeschichteController extends BasicTabController {
     private JFXTextField entlassung;
 
     private ObservableList<ObservableList> data;
+
+    @FXML
+    private void save(ActionEvent event) {
+        if(data.get(0).get(1)!= "" && data.get(0).get(3)!=""){
+            Krankheit k = new Krankheit();
+            k.type=Type.valueOf(data.get(0).get(1).toString());
+            k.icd10=data.get(0).get(2).toString();
+            k.beschreibung=data.get(0).get(3).toString();
+            if(k.type!=Type.k) {
+                if (getUser().role == Role.arzt) {
+                    k.arzt=getUser().name;
+                } else {
+                    k.arzt=arztEingabe.getText();
+                }
+            }
+            dbConnector.setPatientKrankheit(k,getPatient().patientID, getUser());
+            Role r;
+            if(arztEingabe.getText()!= null && !arztEingabe.getText().equals(""))
+                r = Role.arzt;
+            else
+                r=getUser().role;
+            Patient p = dbConnector.getPatient(r,getPatient().patientID);
+            update(p,r);
+        }
+    }
+
+    private void update(Patient p,Role r){
+        setPatient(p);
+        if(r== Role.arzt)
+            typTabelle.setCellFactory(ChoiceBoxTableCell.forTableColumn("d","k","b"));
+        if(r==Role.pflege)
+            typTabelle.setCellFactory(ChoiceBoxTableCell.forTableColumn("k"));
+        data.clear();
+        ObservableList<String> s1 = FXCollections.observableArrayList();
+        for (int i=0; i<5;i++)
+            s1.add("");
+        data.add(s1);
+        getPatient().krankheits.forEach(krankheit -> {
+            ObservableList<String>s = FXCollections.observableArrayList();
+            DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+            s.add(df.format(krankheit.erstellung));
+            s.add(krankheit.type.toString());
+            s.add(krankheit.icd10);
+            s.add(krankheit.beschreibung);
+            s.add(krankheit.arzt);
+            data.add(s);
+        });
+    }
+
+    @FXML
+    private void editType(TableColumn.CellEditEvent event){
+        if(event.getTablePosition().getRow()==0){
+            data.get(0).set(1,event.getNewValue().toString());
+        }
+    }
+
+    @FXML
+    private void edit(TableColumn.CellEditEvent event){
+        if(event.getTablePosition().getRow()==0){
+            data.get(0).set(event.getTablePosition().getColumn(),event.getNewValue().toString());
+        }
+    }
 
     @Override
     public void setup(User u) {
@@ -178,6 +238,7 @@ public class KrankheitsgeschichteController extends BasicTabController {
             drucken.setVisible(true);
             getPatient().krankheits = dbConnector.getKrankheiten(Role.arzt,getPatient().patientID);
             data.clear();
+            typTabelle.setCellFactory(ChoiceBoxTableCell.forTableColumn("d","k","b"));
             ObservableList<String>s1 = FXCollections.observableArrayList();
             for (int i=0; i<5;i++)
                 s1.add("");
