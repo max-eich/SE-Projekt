@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import com.administration.backend.*;
+import com.administration.backend.pdf.Drucken;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.beans.property.SimpleStringProperty;
@@ -135,6 +136,16 @@ public class KrankheitsgeschichteController extends BasicTabController {
         if(event.getTablePosition().getRow()==0){
             data.get(0).set(event.getTablePosition().getColumn(),event.getNewValue().toString());
         }
+    }
+
+    @FXML
+    private void print(ActionEvent event){
+        try {
+            Drucken.drucken(dbConnector.getPdfPatient(getPatient().patientID));
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+
     }
 
     @Override

@@ -33,7 +33,7 @@
          <font>
             <Font size="18.0" />
          </font></JFXTextField>
-      <JFXButton fx:id="drucken" layoutX="840.0" layoutY="369.0" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3; -fx-font-size: 18;" text="Drucken" textFill="WHITE">
+      <JFXButton fx:id="drucken" layoutX="840.0" layoutY="369.0" onAction="#print" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3; -fx-font-size: 18;" text="Drucken" textFill="WHITE">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="PRINT" />
          </graphic>

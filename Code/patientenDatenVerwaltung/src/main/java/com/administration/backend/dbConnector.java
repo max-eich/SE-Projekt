@@ -3,6 +3,8 @@ package com.administration.backend;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class dbConnector {
@@ -36,17 +38,17 @@ public class dbConnector {
                 "VALUES ( ?,?,?,?,?,?,?,?,?,?,?);";
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(0,s.straße);
-            pstmt.setString(1,s.ort);
-            pstmt.setString(2,String.valueOf(s.plz));
-            pstmt.setString(3,s.land);
-            pstmt.setString(4,s.telefon);
-            pstmt.setString(5,s.handy);
-            pstmt.setString(6,s.eMail);
-            pstmt.setString(7,s.kostenträger);
-            pstmt.setInt(8,s.versicherungsnummer);
-            pstmt.setInt(9,findPatientID(pid));
-            pstmt.setInt(10,findUserID(u));
+            pstmt.setString(1,s.straße);
+            pstmt.setString(2,s.ort);
+            pstmt.setString(3,String.valueOf(s.plz));
+            pstmt.setString(4,s.land);
+            pstmt.setString(5,s.telefon);
+            pstmt.setString(6,s.handy);
+            pstmt.setString(7,s.eMail);
+            pstmt.setString(8,s.kostenträger);
+            pstmt.setInt(9,s.versicherungsnummer);
+            pstmt.setInt(10,findPatientID(pid));
+            pstmt.setInt(11,findUserID(u));
             pstmt.executeUpdate();
             disconnect(conn);
         } catch (SQLException ex){
@@ -194,20 +196,21 @@ public class dbConnector {
     }
 
     public static void setPatientData(Patient p, int pid,User u){
-        String sql = "insert into Patient (patientID, vorname, nachname, geburtstag, geschlecht, User_id, refereceID) " +
+        String sql = "insert into Patient (patientID, vorname, nachname, geburtstag, geschlecht, User_id, referenceID) " +
                 "VALUES (?,?,?,?,?,?,?)"+
                 "";
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(0, p.patientID);
-            pstmt.setString(1,p.vorname);
-            pstmt.setString(2,p.nachname);
+            pstmt.setInt(1, p.patientID);
+            pstmt.setString(2,p.vorname);
+            pstmt.setString(3,p.nachname);
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             if(p.geburtsdatum!=null)
-            pstmt.setDate(3, new Date(p.geburtsdatum.getTime()));
+            pstmt.setString(4, df.format(p.geburtsdatum));
             if(p.geschlecht!=null)
-            pstmt.setString(4,p.geschlecht.toString());
-            pstmt.setInt(5,findUserID(u));
-            pstmt.setInt(6,findPatientID(pid));
+            pstmt.setString(5,p.geschlecht.toString());
+            pstmt.setInt(6,findUserID(u));
+            pstmt.setInt(7,findPatientID(pid));
             pstmt.executeUpdate();
             disconnect(conn);
         } catch(SQLException ex){
@@ -221,11 +224,11 @@ public class dbConnector {
                 ";";
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(0,u.zimmer);
-            pstmt.setString(1,u.entlassung);
-            pstmt.setString(2,u.einlieferung);
-            pstmt.setInt(3,findPatientID(pid));
-            pstmt.setInt(4,findUserID(user));
+            pstmt.setString(1,u.zimmer);
+            pstmt.setString(2,u.entlassung);
+            pstmt.setString(3,u.einlieferung);
+            pstmt.setInt(4,findPatientID(pid));
+            pstmt.setInt(5,findUserID(user));
             pstmt.executeUpdate();
             disconnect(conn);
         } catch (SQLException ex){
@@ -238,13 +241,13 @@ public class dbConnector {
                 "VALUES (?,?,?,?,?,?,?)";
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(0,e.art);
-            pstmt.setString(1,e.name);
-            pstmt.setString(2,e.adresse);
-            pstmt.setString(3,e.telefonnummer);
-            pstmt.setInt(4,findPatientID(pid));
-            pstmt.setInt(5,findUserID(u));
-            pstmt.setInt(6,e.referenceID);
+            pstmt.setString(1,e.art);
+            pstmt.setString(2,e.name);
+            pstmt.setString(3,e.adresse);
+            pstmt.setString(4,e.telefonnummer);
+            pstmt.setInt(5,findPatientID(pid));
+            pstmt.setInt(6,findUserID(u));
+            pstmt.setInt(7,e.referenceID);
             pstmt.executeUpdate();
             disconnect(conn);
         } catch (SQLException ex){
@@ -388,7 +391,7 @@ public class dbConnector {
         User u = new User();
         String sql = "SELECT User.name, User.role, User.password, CardStatus.status FROM User "
                 + "INNER JOIN CardStatus on User.referenceID = CardStatus.User_id "
-                + "INNER JOIN Card on CardStatus.Card_id = Card.id "
+                + "INNER JOIN Card on CardStatus.Card_id = Card.cardID "
                 + "WHERE Card.rfid LIKE '" + card + "' "
                 + "ORDER BY User.aenderung DESC;";
         try (
@@ -402,6 +405,7 @@ public class dbConnector {
                 u.password = rs.getString("password");
             } else {
                 u=null;
+                System.out.println("2");
             }
             disconnect(conn);
         } catch (SQLException ex) {
@@ -860,10 +864,10 @@ public class dbConnector {
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(0, i1);
-            pstmt.setInt(1, i);
-            pstmt.setString(2,"lost");
-            pstmt.setInt(3,i);
+            pstmt.setInt(1, i1);
+            pstmt.setInt(2, i);
+            pstmt.setString(3,"lost");
+            pstmt.setInt(4,i);
             pstmt.executeUpdate();
             disconnect(conn);
         } catch (SQLException e) {
@@ -1048,6 +1052,7 @@ public class dbConnector {
                 while(rs.next()){
                     CardInfo card = new CardInfo();
                     card.cardID = rs.getInt(1);
+                    if(rs.getString(4)!=null)
                     card.role = Role.valueOf(rs.getString(4));
                     card.status= rs.getString(3);
                     card.userName=rs.getString(2);

@@ -168,8 +168,14 @@ public class TechnikerController extends BasicTabController {
         cards.forEach(card->{
             ObservableList<String> s = FXCollections.observableArrayList();
             s.add(String.valueOf(card.cardID));
-            s.add(card.userName);
-            s.add(card.role.toString());
+            if(card.userName==null){
+                s.add("");
+            } else {
+            s.add(card.userName);}
+            if(card.role==null){
+                s.add("");
+            } else {
+            s.add(card.role.toString());}
             s.add(card.status);
             s.add(String.valueOf(card.ref));
             data.add(s);
