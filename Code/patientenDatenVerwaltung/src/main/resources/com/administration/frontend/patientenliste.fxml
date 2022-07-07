@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="481.0" prefWidth="979.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.administration.frontend.PatientenlisteController">
+   <children>
+      <TableView fx:id="tablePatient" layoutX="20.0" layoutY="15.0" prefHeight="450.0" prefWidth="580.0" stylesheets="@css/Patientenliste.css">
+         <columns>
+            <TableColumn fx:id="patientenID" editable="false" prefWidth="110.0" style="-fx-border-color: black; -fx-border-width: 0 1 2 0;" text="PatientenID" />
+            <TableColumn fx:id="name" editable="false" prefWidth="145.0" style="-fx-border-color: black; -fx-border-width: 0 1 2 0;" text="Name" />
+            <TableColumn fx:id="geschlecht" editable="false" prefWidth="112.0" style="-fx-border-color: black; -fx-border-width: 0 1 2 0;" text="Geschlecht" />
+            <TableColumn fx:id="geburtsdatum" editable="false" prefWidth="122.0" style="-fx-border-color: black; -fx-border-width: 0 1 2 0;" text="Geburtsdatum" />
+            <TableColumn fx:id="zimmerNr" editable="false" prefWidth="91.0" style="-fx-border-color: black; -fx-border-width: 0 0 2 0;" text="ZimmerNr" />
+         </columns></TableView>
+      <AnchorPane layoutX="659.0" layoutY="22.0" prefHeight="438.0" prefWidth="286.0" style="-fx-background-color: white;">
+         <children>
+            <VBox alignment="CENTER" prefHeight="438.0" prefWidth="286.0">
+               <children>
+                  <Region prefHeight="64.0" prefWidth="286.0" />
+                  <DatePicker fx:id="geburtstagSuchen" prefHeight="40.0" prefWidth="200.0" promptText="Geburtstag" style="-fx-font-size: 18;" />
+                  <Region prefHeight="13.0" prefWidth="286.0" />
+                  <HBox alignment="CENTER" prefHeight="41.0" prefWidth="286.0">
+                     <children>
+                        <JFXTextField id="name" fx:id="nameSuchen" focusColor="#0abde3" labelFloat="true" prefWidth="150.0" promptText="Name" style="-fx-font-size: 16;" unFocusColor="#0abde3">
+                           <font>
+                              <Font size="18.0" />
+                           </font></JFXTextField>
+                        <FontAwesomeIconView fx:id="nameSuchknopf" fill="#0abde3" glyphName="SEARCH" scaleX="1.5" scaleY="1.5" size="14" wrappingWidth="12.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font></FontAwesomeIconView>
+                     </children>
+                  </HBox>
+                  <Region prefHeight="23.0" prefWidth="286.0" />
+                  <HBox alignment="CENTER" prefHeight="37.0" prefWidth="286.0">
+                     <children>
+                        <JFXTextField fx:id="ZimmerNrSuchen" focusColor="#0abde3" labelFloat="true" prefWidth="150.0" promptText="ZimmerNr" unFocusColor="#0abde3">
+                           <font>
+                              <Font size="18.0" />
+                           </font></JFXTextField>
+                        <FontAwesomeIconView fx:id="zimmerNrSuchknopf" fill="#0abde3" glyphName="SEARCH" scaleX="1.5" scaleY="1.5" size="14" text="" />
+                     </children>
+                  </HBox>
+                  <Region prefHeight="19.0" prefWidth="286.0" />
+                  
+                  <JFXButton fx:id="suchen" onAction="#search" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #0abde3;" text="Suchen" textFill="#f8f6f6">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <Region prefHeight="58.0" prefWidth="286.0" />
+                  <JFXButton fx:id="neuenPatientAnlegen" onAction="#newPatient" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #0abde3;" text="neuen Patienten anlegen" textFill="#fcf6f6">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#ebe7e7" glyphName="PLUS" size="14" />
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+
+   </children>
+</AnchorPane>
